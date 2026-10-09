@@ -55,7 +55,6 @@
     .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; column-gap: 64px; align-items: start; }
     .eyebrow { color: var(--accent); font-size: 13px; font-weight: 600; letter-spacing: .17em; text-transform: uppercase; margin-bottom: 19px; }
     .hero h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 4.2vw, 56px); line-height: 1.09; letter-spacing: -2.1px; margin-bottom: 26px; }
-    .hero h2 em { color: inherit; font-style: italic; }
     .lead { font-size: 17px; color: var(--secondary); line-height: 1.75; max-width: 570px; margin-bottom: 26px; }
     .actions { display: flex; flex-wrap: wrap; gap: 21px; align-items: center; }
     .primary-link { display: inline-flex; gap: 24px; align-items: center; background: var(--accent); color: var(--white); border-radius: 5px; padding: 12px 18px; font-size: 15px; font-weight: 500; }
@@ -83,8 +82,15 @@
     .about-detail .section { padding: 0; }
     .research { padding: 55px 0 58px; background: var(--white); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
     .section-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-bottom: 27px; }
-    .section-top .eyebrow { margin-bottom: 11px; }
+    .research > .container > .eyebrow { margin-bottom: 11px; }
     .section-title { font-family: var(--serif); font-size: 37px; line-height: 1.15; font-weight: 400; letter-spacing: -.9px; margin: 0; }
+    .section-summary { display: flex; justify-content: space-between; align-items: center; gap: 24px; min-height: 44px; list-style: none; }
+    .section-summary::-webkit-details-marker { display: none; }
+    .fold-icon { flex-shrink: 0; width: 30px; text-align: center; color: var(--accent); font-size: 26px; line-height: 1; }
+    .fold-icon::before { content: "+"; }
+    .section-fold[open] > .section-summary .fold-icon::before { content: "−"; }
+    .section-content { margin-top: 25px; }
+    .section-content .section-subtitle { margin: 0; }
     .section-subtitle { margin: 12px 0 0; color: var(--secondary); font-size: 15px; }
     .all-button { flex-shrink: 0; background: none; border: 1px solid var(--rule); border-radius: 5px; padding: 10px 15px; font-size: 14px; transition: background .15s; }
     .all-button span { margin-left: 10px; color: var(--secondary); }
@@ -137,13 +143,10 @@
     .no-js .view-note { display: none; }
     .education-wrap { padding: 53px 0 42px; }
     #education.section { padding: 0; }
-    #education .section-block { padding: 0; }
-    #education h2 { font-family: var(--serif); font-size: 34px; font-weight: 400; letter-spacing: -.7px; margin: 0 0 23px; }
     #education .list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 35px; }
     #education .list li { border-top: 1px solid var(--rule); padding-top: 17px; color: var(--secondary); font-size: 14px; line-height: 1.85; margin: 0; }
     #education .list strong { display: inline-block; margin-bottom: 9px; font-weight: 500; color: var(--accent); font-size: 14px; }
     .talks-wrap { padding: 45px 0 49px; border-top: 1px solid var(--rule); }
-    .talks-wrap > .container { margin-bottom: 24px; }
     .section { padding: 0; }
     .cards-2 { display: grid; grid-template-columns: minmax(0,1.6fr) minmax(0,1fr); gap: 62px; }
     .card { min-width: 0; }
@@ -160,7 +163,7 @@
     .summary-end { font-size: 13px; color: var(--secondary); display: flex; gap: 20px; }
     .summary-end::after { content: "+"; color: var(--accent); font-size: 17px; line-height: 1; }
     details[open] > summary .summary-end::after { content: "−"; }
-    .archive-details .list { display: grid; grid-template-columns: 1fr 1fr; column-gap: 62px; padding: 9px 0 16px; }
+    .archive-details .list { display: grid; grid-template-columns: minmax(0, 1fr); padding: 9px 0 16px; }
     .archive-details .card > h3 { display: none; }
     .keyword-details .section .container { width: auto; }
     .keyword-details .card > h3 { display: none; }
@@ -235,14 +238,12 @@
       .more-papers > summary, .view-note { margin-left: 32px; }
       .more-papers > summary { min-height: 44px; }
       .education-wrap { padding: 37px 0 33px; }
-      #education h2 { font-size: 29px; margin-bottom: 18px; }
       #education .list { grid-template-columns: 1fr; gap: 20px; }
       #education .list li { padding-top: 13px; font-size: 15px; }
       #education .list strong { margin-bottom: 6px; }
       .talks-wrap { padding: 33px 0 28px; }
       .cards-2 { grid-template-columns: 1fr; gap: 29px; }
-      .talks-wrap > .container { margin-bottom: 22px; }
-      .archive-details .list { grid-template-columns: 1fr; }
+      .section-content { margin-top: 22px; }
       .archive-wrap { padding-bottom: 30px; }
       .contact-wrap { padding: 32px 0 24px; }
       .contact-grid { grid-template-columns: 1fr; gap: 24px; }
@@ -289,7 +290,7 @@
         <div class="hero-grid">
           <div>
             <p class="eyebrow">Analysis & Geometry</p>
-            <h2 id="hero-heading">Nonlocal operators,<br>spectral theory &<br><em>geometric analysis.</em></h2>
+            <h2 id="hero-heading">Nonlocal operators,<br>spectral theory &<br>geometric analysis.</h2>
             <p class="lead">I am a PhD student in mathematics, currently working on nonlocal operators, functional inequalities, spectral theory, and partial differential equations, with a particular interest in fractional and logarithmic operators on Euclidean spaces, manifolds, and graphs.</p>
             <div class="actions"><a class="primary-link" href="#research">Explore my research <span aria-hidden="true">↓</span></a><a class="plain-link" href="mailto:chenrui23@m.fudan.edu.cn">Get in touch ↗</a></div>
           </div>
@@ -388,15 +389,19 @@
     <section class="research" id="research" aria-labelledby="research-heading">
       <span id="publications" aria-hidden="true"></span>
       <div class="container">
-        <div class="section-top">
-          <div><p class="eyebrow">Four Research Directions</p><h2 class="section-title" id="research-heading">Research & Publications</h2><p class="section-subtitle">Explore the questions and papers behind each research direction.</p></div>
-          <button type="button" id="all-publications" class="all-button research-controls" aria-pressed="false" aria-controls="research-results">All publications <span>14 ↗</span></button>
-        </div>
-        <div class="topic-selectors research-controls" role="group" aria-label="Filter publications by research direction"><button type="button" class="topic-button nonlocal" data-category="nonlocal" aria-pressed="false" aria-controls="panel-nonlocal"><span class="topic-top"><span>01</span><span>5 papers</span></span><span class="topic-name">Nonlocal Operators and Their Applications</span></button>
+        <p class="eyebrow">Four Research Directions</p>
+        <details class="section-fold" open>
+          <summary class="section-summary"><h2 class="section-title" id="research-heading">Research & Publications</h2><span class="fold-icon" aria-hidden="true"></span></summary>
+          <div class="section-content">
+            <div class="section-top">
+              <p class="section-subtitle">Explore the questions and papers behind each research direction.</p>
+              <button type="button" id="all-publications" class="all-button research-controls" aria-pressed="false" aria-controls="research-results">All publications <span>14 ↗</span></button>
+            </div>
+            <div class="topic-selectors research-controls" role="group" aria-label="Filter publications by research direction"><button type="button" class="topic-button nonlocal" data-category="nonlocal" aria-pressed="false" aria-controls="panel-nonlocal"><span class="topic-top"><span>01</span><span>5 papers</span></span><span class="topic-name">Nonlocal Operators and Their Applications</span></button>
 <button type="button" class="topic-button spectral" data-category="spectral" aria-pressed="false" aria-controls="panel-spectral"><span class="topic-top"><span>02</span><span>4 papers</span></span><span class="topic-name">Spectral Theory and Functional Inequalities</span></button>
 <button type="button" class="topic-button equations" data-category="equations" aria-pressed="false" aria-controls="panel-equations"><span class="topic-top"><span>03</span><span>3 papers</span></span><span class="topic-name">Elliptic and Parabolic Equations</span></button>
 <button type="button" class="topic-button geometric" data-category="geometric" aria-pressed="false" aria-controls="panel-geometric"><span class="topic-top"><span>04</span><span>2 papers</span></span><span class="topic-name">Geometric and Harmonic Analysis</span></button></div>
-        <div id="research-results"><section class="topic-panel nonlocal" id="panel-nonlocal" data-category="nonlocal" data-count="5" aria-labelledby="title-nonlocal">
+            <div id="research-results"><section class="topic-panel nonlocal" id="panel-nonlocal" data-category="nonlocal" data-count="5" aria-labelledby="title-nonlocal">
       <div class="topic-intro"><div><h3 id="title-nonlocal">Nonlocal Operators and Their Applications</h3><p>Fractional, logarithmic and fractional-logarithmic operators: their fundamental properties, potential theory, and applications on spaces, manifolds and graphs.</p></div><span class="topic-total">5 publications</span></div>
       <div class="paper-list"><article class="paper-row" data-title="The Fractional-Logarithmic Laplacian: Fundamental Properties and Eigenvalues">
       <span class="paper-no" aria-hidden="true">01</span>
@@ -482,14 +487,14 @@
       <div class="paper-side"><span class="paper-status">Preprint</span><a class="paper-link" href="https://arxiv.org/pdf/2604.20205" target="_blank" rel="noopener noreferrer" aria-label="Read Nonlocal Characterizations of Stochastic Completeness on Complete Riemannian Manifolds">arXiv:2604.20205 ↗</a></div>
     </article></div><p class="view-note">Showing 2 of 2 publications</p>
     </section></div>
-        <p class="sr-only" id="filter-status" aria-live="polite" aria-atomic="true"></p>
+            <p class="sr-only" id="filter-status" aria-live="polite" aria-atomic="true"></p>
+          </div>
+        </details>
       </div>
     </section>
-    <div class="education-wrap"><section id="education" class="section">
-      <div class="container">
-        <div class="section-block">
-          <h2>Education</h2>
-          <ul class="list">
+    <div class="education-wrap">
+      <section class="section" id="education" aria-labelledby="education-heading"><div class="container">
+        <details class="section-fold"><summary class="section-summary"><h2 class="section-title" id="education-heading">Education</h2><span class="fold-icon" aria-hidden="true"></span></summary><div class="section-content"><ul class="list">
             <li>
               <strong>Oct 2025 – Present</strong><br>
               Visiting Ph.D. Student, Brandenburg University of Technology Cottbus-Senftenberg, Germany<br>
@@ -504,14 +509,12 @@
               <strong>Sep 2019 – Jun 2023</strong><br>
               B.Sc. in Mathematics and Applied Mathematics, Central South University, China
             </li>
-          </ul>
-        </div>
-      </div>
-    </section></div>
-    <div class="talks-wrap"><div class="container"><h2 class="section-title">Talks & Visits</h2></div><section id="talks" class="section">
-  <div class="container cards-2">
-
-<div class="card">
+          </ul></div></details>
+      </div></section>
+    </div>
+    <div class="talks-wrap">
+      <section class="section" id="talks" aria-labelledby="talks-heading"><div class="container">
+        <details class="section-fold"><summary class="section-summary"><h2 class="section-title" id="talks-heading">Talks & Visits</h2><span class="fold-icon" aria-hidden="true"></span></summary><div class="section-content cards-2"><div class="card">
   <h3>Invited Talks</h3>
   <ul class="list"><li>
       <strong>Shanghai Institute for Mathematics and Interdisciplinary Sciences; one-hour invited talk</strong><br>
@@ -546,10 +549,9 @@
           Oct 2025 – Present
         </li>
       </ul>
+    </div></div></details>
+      </div></section>
     </div>
-
-  </div>
-</section></div>
     <div class="container archive-wrap">
       <details class="archive-details"><summary>Selected Workshops and Conferences <span class="summary-end">6 events</span></summary><div class="card">
       <h3>Selected Workshops and Conferences</h3>
@@ -696,6 +698,29 @@
         menu.setAttribute('aria-expanded', 'false');
         nav.classList.remove('is-open');
       }));
+      function revealSection(hash) {
+        if (!hash) return;
+        const target = document.getElementById(hash.slice(1));
+        if (!target) return;
+        const section = target.closest('section');
+        const fold = section && section.querySelector('.section-fold');
+        if (fold) fold.open = true;
+        for (let parent = target.parentElement; parent; parent = parent.parentElement) {
+          if (parent.tagName === 'DETAILS') parent.open = true;
+        }
+        return target;
+      }
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', event => {
+          const hash = link.getAttribute('href');
+          const target = revealSection(hash);
+          if (target && hash === window.location.hash) {
+            event.preventDefault();
+            target.scrollIntoView({ block: 'start' });
+          }
+        });
+      });
+      window.addEventListener('hashchange', () => revealSection(window.location.hash));
       document.addEventListener('keydown', event => {
         if (event.key === 'Escape' && nav.classList.contains('is-open')) {
           menu.setAttribute('aria-expanded', 'false');
@@ -714,6 +739,7 @@
         });
       });
       selectDirection('nonlocal');
+      revealSection(window.location.hash);
     })();
   </script>
 </body>
