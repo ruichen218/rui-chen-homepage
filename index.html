@@ -80,16 +80,17 @@
     .about-detail h3 { display: none; }
     .about-detail p { margin-bottom: 12px; }
     .about-detail .section { padding: 0; }
-    .research { padding: 55px 0 58px; background: var(--white); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+    .research { padding: 0; background: var(--paper); }
     .section-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-bottom: 27px; }
-    .research > .container > .eyebrow { margin-bottom: 11px; }
-    .section-title { font-family: var(--serif); font-size: 37px; line-height: 1.15; font-weight: 400; letter-spacing: -.9px; margin: 0; }
-    .section-summary { display: flex; justify-content: space-between; align-items: center; gap: 24px; min-height: 44px; list-style: none; }
+    .research .section-content > .eyebrow { margin-bottom: 12px; }
+    .research .section-title { color: var(--accent); }
+    .section-title { font-family: var(--serif); font-size: 28px; line-height: 1.25; font-weight: 400; letter-spacing: -.4px; margin: 0; }
+    .section-summary { display: flex; justify-content: space-between; align-items: center; gap: 24px; min-height: 92px; padding: 24px 0; list-style: none; }
     .section-summary::-webkit-details-marker { display: none; }
     .fold-icon { flex-shrink: 0; width: 30px; text-align: center; color: var(--accent); font-size: 26px; line-height: 1; }
     .fold-icon::before { content: "+"; }
     .section-fold[open] > .section-summary .fold-icon::before { content: "−"; }
-    .section-content { margin-top: 25px; }
+    .section-content { padding-bottom: 32px; }
     .section-content .section-subtitle { margin: 0; }
     .section-subtitle { margin: 12px 0 0; color: var(--secondary); font-size: 15px; }
     .all-button { flex-shrink: 0; background: none; border: 1px solid var(--rule); border-radius: 5px; padding: 10px 15px; font-size: 14px; transition: background .15s; }
@@ -141,12 +142,12 @@
     .all-mode .view-note { display: none; }
     .no-js .research-controls { display: none; }
     .no-js .view-note { display: none; }
-    .education-wrap { padding: 53px 0 42px; }
+    .education-wrap { padding: 0; }
     #education.section { padding: 0; }
     #education .list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 35px; }
     #education .list li { border-top: 1px solid var(--rule); padding-top: 17px; color: var(--secondary); font-size: 14px; line-height: 1.85; margin: 0; }
     #education .list strong { display: inline-block; margin-bottom: 9px; font-weight: 500; color: var(--accent); font-size: 14px; }
-    .talks-wrap { padding: 45px 0 49px; border-top: 1px solid var(--rule); }
+    .talks-wrap { padding: 0; }
     .section { padding: 0; }
     .cards-2 { display: grid; grid-template-columns: minmax(0,1.6fr) minmax(0,1fr); gap: 62px; }
     .card { min-width: 0; }
@@ -157,11 +158,9 @@
     .talks-more > summary { color: var(--accent); font-size: 14px; padding: 8px 0; }
     .talks-more[open] > summary { margin-bottom: 12px; }
     .archive-wrap { padding-bottom: 49px; }
-    .archive-details, .keyword-details { border-top: 1px solid var(--rule); }
-    .archive-details > summary, .keyword-details > summary { display: flex; justify-content: space-between; gap: 24px; align-items: center; padding: 19px 0; font-size: 15px; list-style: none; }
-    .archive-details > summary::-webkit-details-marker, .keyword-details > summary::-webkit-details-marker { display: none; }
-    .summary-end { font-size: 13px; color: var(--secondary); display: flex; gap: 20px; }
-    .summary-end::after { content: "+"; color: var(--accent); font-size: 17px; line-height: 1; }
+    .section-fold, .archive-details, .keyword-details { border-top: 1px solid var(--rule); }
+    .summary-end { flex-shrink: 0; font-size: 13px; color: var(--secondary); display: flex; align-items: center; gap: 20px; white-space: nowrap; }
+    .summary-end::after { content: "+"; color: var(--accent); font-size: 26px; line-height: 1; width: 30px; text-align: center; }
     details[open] > summary .summary-end::after { content: "−"; }
     .archive-details .list { display: grid; grid-template-columns: minmax(0, 1fr); padding: 9px 0 16px; }
     .archive-details .card > h3 { display: none; }
@@ -215,9 +214,9 @@
       .profile-row.location { display: none; }
       .about-detail { margin-top: 17px; font-size: 16px; }
       .about-detail > summary { min-height: 44px; }
-      .research { padding: 35px 0 39px; }
       .section-top { align-items: flex-start; gap: 20px; }
-      .section-title { font-size: 30px; }
+      .section-title { font-size: 24px; }
+      .section-summary { min-height: 84px; padding: 20px 0; }
       .section-top .all-button { align-self: flex-end; }
       .all-button { padding: 8px 10px; font-size: 13px; min-height: 44px; }
       .all-button span { margin-left: 4px; }
@@ -237,13 +236,11 @@
       .paper-link { padding: 7px 0; display: inline-flex; align-items: center; min-height: 44px; }
       .more-papers > summary, .view-note { margin-left: 32px; }
       .more-papers > summary { min-height: 44px; }
-      .education-wrap { padding: 37px 0 33px; }
       #education .list { grid-template-columns: 1fr; gap: 20px; }
       #education .list li { padding-top: 13px; font-size: 15px; }
       #education .list strong { margin-bottom: 6px; }
-      .talks-wrap { padding: 33px 0 28px; }
       .cards-2 { grid-template-columns: 1fr; gap: 29px; }
-      .section-content { margin-top: 22px; }
+      .section-content { padding-bottom: 26px; }
       .archive-wrap { padding-bottom: 30px; }
       .contact-wrap { padding: 32px 0 24px; }
       .contact-grid { grid-template-columns: 1fr; gap: 24px; }
@@ -389,10 +386,10 @@
     <section class="research" id="research" aria-labelledby="research-heading">
       <span id="publications" aria-hidden="true"></span>
       <div class="container">
-        <p class="eyebrow">Four Research Directions</p>
         <details class="section-fold" open>
           <summary class="section-summary"><h2 class="section-title" id="research-heading">Research & Publications</h2><span class="fold-icon" aria-hidden="true"></span></summary>
           <div class="section-content">
+            <p class="eyebrow">Four Research Directions</p>
             <div class="section-top">
               <p class="section-subtitle">Explore the questions and papers behind each research direction.</p>
               <button type="button" id="all-publications" class="all-button research-controls" aria-pressed="false" aria-controls="research-results">All publications <span>14 ↗</span></button>
@@ -553,7 +550,7 @@
       </div></section>
     </div>
     <div class="container archive-wrap">
-      <details class="archive-details"><summary>Selected Workshops and Conferences <span class="summary-end">6 events</span></summary><div class="card">
+      <details class="archive-details"><summary class="section-summary"><h2 class="section-title">Selected Workshops and Conferences</h2><span class="summary-end">6 events</span></summary><div class="card">
       <h3>Selected Workshops and Conferences</h3>
       <ul class="list">
         <li>
@@ -588,7 +585,7 @@
         </li>
       </ul>
     </div></details>
-      <details class="keyword-details"><summary>Research Keywords <span class="summary-end"></span></summary><section class="section">
+      <details class="keyword-details"><summary class="section-summary"><h2 class="section-title">Research Keywords</h2><span class="summary-end"></span></summary><section class="section">
       <div class="container">
         <div class="card">
           <h3>Research Keywords</h3>
