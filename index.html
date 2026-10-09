@@ -42,15 +42,22 @@
     .skip-link { position: fixed; left: 16px; top: -70px; z-index: 100; padding: 10px 16px; background: var(--white); border: 1px solid var(--accent); }
     .skip-link:focus { top: 12px; }
     .site-header { position: sticky; top: 0; z-index: 30; border-bottom: 1px solid var(--rule); background: var(--paper); }
-    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 28px; min-height: 86px; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 86px; }
     .brand { flex-shrink: 0; }
     .brand h1 { margin: 0; font-family: var(--serif); font-size: 29px; font-weight: 400; letter-spacing: -.8px; line-height: 1.2; }
     .brand p { margin: 4px 0 0; font-size: 14px; color: var(--secondary); letter-spacing: .01em; }
-    .nav { display: flex; gap: 27px; font-size: 15px; align-items: center; }
+    .nav { display: flex; gap: 22px; font-size: 15px; align-items: center; margin-left: auto; }
     .nav a { padding: 8px 0; color: var(--secondary); }
     .nav a:hover { color: var(--accent); }
     .nav .contact-nav { border-bottom: 1px solid var(--accent); color: var(--accent); }
     .nav-toggle { display: none; background: none; border: 1px solid var(--rule); border-radius: 5px; padding: 8px 13px; }
+    .header-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .language-switch { display: flex; align-items: center; gap: 2px; padding: 2px; border: 1px solid var(--rule); border-radius: 5px; }
+    .language-button { border: 0; border-radius: 3px; background: none; color: var(--secondary); font-size: 12px; padding: 6px 7px; min-height: 44px; min-width: 44px; white-space: nowrap; }
+    .language-button[aria-pressed="true"] { background: var(--accent); color: var(--white); }
+    .language-button:hover { background: var(--accent-wash); color: var(--ink); }
+    .language-button[aria-pressed="true"]:hover { background: #383f72; color: var(--white); }
+    .no-js .header-actions { display: none; }
     .hero { padding: 66px 0 42px; }
     .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; column-gap: 64px; align-items: start; }
     .eyebrow { color: var(--accent); font-size: 13px; font-weight: 600; letter-spacing: .17em; text-transform: uppercase; margin-bottom: 19px; }
@@ -94,10 +101,10 @@
     .section-content .section-subtitle { margin: 0; }
     .section-subtitle { margin: 12px 0 0; color: var(--secondary); font-size: 15px; }
     .all-button { flex-shrink: 0; background: none; border: 1px solid var(--rule); border-radius: 5px; padding: 10px 15px; font-size: 14px; transition: background .15s; }
-    .all-button span { margin-left: 10px; color: var(--secondary); }
+    .all-button > .button-count { margin-left: 10px; color: var(--secondary); }
     .all-button:hover { background: var(--paper); }
     .all-button[aria-pressed="true"] { color: var(--white); background: var(--accent); border-color: var(--accent); }
-    .all-button[aria-pressed="true"] span { color: var(--white); }
+    .all-button[aria-pressed="true"] > .button-count { color: var(--white); }
     .topic-selectors { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0 0 33px; }
     .topic-button { --topic: var(--accent); --wash: var(--accent-wash); min-width: 0; text-align: left; padding: 17px 18px 15px; background: var(--paper); border: 1px solid transparent; border-radius: 6px; position: relative; display: flex; flex-direction: column; gap: 12px; min-height: 162px; transition: background .15s, border-color .15s; }
     .topic-button:hover { background: var(--wash); }
@@ -181,10 +188,16 @@
     .link-item a:hover { border-color: var(--white); }
     .footer { display: flex; justify-content: space-between; gap: 20px; font-size: 12px; color: #d6d9e6; margin-top: 34px; padding-top: 18px; border-top: 1px solid #515670; }
     .footer a { color: #d6d9e6; }
+    html:lang(zh) .hero h2, html:lang(zh) .section-title, html:lang(zh) .topic-intro h3 { font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif; letter-spacing: 0; line-height: 1.35; }
+    html:lang(zh) .eyebrow { letter-spacing: .08em; text-transform: none; }
     @media (max-width: 1000px) {
       .container { width: calc(100% - 52px); }
       .hero-grid { column-gap: 38px; grid-template-columns: 1.3fr 1fr; }
       .nav { gap: 19px; font-size: 14px; }
+      .has-js .nav-toggle { display: inline-flex; align-items: center; font-size: 13px; min-height: 44px; padding: 8px 9px; }
+      .has-js .nav { display: none; }
+      .has-js .nav.is-open { display: flex; flex-wrap: wrap; position: absolute; top: 100%; right: 0; left: 0; margin-left: 0; padding: 14px 26px 18px; border-bottom: 1px solid var(--rule); background: var(--paper); gap: 16px 24px; }
+      .nav a { display: inline-flex; align-items: center; min-height: 44px; }
       .topic-button { padding: 15px 13px; min-height: 148px; }
       .topic-button .topic-name { font-size: 16px; }
     }
@@ -195,10 +208,8 @@
       .header-inner { min-height: 72px; }
       .brand h1 { font-size: 25px; }
       .brand p { font-size: 12px; }
-      .has-js .nav-toggle { display: inline-flex; align-items: center; font-size: 14px; min-height: 44px; }
-      .has-js .nav { display: none; }
-      .has-js .nav.is-open { display: flex; flex-wrap: wrap; position: absolute; top: 72px; right: 0; left: 0; padding: 14px 20px 18px; border-bottom: 1px solid var(--rule); background: var(--paper); gap: 16px 24px; }
-      .nav a { display: inline-flex; align-items: center; min-height: 44px; }
+      .header-inner { gap: 8px; }
+      .has-js .nav.is-open { padding-left: 20px; padding-right: 20px; }
       .no-js .header-inner { flex-wrap: wrap; padding: 15px 0; gap: 10px; }
       .no-js .nav { flex-wrap: wrap; }
       .hero { padding: 39px 0 31px; }
@@ -219,7 +230,7 @@
       .section-summary { min-height: 84px; padding: 20px 0; }
       .section-top .all-button { align-self: flex-end; }
       .all-button { padding: 8px 10px; font-size: 13px; min-height: 44px; }
-      .all-button span { margin-left: 4px; }
+      .all-button > .button-count { margin-left: 4px; }
       .section-subtitle { font-size: 14px; }
       .topic-selectors { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; margin-bottom: 27px; }
       .topic-button { min-height: 150px; padding: 14px; }
@@ -249,7 +260,11 @@
       .footer { margin-top: 27px; }
     }
     @media (max-width: 380px) {
+      html { scroll-padding-top: 145px; }
       .container { width: calc(100% - 32px); }
+      .header-inner { flex-wrap: wrap; min-height: 0; padding: 10px 0; gap: 8px; }
+      .brand { width: 100%; }
+      .header-actions { margin-left: auto; }
       .hero h2 { font-size: 36px; }
       .hero-aside { grid-template-columns: 92px 1fr; gap: 12px; }
       .section-top { flex-direction: column; gap: 15px; }
@@ -261,7 +276,7 @@
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
     @media print {
       .site-header { position: static; }
-      .research-controls, .actions, .illustration, .nav, .nav-toggle, .skip-link { display: none !important; }
+      .research-controls, .actions, .illustration, .nav, .header-actions, .skip-link { display: none !important; }
       .topic-panel[hidden] { display: block !important; }
       .container { width: 100%; }
       .hero-grid, .contact-grid { grid-template-columns: 1fr; }
@@ -271,14 +286,20 @@
   </style>
 </head>
 <body class="no-js">
-  <a class="skip-link" href="#research">Skip to research and publications</a>
+  <a class="skip-link" href="#research"><span data-i18n="t000">Skip to research and publications</span></a>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="#about"><h1>Rui Chen</h1><p>PhD Student in Mathematics</p></a>
-      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-navigation">Menu</button>
-      <nav class="nav" id="main-navigation" aria-label="Main navigation">
-        <a href="#about">About</a><a href="#research">Research & Publications</a><a href="#education">Education</a><a href="#talks">Talks & Visits</a><a class="contact-nav" href="#contact">Contact ↗</a>
+      <a class="brand" href="#about"><h1>Rui Chen</h1><p><span data-i18n="t001">PhD Student in Mathematics</span></p></a>
+      <nav class="nav" id="main-navigation" aria-label="Main navigation" data-i18n-aria="mainNavigation">
+        <a href="#about"><span data-i18n="t002">About</span></a><a href="#research"><span data-i18n="t003">Research &amp; Publications</span></a><a href="#education"><span data-i18n="t004">Education</span></a><a href="#talks"><span data-i18n="t005">Talks &amp; Visits</span></a><a class="contact-nav" href="#contact"><span data-i18n="t006">Contact ↗</span></a>
       </nav>
+      <div class="header-actions">
+        <div class="language-switch" role="group" aria-label="Language / 语言">
+          <button type="button" class="language-button" data-language="en" lang="en" aria-pressed="true">English</button>
+          <button type="button" class="language-button" data-language="zh" lang="zh-CN" aria-pressed="false">中文</button>
+        </div>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-navigation"><span data-i18n="t007">Menu</span></button>
+      </div>
     </div>
   </header>
   <main>
@@ -286,12 +307,12 @@
       <div class="container">
         <div class="hero-grid">
           <div>
-            <p class="eyebrow">Analysis & Geometry</p>
-            <h2 id="hero-heading">Nonlocal operators,<br>spectral theory &<br>geometric analysis.</h2>
-            <p class="lead">I am a PhD student in mathematics, currently working on nonlocal operators, functional inequalities, spectral theory, and partial differential equations, with a particular interest in fractional and logarithmic operators on Euclidean spaces, manifolds, and graphs.</p>
-            <div class="actions"><a class="primary-link" href="#research">Explore my research <span aria-hidden="true">↓</span></a><a class="plain-link" href="mailto:chenrui23@m.fudan.edu.cn">Get in touch ↗</a></div>
+            <p class="eyebrow"><span data-i18n="t008">Analysis &amp; Geometry</span></p>
+            <h2 id="hero-heading"><span data-i18n="t009">Nonlocal operators,</span><br><span data-i18n="t010">spectral theory &amp;</span><br><span data-i18n="t011">geometric analysis.</span></h2>
+            <p class="lead"><span data-i18n="t012">I am a PhD student in mathematics, currently working on nonlocal operators, functional inequalities, spectral theory, and partial differential equations, with a particular interest in fractional and logarithmic operators on Euclidean spaces, manifolds, and graphs.</span></p>
+            <div class="actions"><a class="primary-link" href="#research"><span data-i18n="t013">Explore my research</span> <span aria-hidden="true">↓</span></a><a class="plain-link" href="mailto:chenrui23@m.fudan.edu.cn"><span data-i18n="t014">Get in touch ↗</span></a></div>
           </div>
-          <aside class="hero-aside" aria-label="Current profile">
+          <aside class="hero-aside" aria-label="Current profile" data-i18n-aria="profile">
             <div class="illustration" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="460" height="350" viewBox="0 0 460 350" fill="none">
   <defs>
     <linearGradient id="surface" x1="148" y1="75" x2="315" y2="244" gradientUnits="userSpaceOnUse">
@@ -361,22 +382,22 @@
 </svg>
 </div>
             <div class="profile">
-              <p class="profile-title">PhD Student in Mathematics</p>
-              <div class="profile-row"><span>Affiliation</span><div>Fudan University / Brandenburg University of Technology Cottbus-Senftenberg</div></div>
-              <div class="profile-row"><span>Email</span><div><a href="mailto:chenrui23@m.fudan.edu.cn">chenrui23@m.fudan.edu.cn</a></div></div>
-              <div class="profile-row location"><span>Location</span><div>Germany / China</div></div>
+              <p class="profile-title"><span data-i18n="t001">PhD Student in Mathematics</span></p>
+              <div class="profile-row"><span><span data-i18n="t015">Affiliation</span></span><div><span data-i18n="t016">Fudan University / Brandenburg University of Technology Cottbus-Senftenberg</span></div></div>
+              <div class="profile-row"><span><span data-i18n="t017">Email</span></span><div><a href="mailto:chenrui23@m.fudan.edu.cn">chenrui23@m.fudan.edu.cn</a></div></div>
+              <div class="profile-row location"><span><span data-i18n="t018">Location</span></span><div><span data-i18n="t019">Germany / China</span></div></div>
             </div>
           </aside>
         </div>
-        <details class="about-detail"><summary>About my research</summary><section id="about-text" class="section">
+        <details class="about-detail"><summary><span data-i18n="t020">About my research</span></summary><section id="about-text" class="section">
       <div class="container">
         <div class="section-block">
-          <h3>About</h3>
+          <h3><span data-i18n="t002">About</span></h3>
           <p>
-          Welcome to my personal webpage. My research lies in analysis and geometry, with a focus on nonlocal operators such as the fractional Laplacian, the logarithmic Laplacian, and the fractional-logarithmic Laplacian. I am particularly interested in the partial differential equations, functional inequalities, and spectral theory associated with these operators, especially in the settings of manifolds and discrete graphs.
+          <span data-i18n="t021">Welcome to my personal webpage. My research lies in analysis and geometry, with a focus on nonlocal operators such as the fractional Laplacian, the logarithmic Laplacian, and the fractional-logarithmic Laplacian. I am particularly interested in the partial differential equations, functional inequalities, and spectral theory associated with these operators, especially in the settings of manifolds and discrete graphs.</span>
           </p>
           <p>
-            I’m always happy to chat about mathematics, exchange ideas, and explore possible collaborations.
+            <span data-i18n="t022">I’m always happy to chat about mathematics, exchange ideas, and explore possible collaborations.</span>
           </p>
         </div>
       </div>
@@ -387,101 +408,101 @@
       <span id="publications" aria-hidden="true"></span>
       <div class="container">
         <details class="section-fold" open>
-          <summary class="section-summary"><h2 class="section-title" id="research-heading">Research & Publications</h2><span class="fold-icon" aria-hidden="true"></span></summary>
+          <summary class="section-summary"><h2 class="section-title" id="research-heading"><span data-i18n="t003">Research &amp; Publications</span></h2><span class="fold-icon" aria-hidden="true"></span></summary>
           <div class="section-content">
-            <p class="eyebrow">Four Research Directions</p>
+            <p class="eyebrow"><span data-i18n="t023">Four Research Directions</span></p>
             <div class="section-top">
-              <p class="section-subtitle">Explore the questions and papers behind each research direction.</p>
-              <button type="button" id="all-publications" class="all-button research-controls" aria-pressed="false" aria-controls="research-results">All publications <span>14 ↗</span></button>
+              <p class="section-subtitle"><span data-i18n="t024">Explore the questions and papers behind each research direction.</span></p>
+              <button type="button" id="all-publications" class="all-button research-controls" aria-pressed="false" aria-controls="research-results"><span data-i18n="t025">All publications</span> <span class="button-count">14 ↗</span></button>
             </div>
-            <div class="topic-selectors research-controls" role="group" aria-label="Filter publications by research direction"><button type="button" class="topic-button nonlocal" data-category="nonlocal" aria-pressed="false" aria-controls="panel-nonlocal"><span class="topic-top"><span>01</span><span>5 papers</span></span><span class="topic-name">Nonlocal Operators and Their Applications</span></button>
-<button type="button" class="topic-button spectral" data-category="spectral" aria-pressed="false" aria-controls="panel-spectral"><span class="topic-top"><span>02</span><span>4 papers</span></span><span class="topic-name">Spectral Theory and Functional Inequalities</span></button>
-<button type="button" class="topic-button equations" data-category="equations" aria-pressed="false" aria-controls="panel-equations"><span class="topic-top"><span>03</span><span>3 papers</span></span><span class="topic-name">Elliptic and Parabolic Equations</span></button>
-<button type="button" class="topic-button geometric" data-category="geometric" aria-pressed="false" aria-controls="panel-geometric"><span class="topic-top"><span>04</span><span>2 papers</span></span><span class="topic-name">Geometric and Harmonic Analysis</span></button></div>
+            <div class="topic-selectors research-controls" role="group" aria-label="Filter publications by research direction" data-i18n-aria="filterDirections"><button type="button" class="topic-button nonlocal" data-category="nonlocal" aria-pressed="false" aria-controls="panel-nonlocal"><span class="topic-top"><span>01</span><span><span data-i18n="t026">5 papers</span></span></span><span class="topic-name"><span data-i18n="t027">Nonlocal Operators and Their Applications</span></span></button>
+<button type="button" class="topic-button spectral" data-category="spectral" aria-pressed="false" aria-controls="panel-spectral"><span class="topic-top"><span>02</span><span><span data-i18n="t028">4 papers</span></span></span><span class="topic-name"><span data-i18n="t029">Spectral Theory and Functional Inequalities</span></span></button>
+<button type="button" class="topic-button equations" data-category="equations" aria-pressed="false" aria-controls="panel-equations"><span class="topic-top"><span>03</span><span><span data-i18n="t030">3 papers</span></span></span><span class="topic-name"><span data-i18n="t031">Elliptic and Parabolic Equations</span></span></button>
+<button type="button" class="topic-button geometric" data-category="geometric" aria-pressed="false" aria-controls="panel-geometric"><span class="topic-top"><span>04</span><span><span data-i18n="t032">2 papers</span></span></span><span class="topic-name"><span data-i18n="t033">Geometric and Harmonic Analysis</span></span></button></div>
             <div id="research-results"><section class="topic-panel nonlocal" id="panel-nonlocal" data-category="nonlocal" data-count="5" aria-labelledby="title-nonlocal">
-      <div class="topic-intro"><div><h3 id="title-nonlocal">Nonlocal Operators and Their Applications</h3><p>Fractional, logarithmic and fractional-logarithmic operators: their fundamental properties, potential theory, and applications on spaces, manifolds and graphs.</p></div><span class="topic-total">5 publications</span></div>
+      <div class="topic-intro"><div><h3 id="title-nonlocal"><span data-i18n="t027">Nonlocal Operators and Their Applications</span></h3><p><span data-i18n="t034">Fractional, logarithmic and fractional-logarithmic operators: their fundamental properties, potential theory, and applications on spaces, manifolds and graphs.</span></p></div><span class="topic-total"><span data-i18n="t035">5 publications</span></span></div>
       <div class="paper-list"><article class="paper-row" data-title="The Fractional-Logarithmic Laplacian: Fundamental Properties and Eigenvalues">
       <span class="paper-no" aria-hidden="true">01</span>
-      <div class="paper-main"><h4 class="paper-title"><a href="https://doi.org/10.1007/s00208-026-03556-9" target="_blank" rel="noopener noreferrer">The Fractional-Logarithmic Laplacian: Fundamental Properties and Eigenvalues</a></h4>
-      <p class="paper-authors">Huyuan Chen, <span class="author-self">Rui Chen</span>, Daniel Hauer</p><p class="paper-venue"><em>Mathematische Annalen</em> · 2026</p><p class="paper-doi">DOI: 10.1007/s00208-026-03556-9</p></div>
-      <div class="paper-side"><span class="paper-status published">Published</span><a class="paper-link" href="https://doi.org/10.1007/s00208-026-03556-9" target="_blank" rel="noopener noreferrer" aria-label="Read The Fractional-Logarithmic Laplacian: Fundamental Properties and Eigenvalues">Journal ↗</a></div>
+      <div class="paper-main"><h4 class="paper-title" lang="en"><a href="https://doi.org/10.1007/s00208-026-03556-9" target="_blank" rel="noopener noreferrer">The Fractional-Logarithmic Laplacian: Fundamental Properties and Eigenvalues</a></h4>
+      <p class="paper-authors" lang="en">Huyuan Chen, <span class="author-self">Rui Chen</span>, Daniel Hauer</p><p class="paper-venue"><em>Mathematische Annalen</em> · 2026</p><p class="paper-doi">DOI: 10.1007/s00208-026-03556-9</p></div>
+      <div class="paper-side"><span class="paper-status published"><span data-i18n="t036">Published</span></span><a class="paper-link" href="https://doi.org/10.1007/s00208-026-03556-9" target="_blank" rel="noopener noreferrer" aria-label="Read The Fractional-Logarithmic Laplacian: Fundamental Properties and Eigenvalues" data-paper-title="The Fractional-Logarithmic Laplacian: Fundamental Properties and Eigenvalues"><span data-i18n="t037">Journal ↗</span></a></div>
     </article><article class="paper-row" data-title="The Conformal Fractional--Logarithmic Laplacian on the Sphere: Yamabe Problems and Sharp Inequalities">
       <span class="paper-no" aria-hidden="true">02</span>
-      <div class="paper-main"><h4 class="paper-title"><a href="https://arxiv.org/pdf/2603.21146" target="_blank" rel="noopener noreferrer">The Conformal Fractional--Logarithmic Laplacian on the Sphere: Yamabe Problems and Sharp Inequalities</a></h4>
-      <p class="paper-authors">Huyuan Chen, <span class="author-self">Rui Chen</span>, Daniel Hauer</p><p class="paper-venue"><em>arXiv preprint</em> · 2026</p></div>
-      <div class="paper-side"><span class="paper-status">Preprint</span><a class="paper-link" href="https://arxiv.org/pdf/2603.21146" target="_blank" rel="noopener noreferrer" aria-label="Read The Conformal Fractional--Logarithmic Laplacian on the Sphere: Yamabe Problems and Sharp Inequalities">arXiv:2603.21146 ↗</a></div>
+      <div class="paper-main"><h4 class="paper-title" lang="en"><a href="https://arxiv.org/pdf/2603.21146" target="_blank" rel="noopener noreferrer">The Conformal Fractional--Logarithmic Laplacian on the Sphere: Yamabe Problems and Sharp Inequalities</a></h4>
+      <p class="paper-authors" lang="en">Huyuan Chen, <span class="author-self">Rui Chen</span>, Daniel Hauer</p><p class="paper-venue"><em><span data-i18n="t038">arXiv preprint</span></em> · 2026</p></div>
+      <div class="paper-side"><span class="paper-status"><span data-i18n="t039">Preprint</span></span><a class="paper-link" href="https://arxiv.org/pdf/2603.21146" target="_blank" rel="noopener noreferrer" aria-label="Read The Conformal Fractional--Logarithmic Laplacian on the Sphere: Yamabe Problems and Sharp Inequalities" data-paper-title="The Conformal Fractional--Logarithmic Laplacian on the Sphere: Yamabe Problems and Sharp Inequalities">arXiv:2603.21146 ↗</a></div>
     </article><details class="more-papers"><summary><span class="collapsed-label">View all 5 publications</span><span class="expanded-label" hidden>Show fewer publications</span></summary><div><article class="paper-row" data-title="Potential Theory of the Fractional-Logarithmic Laplacian: Global Regularity and Critical Compact Embeddings">
       <span class="paper-no" aria-hidden="true">03</span>
-      <div class="paper-main"><h4 class="paper-title"><a href="https://arxiv.org/abs/2603.04879" target="_blank" rel="noopener noreferrer">Potential Theory of the Fractional-Logarithmic Laplacian: Global Regularity and Critical Compact Embeddings</a></h4>
-      <p class="paper-authors"><span class="author-self">Rui Chen</span></p><p class="paper-venue"><em>arXiv preprint</em> · 2026</p></div>
-      <div class="paper-side"><span class="paper-status">Preprint</span><a class="paper-link" href="https://arxiv.org/abs/2603.04879" target="_blank" rel="noopener noreferrer" aria-label="Read Potential Theory of the Fractional-Logarithmic Laplacian: Global Regularity and Critical Compact Embeddings">arXiv:2603.04879 ↗</a></div>
+      <div class="paper-main"><h4 class="paper-title" lang="en"><a href="https://arxiv.org/abs/2603.04879" target="_blank" rel="noopener noreferrer">Potential Theory of the Fractional-Logarithmic Laplacian: Global Regularity and Critical Compact Embeddings</a></h4>
+      <p class="paper-authors" lang="en"><span class="author-self">Rui Chen</span></p><p class="paper-venue"><em><span data-i18n="t038">arXiv preprint</span></em> · 2026</p></div>
+      <div class="paper-side"><span class="paper-status"><span data-i18n="t039">Preprint</span></span><a class="paper-link" href="https://arxiv.org/abs/2603.04879" target="_blank" rel="noopener noreferrer" aria-label="Read Potential Theory of the Fractional-Logarithmic Laplacian: Global Regularity and Critical Compact Embeddings" data-paper-title="Potential Theory of the Fractional-Logarithmic Laplacian: Global Regularity and Critical Compact Embeddings">arXiv:2603.04879 ↗</a></div>
     </article><article class="paper-row" data-title="The Logarithmic Laplacian on General Graphs">
       <span class="paper-no" aria-hidden="true">04</span>
-      <div class="paper-main"><h4 class="paper-title"><a href="https://arxiv.org/abs/2507.05936" target="_blank" rel="noopener noreferrer">The Logarithmic Laplacian on General Graphs</a></h4>
-      <p class="paper-authors"><span class="author-self">Rui Chen</span>, Wendi Xu</p><p class="paper-venue"><em>arXiv preprint</em> · 2025</p></div>
-      <div class="paper-side"><span class="paper-status">Preprint</span><a class="paper-link" href="https://arxiv.org/abs/2507.05936" target="_blank" rel="noopener noreferrer" aria-label="Read The Logarithmic Laplacian on General Graphs">arXiv:2507.05936 ↗</a></div>
+      <div class="paper-main"><h4 class="paper-title" lang="en"><a href="https://arxiv.org/abs/2507.05936" target="_blank" rel="noopener noreferrer">The Logarithmic Laplacian on General Graphs</a></h4>
+      <p class="paper-authors" lang="en"><span class="author-self">Rui Chen</span>, Wendi Xu</p><p class="paper-venue"><em><span data-i18n="t038">arXiv preprint</span></em> · 2025</p></div>
+      <div class="paper-side"><span class="paper-status"><span data-i18n="t039">Preprint</span></span><a class="paper-link" href="https://arxiv.org/abs/2507.05936" target="_blank" rel="noopener noreferrer" aria-label="Read The Logarithmic Laplacian on General Graphs" data-paper-title="The Logarithmic Laplacian on General Graphs">arXiv:2507.05936 ↗</a></div>
     </article><article class="paper-row" data-title="Logarithmic Laplacian on General Riemannian Manifolds">
       <span class="paper-no" aria-hidden="true">05</span>
-      <div class="paper-main"><h4 class="paper-title"><a href="https://arxiv.org/abs/2506.19311" target="_blank" rel="noopener noreferrer">Logarithmic Laplacian on General Riemannian Manifolds</a></h4>
-      <p class="paper-authors"><span class="author-self">Rui Chen</span></p><p class="paper-venue"><em>arXiv preprint</em> · 2025</p></div>
-      <div class="paper-side"><span class="paper-status">Preprint</span><a class="paper-link" href="https://arxiv.org/abs/2506.19311" target="_blank" rel="noopener noreferrer" aria-label="Read Logarithmic Laplacian on General Riemannian Manifolds">arXiv:2506.19311 ↗</a></div>
+      <div class="paper-main"><h4 class="paper-title" lang="en"><a href="https://arxiv.org/abs/2506.19311" target="_blank" rel="noopener noreferrer">Logarithmic Laplacian on General Riemannian Manifolds</a></h4>
+      <p class="paper-authors" lang="en"><span class="author-self">Rui Chen</span></p><p class="paper-venue"><em><span data-i18n="t038">arXiv preprint</span></em> · 2025</p></div>
+      <div class="paper-side"><span class="paper-status"><span data-i18n="t039">Preprint</span></span><a class="paper-link" href="https://arxiv.org/abs/2506.19311" target="_blank" rel="noopener noreferrer" aria-label="Read Logarithmic Laplacian on General Riemannian Manifolds" data-paper-title="Logarithmic Laplacian on General Riemannian Manifolds">arXiv:2506.19311 ↗</a></div>
     </article></div></details></div><p class="view-note">Showing 2 of 5 publications</p>
     </section>
 <section class="topic-panel spectral" id="panel-spectral" data-category="spectral" data-count="4" aria-labelledby="title-spectral">
-      <div class="topic-intro"><div><h3 id="title-spectral">Spectral Theory and Functional Inequalities</h3><p>Eigenvalues, fundamental gaps, eigenfunction estimates, and functional inequalities for local and nonlocal operators.</p></div><span class="topic-total">4 publications</span></div>
+      <div class="topic-intro"><div><h3 id="title-spectral"><span data-i18n="t029">Spectral Theory and Functional Inequalities</span></h3><p><span data-i18n="t040">Eigenvalues, fundamental gaps, eigenfunction estimates, and functional inequalities for local and nonlocal operators.</span></p></div><span class="topic-total"><span data-i18n="t041">4 publications</span></span></div>
       <div class="paper-list"><article class="paper-row" data-title="On Faber-Krahn inequality for Dirichlet Fractional-Logarithmic Laplacian">
       <span class="paper-no" aria-hidden="true">01</span>
-      <div class="paper-main"><h4 class="paper-title"><a href="https://arxiv.org/pdf/2609.15481" target="_blank" rel="noopener noreferrer">On Faber-Krahn inequality for Dirichlet Fractional-Logarithmic Laplacian</a></h4>
-      <p class="paper-authors">Huyuan Chen, <span class="author-self">Rui Chen</span>, Bobo Hua</p><p class="paper-venue"><em>arXiv preprint</em> · 2026</p></div>
-      <div class="paper-side"><span class="paper-status">Preprint</span><a class="paper-link" href="https://arxiv.org/pdf/2609.15481" target="_blank" rel="noopener noreferrer" aria-label="Read On Faber-Krahn inequality for Dirichlet Fractional-Logarithmic Laplacian">arXiv:2609.15481 ↗</a></div>
+      <div class="paper-main"><h4 class="paper-title" lang="en"><a href="https://arxiv.org/pdf/2609.15481" target="_blank" rel="noopener noreferrer">On Faber-Krahn inequality for Dirichlet Fractional-Logarithmic Laplacian</a></h4>
+      <p class="paper-authors" lang="en">Huyuan Chen, <span class="author-self">Rui Chen</span>, Bobo Hua</p><p class="paper-venue"><em><span data-i18n="t038">arXiv preprint</span></em> · 2026</p></div>
+      <div class="paper-side"><span class="paper-status"><span data-i18n="t039">Preprint</span></span><a class="paper-link" href="https://arxiv.org/pdf/2609.15481" target="_blank" rel="noopener noreferrer" aria-label="Read On Faber-Krahn inequality for Dirichlet Fractional-Logarithmic Laplacian" data-paper-title="On Faber-Krahn inequality for Dirichlet Fractional-Logarithmic Laplacian">arXiv:2609.15481 ↗</a></div>
     </article><article class="paper-row" data-title="Fundamental Gaps for the Dirichlet p-Laplacian with Convex Potentials: Sharp One-Dimensional Bounds and a Higher-Dimensional Dichotomy">
       <span class="paper-no" aria-hidden="true">02</span>
-      <div class="paper-main"><h4 class="paper-title"><a href="https://arxiv.org/pdf/2608.13443" target="_blank" rel="noopener noreferrer">Fundamental Gaps for the Dirichlet p-Laplacian with Convex Potentials: Sharp One-Dimensional Bounds and a Higher-Dimensional Dichotomy</a></h4>
-      <p class="paper-authors"><span class="author-self">Rui Chen</span>, Daniel Hauer</p><p class="paper-venue"><em>arXiv preprint</em> · 2026</p></div>
-      <div class="paper-side"><span class="paper-status">Preprint</span><a class="paper-link" href="https://arxiv.org/pdf/2608.13443" target="_blank" rel="noopener noreferrer" aria-label="Read Fundamental Gaps for the Dirichlet p-Laplacian with Convex Potentials: Sharp One-Dimensional Bounds and a Higher-Dimensional Dichotomy">arXiv:2608.13443 ↗</a></div>
+      <div class="paper-main"><h4 class="paper-title" lang="en"><a href="https://arxiv.org/pdf/2608.13443" target="_blank" rel="noopener noreferrer">Fundamental Gaps for the Dirichlet p-Laplacian with Convex Potentials: Sharp One-Dimensional Bounds and a Higher-Dimensional Dichotomy</a></h4>
+      <p class="paper-authors" lang="en"><span class="author-self">Rui Chen</span>, Daniel Hauer</p><p class="paper-venue"><em><span data-i18n="t038">arXiv preprint</span></em> · 2026</p></div>
+      <div class="paper-side"><span class="paper-status"><span data-i18n="t039">Preprint</span></span><a class="paper-link" href="https://arxiv.org/pdf/2608.13443" target="_blank" rel="noopener noreferrer" aria-label="Read Fundamental Gaps for the Dirichlet p-Laplacian with Convex Potentials: Sharp One-Dimensional Bounds and a Higher-Dimensional Dichotomy" data-paper-title="Fundamental Gaps for the Dirichlet p-Laplacian with Convex Potentials: Sharp One-Dimensional Bounds and a Higher-Dimensional Dichotomy">arXiv:2608.13443 ↗</a></div>
     </article><details class="more-papers"><summary><span class="collapsed-label">View all 4 publications</span><span class="expanded-label" hidden>Show fewer publications</span></summary><div><article class="paper-row" data-title="Two-point modulus for the logarithmic p-flux of the first Dirichlet eigenfunction of the p-Laplacian">
       <span class="paper-no" aria-hidden="true">03</span>
-      <div class="paper-main"><h4 class="paper-title"><a href="https://arxiv.org/pdf/2608.29195" target="_blank" rel="noopener noreferrer">Two-point modulus for the logarithmic p-flux of the first Dirichlet eigenfunction of the p-Laplacian</a></h4>
-      <p class="paper-authors"><span class="author-self">Rui Chen</span></p><p class="paper-venue"><em>arXiv preprint</em> · 2026</p></div>
-      <div class="paper-side"><span class="paper-status">Preprint</span><a class="paper-link" href="https://arxiv.org/pdf/2608.29195" target="_blank" rel="noopener noreferrer" aria-label="Read Two-point modulus for the logarithmic p-flux of the first Dirichlet eigenfunction of the p-Laplacian">arXiv:2608.29195 ↗</a></div>
+      <div class="paper-main"><h4 class="paper-title" lang="en"><a href="https://arxiv.org/pdf/2608.29195" target="_blank" rel="noopener noreferrer">Two-point modulus for the logarithmic p-flux of the first Dirichlet eigenfunction of the p-Laplacian</a></h4>
+      <p class="paper-authors" lang="en"><span class="author-self">Rui Chen</span></p><p class="paper-venue"><em><span data-i18n="t038">arXiv preprint</span></em> · 2026</p></div>
+      <div class="paper-side"><span class="paper-status"><span data-i18n="t039">Preprint</span></span><a class="paper-link" href="https://arxiv.org/pdf/2608.29195" target="_blank" rel="noopener noreferrer" aria-label="Read Two-point modulus for the logarithmic p-flux of the first Dirichlet eigenfunction of the p-Laplacian" data-paper-title="Two-point modulus for the logarithmic p-flux of the first Dirichlet eigenfunction of the p-Laplacian">arXiv:2608.29195 ↗</a></div>
     </article><article class="paper-row" data-title="On Poincaré-Sobolev level involving fractional GJMS operators on hyperbolic space">
       <span class="paper-no" aria-hidden="true">04</span>
-      <div class="paper-main"><h4 class="paper-title"><a href="https://arxiv.org/abs/2602.03299" target="_blank" rel="noopener noreferrer">On Poincaré-Sobolev level involving fractional GJMS operators on hyperbolic space</a></h4>
-      <p class="paper-authors">Huyuan Chen, <span class="author-self">Rui Chen</span></p><p class="paper-venue"><em>arXiv preprint</em> · 2026</p></div>
-      <div class="paper-side"><span class="paper-status">Preprint</span><a class="paper-link" href="https://arxiv.org/abs/2602.03299" target="_blank" rel="noopener noreferrer" aria-label="Read On Poincaré-Sobolev level involving fractional GJMS operators on hyperbolic space">arXiv:2602.03299 ↗</a></div>
+      <div class="paper-main"><h4 class="paper-title" lang="en"><a href="https://arxiv.org/abs/2602.03299" target="_blank" rel="noopener noreferrer">On Poincaré-Sobolev level involving fractional GJMS operators on hyperbolic space</a></h4>
+      <p class="paper-authors" lang="en">Huyuan Chen, <span class="author-self">Rui Chen</span></p><p class="paper-venue"><em><span data-i18n="t038">arXiv preprint</span></em> · 2026</p></div>
+      <div class="paper-side"><span class="paper-status"><span data-i18n="t039">Preprint</span></span><a class="paper-link" href="https://arxiv.org/abs/2602.03299" target="_blank" rel="noopener noreferrer" aria-label="Read On Poincaré-Sobolev level involving fractional GJMS operators on hyperbolic space" data-paper-title="On Poincaré-Sobolev level involving fractional GJMS operators on hyperbolic space">arXiv:2602.03299 ↗</a></div>
     </article></div></details></div><p class="view-note">Showing 2 of 4 publications</p>
     </section>
 <section class="topic-panel equations" id="panel-equations" data-category="equations" data-count="3" aria-labelledby="title-equations">
-      <div class="topic-intro"><div><h3 id="title-equations">Elliptic and Parabolic Equations</h3><p>Least-energy solutions, lifespan and threshold phenomena, and long-time asymptotics for heat and fractional heat equations.</p></div><span class="topic-total">3 publications</span></div>
+      <div class="topic-intro"><div><h3 id="title-equations"><span data-i18n="t031">Elliptic and Parabolic Equations</span></h3><p><span data-i18n="t042">Least-energy solutions, lifespan and threshold phenomena, and long-time asymptotics for heat and fractional heat equations.</span></p></div><span class="topic-total"><span data-i18n="t043">3 publications</span></span></div>
       <div class="paper-list"><article class="paper-row" data-title="Sharp Lifespan Dichotomies and Threshold Phenomena for Semilinear Heat Equations Driven by the Logarithmic Laplacian">
       <span class="paper-no" aria-hidden="true">01</span>
-      <div class="paper-main"><h4 class="paper-title"><a href="https://arxiv.org/pdf/2607.29318" target="_blank" rel="noopener noreferrer">Sharp Lifespan Dichotomies and Threshold Phenomena for Semilinear Heat Equations Driven by the Logarithmic Laplacian</a></h4>
-      <p class="paper-authors">Huyuan Chen, <span class="author-self">Rui Chen</span>, Daniel Hauer, Jun Wang</p><p class="paper-venue"><em>arXiv preprint</em> · 2026</p></div>
-      <div class="paper-side"><span class="paper-status">Preprint</span><a class="paper-link" href="https://arxiv.org/pdf/2607.29318" target="_blank" rel="noopener noreferrer" aria-label="Read Sharp Lifespan Dichotomies and Threshold Phenomena for Semilinear Heat Equations Driven by the Logarithmic Laplacian">arXiv:2607.29318 ↗</a></div>
+      <div class="paper-main"><h4 class="paper-title" lang="en"><a href="https://arxiv.org/pdf/2607.29318" target="_blank" rel="noopener noreferrer">Sharp Lifespan Dichotomies and Threshold Phenomena for Semilinear Heat Equations Driven by the Logarithmic Laplacian</a></h4>
+      <p class="paper-authors" lang="en">Huyuan Chen, <span class="author-self">Rui Chen</span>, Daniel Hauer, Jun Wang</p><p class="paper-venue"><em><span data-i18n="t038">arXiv preprint</span></em> · 2026</p></div>
+      <div class="paper-side"><span class="paper-status"><span data-i18n="t039">Preprint</span></span><a class="paper-link" href="https://arxiv.org/pdf/2607.29318" target="_blank" rel="noopener noreferrer" aria-label="Read Sharp Lifespan Dichotomies and Threshold Phenomena for Semilinear Heat Equations Driven by the Logarithmic Laplacian" data-paper-title="Sharp Lifespan Dichotomies and Threshold Phenomena for Semilinear Heat Equations Driven by the Logarithmic Laplacian">arXiv:2607.29318 ↗</a></div>
     </article><article class="paper-row" data-title="Existence and Convergence of Least-Energy Solutions Involving the Logarithmic Schrödinger Operator">
       <span class="paper-no" aria-hidden="true">02</span>
-      <div class="paper-main"><h4 class="paper-title"><a href="https://doi.org/10.1016/j.jde.2026.114171" target="_blank" rel="noopener noreferrer">Existence and Convergence of Least-Energy Solutions Involving the Logarithmic Schrödinger Operator</a></h4>
-      <p class="paper-authors">Huyuan Chen, <span class="author-self">Rui Chen</span>, Bobo Hua</p><p class="paper-venue"><em>Journal of Differential Equations</em> · 2026</p><p class="paper-doi">DOI: 10.1016/j.jde.2026.114171</p></div>
-      <div class="paper-side"><span class="paper-status published">Published</span><a class="paper-link" href="https://doi.org/10.1016/j.jde.2026.114171" target="_blank" rel="noopener noreferrer" aria-label="Read Existence and Convergence of Least-Energy Solutions Involving the Logarithmic Schrödinger Operator">Journal ↗</a></div>
+      <div class="paper-main"><h4 class="paper-title" lang="en"><a href="https://doi.org/10.1016/j.jde.2026.114171" target="_blank" rel="noopener noreferrer">Existence and Convergence of Least-Energy Solutions Involving the Logarithmic Schrödinger Operator</a></h4>
+      <p class="paper-authors" lang="en">Huyuan Chen, <span class="author-self">Rui Chen</span>, Bobo Hua</p><p class="paper-venue"><em>Journal of Differential Equations</em> · 2026</p><p class="paper-doi">DOI: 10.1016/j.jde.2026.114171</p></div>
+      <div class="paper-side"><span class="paper-status published"><span data-i18n="t036">Published</span></span><a class="paper-link" href="https://doi.org/10.1016/j.jde.2026.114171" target="_blank" rel="noopener noreferrer" aria-label="Read Existence and Convergence of Least-Energy Solutions Involving the Logarithmic Schrödinger Operator" data-paper-title="Existence and Convergence of Least-Energy Solutions Involving the Logarithmic Schrödinger Operator"><span data-i18n="t037">Journal ↗</span></a></div>
     </article><details class="more-papers"><summary><span class="collapsed-label">View all 3 publications</span><span class="expanded-label" hidden>Show fewer publications</span></summary><div><article class="paper-row" data-title="Large-Time Asymptotics for Heat and Fractional Heat Equations on the Lattice and General Finite Subgraphs">
       <span class="paper-no" aria-hidden="true">03</span>
-      <div class="paper-main"><h4 class="paper-title"><a href="https://arxiv.org/abs/2602.16339" target="_blank" rel="noopener noreferrer">Large-Time Asymptotics for Heat and Fractional Heat Equations on the Lattice and General Finite Subgraphs</a></h4>
-      <p class="paper-authors"><span class="author-self">Rui Chen</span>, Bo Li</p><p class="paper-venue"><em>arXiv preprint</em> · 2026</p></div>
-      <div class="paper-side"><span class="paper-status">Preprint</span><a class="paper-link" href="https://arxiv.org/abs/2602.16339" target="_blank" rel="noopener noreferrer" aria-label="Read Large-Time Asymptotics for Heat and Fractional Heat Equations on the Lattice and General Finite Subgraphs">arXiv:2602.16339 ↗</a></div>
+      <div class="paper-main"><h4 class="paper-title" lang="en"><a href="https://arxiv.org/abs/2602.16339" target="_blank" rel="noopener noreferrer">Large-Time Asymptotics for Heat and Fractional Heat Equations on the Lattice and General Finite Subgraphs</a></h4>
+      <p class="paper-authors" lang="en"><span class="author-self">Rui Chen</span>, Bo Li</p><p class="paper-venue"><em><span data-i18n="t038">arXiv preprint</span></em> · 2026</p></div>
+      <div class="paper-side"><span class="paper-status"><span data-i18n="t039">Preprint</span></span><a class="paper-link" href="https://arxiv.org/abs/2602.16339" target="_blank" rel="noopener noreferrer" aria-label="Read Large-Time Asymptotics for Heat and Fractional Heat Equations on the Lattice and General Finite Subgraphs" data-paper-title="Large-Time Asymptotics for Heat and Fractional Heat Equations on the Lattice and General Finite Subgraphs">arXiv:2602.16339 ↗</a></div>
     </article></div></details></div><p class="view-note">Showing 2 of 3 publications</p>
     </section>
 <section class="topic-panel geometric" id="panel-geometric" data-category="geometric" data-count="2" aria-labelledby="title-geometric">
-      <div class="topic-intro"><div><h3 id="title-geometric">Geometric and Harmonic Analysis</h3><p>Riesz transforms, heat semigroups, and stochastic completeness on complete Riemannian manifolds.</p></div><span class="topic-total">2 publications</span></div>
+      <div class="topic-intro"><div><h3 id="title-geometric"><span data-i18n="t033">Geometric and Harmonic Analysis</span></h3><p><span data-i18n="t044">Riesz transforms, heat semigroups, and stochastic completeness on complete Riemannian manifolds.</span></p></div><span class="topic-total"><span data-i18n="t045">2 publications</span></span></div>
       <div class="paper-list"><article class="paper-row" data-title="The Coulhon--Duong conjecture for the Riesz transform on complete Riemannian manifolds">
       <span class="paper-no" aria-hidden="true">01</span>
-      <div class="paper-main"><h4 class="paper-title"><a href="https://arxiv.org/pdf/2609.23503" target="_blank" rel="noopener noreferrer">The Coulhon--Duong conjecture for the Riesz transform on complete Riemannian manifolds</a></h4>
-      <p class="paper-authors"><span class="author-self">Rui Chen</span>, Renjin Jiang, Bo Li, Hongquan Li</p><p class="paper-venue"><em>arXiv preprint</em> · 2026</p></div>
-      <div class="paper-side"><span class="paper-status">Preprint</span><a class="paper-link" href="https://arxiv.org/pdf/2609.23503" target="_blank" rel="noopener noreferrer" aria-label="Read The Coulhon--Duong conjecture for the Riesz transform on complete Riemannian manifolds">arXiv:2609.23503 ↗</a></div>
+      <div class="paper-main"><h4 class="paper-title" lang="en"><a href="https://arxiv.org/pdf/2609.23503" target="_blank" rel="noopener noreferrer">The Coulhon--Duong conjecture for the Riesz transform on complete Riemannian manifolds</a></h4>
+      <p class="paper-authors" lang="en"><span class="author-self">Rui Chen</span>, Renjin Jiang, Bo Li, Hongquan Li</p><p class="paper-venue"><em><span data-i18n="t038">arXiv preprint</span></em> · 2026</p></div>
+      <div class="paper-side"><span class="paper-status"><span data-i18n="t039">Preprint</span></span><a class="paper-link" href="https://arxiv.org/pdf/2609.23503" target="_blank" rel="noopener noreferrer" aria-label="Read The Coulhon--Duong conjecture for the Riesz transform on complete Riemannian manifolds" data-paper-title="The Coulhon--Duong conjecture for the Riesz transform on complete Riemannian manifolds">arXiv:2609.23503 ↗</a></div>
     </article><article class="paper-row" data-title="Nonlocal Characterizations of Stochastic Completeness on Complete Riemannian Manifolds">
       <span class="paper-no" aria-hidden="true">02</span>
-      <div class="paper-main"><h4 class="paper-title"><a href="https://arxiv.org/pdf/2604.20205" target="_blank" rel="noopener noreferrer">Nonlocal Characterizations of Stochastic Completeness on Complete Riemannian Manifolds</a></h4>
-      <p class="paper-authors"><span class="author-self">Rui Chen</span>, Bobo Hua</p><p class="paper-venue"><em>arXiv preprint</em> · 2026</p></div>
-      <div class="paper-side"><span class="paper-status">Preprint</span><a class="paper-link" href="https://arxiv.org/pdf/2604.20205" target="_blank" rel="noopener noreferrer" aria-label="Read Nonlocal Characterizations of Stochastic Completeness on Complete Riemannian Manifolds">arXiv:2604.20205 ↗</a></div>
+      <div class="paper-main"><h4 class="paper-title" lang="en"><a href="https://arxiv.org/pdf/2604.20205" target="_blank" rel="noopener noreferrer">Nonlocal Characterizations of Stochastic Completeness on Complete Riemannian Manifolds</a></h4>
+      <p class="paper-authors" lang="en"><span class="author-self">Rui Chen</span>, Bobo Hua</p><p class="paper-venue"><em><span data-i18n="t038">arXiv preprint</span></em> · 2026</p></div>
+      <div class="paper-side"><span class="paper-status"><span data-i18n="t039">Preprint</span></span><a class="paper-link" href="https://arxiv.org/pdf/2604.20205" target="_blank" rel="noopener noreferrer" aria-label="Read Nonlocal Characterizations of Stochastic Completeness on Complete Riemannian Manifolds" data-paper-title="Nonlocal Characterizations of Stochastic Completeness on Complete Riemannian Manifolds">arXiv:2604.20205 ↗</a></div>
     </article></div><p class="view-note">Showing 2 of 2 publications</p>
     </section></div>
             <p class="sr-only" id="filter-status" aria-live="polite" aria-atomic="true"></p>
@@ -491,114 +512,114 @@
     </section>
     <div class="education-wrap">
       <section class="section" id="education" aria-labelledby="education-heading"><div class="container">
-        <details class="section-fold"><summary class="section-summary"><h2 class="section-title" id="education-heading">Education</h2><span class="fold-icon" aria-hidden="true"></span></summary><div class="section-content"><ul class="list">
+        <details class="section-fold"><summary class="section-summary"><h2 class="section-title" id="education-heading"><span data-i18n="t004">Education</span></h2><span class="fold-icon" aria-hidden="true"></span></summary><div class="section-content"><ul class="list">
             <li>
-              <strong>Oct 2025 – Present</strong><br>
-              Visiting Ph.D. Student, Brandenburg University of Technology Cottbus-Senftenberg, Germany<br>
-              Advisor: Daniel Hauer
+              <strong><span data-i18n="t046">Oct 2025 – Present</span></strong><br>
+              <span data-i18n="t047">Visiting Ph.D. Student, Brandenburg University of Technology Cottbus-Senftenberg, Germany</span><br>
+              <span data-i18n="t048">Advisor: Daniel Hauer</span>
             </li>
             <li>
-              <strong>Aug 2023 – Present</strong><br>
-              Ph.D. in Mathematics, Fudan University, China<br>
-              Advisor: Bobo Hua
+              <strong><span data-i18n="t049">Aug 2023 – Present</span></strong><br>
+              <span data-i18n="t050">Ph.D. in Mathematics, Fudan University, China</span><br>
+              <span data-i18n="t051">Advisor: Bobo Hua</span>
             </li>
             <li>
-              <strong>Sep 2019 – Jun 2023</strong><br>
-              B.Sc. in Mathematics and Applied Mathematics, Central South University, China
+              <strong><span data-i18n="t052">Sep 2019 – Jun 2023</span></strong><br>
+              <span data-i18n="t053">B.Sc. in Mathematics and Applied Mathematics, Central South University, China</span>
             </li>
           </ul></div></details>
       </div></section>
     </div>
     <div class="talks-wrap">
       <section class="section" id="talks" aria-labelledby="talks-heading"><div class="container">
-        <details class="section-fold"><summary class="section-summary"><h2 class="section-title" id="talks-heading">Talks & Visits</h2><span class="fold-icon" aria-hidden="true"></span></summary><div class="section-content cards-2"><div class="card">
-  <h3>Invited Talks</h3>
+        <details class="section-fold"><summary class="section-summary"><h2 class="section-title" id="talks-heading"><span data-i18n="t005">Talks &amp; Visits</span></h2><span class="fold-icon" aria-hidden="true"></span></summary><div class="section-content cards-2"><div class="card">
+  <h3><span data-i18n="t054">Invited Talks</span></h3>
   <ul class="list"><li>
-      <strong>Shanghai Institute for Mathematics and Interdisciplinary Sciences; one-hour invited talk</strong><br>
-      Shanghai, China<br>
+      <strong><span data-i18n="t055">Shanghai Institute for Mathematics and Interdisciplinary Sciences; one-hour invited talk</span></strong><br>
+      <span data-i18n="t056">Shanghai, China</span><br>
       22.06.2026
     </li><li>
-      <strong>School of Mathematics and Statistics, Central South University; one-hour invited talk</strong><br>
-      Changsha, China<br>
+      <strong><span data-i18n="t057">School of Mathematics and Statistics, Central South University; one-hour invited talk</span></strong><br>
+      <span data-i18n="t058">Changsha, China</span><br>
       15.06.2026
-    </li></ul><details class="talks-more"><summary>More invited talks (3)</summary><ul class="list"><li>
-      <strong>13th International Conference on Nonlinear Analysis, Function Spaces and Applications</strong><br>
-      Prague, Czech Republic<br>
+    </li></ul><details class="talks-more"><summary><span data-i18n="t059">More invited talks (3)</span></summary><ul class="list"><li>
+      <strong><span data-i18n="t060">13th International Conference on Nonlinear Analysis, Function Spaces and Applications</span></strong><br>
+      <span data-i18n="t061">Prague, Czech Republic</span><br>
       01.06.2026–05.06.2026
     </li><li>
-      <strong>Chinese&ndash;German Analysis and PDE Online Seminar</strong><br>
-      Online Seminar<br>
-      Organizers: Huyuan Chen, Daniel Hauer, Jun Wang<br>
+      <strong><span data-i18n="t062">Chinese–German Analysis and PDE Online Seminar</span></strong><br>
+      <span data-i18n="t063">Online Seminar</span><br>
+      <span data-i18n="t064">Organizers: Huyuan Chen, Daniel Hauer, Jun Wang</span><br>
       21.05.2026
     </li><li>
-      <strong>2024 Fudan-USTC Spectral Geometry Conference</strong><br>
-      University of Science and Technology of China, China<br>
+      <strong><span data-i18n="t065">2024 Fudan-USTC Spectral Geometry Conference</span></strong><br>
+      <span data-i18n="t066">University of Science and Technology of China, China</span><br>
       29.11.2024–01.12.2024
     </li></ul></details>
 </div>
 
     <div class="card">
-      <h3>Research Visits</h3>
+      <h3><span data-i18n="t067">Research Visits</span></h3>
       <ul class="list">
         <li>
-          <strong>Brandenburg University of Technology Cottbus-Senftenberg</strong><br>
-          Germany<br>
-          Oct 2025 – Present
+          <strong><span data-i18n="t068">Brandenburg University of Technology Cottbus-Senftenberg</span></strong><br>
+          <span data-i18n="t069">Germany</span><br>
+          <span data-i18n="t046">Oct 2025 – Present</span>
         </li>
       </ul>
     </div></div></details>
       </div></section>
     </div>
     <div class="container archive-wrap">
-      <details class="archive-details"><summary class="section-summary"><h2 class="section-title">Selected Workshops and Conferences</h2><span class="summary-end">6 events</span></summary><div class="card">
-      <h3>Selected Workshops and Conferences</h3>
+      <details class="archive-details"><summary class="section-summary"><h2 class="section-title"><span data-i18n="t070">Selected Workshops and Conferences</span></h2><span class="summary-end"><span data-i18n="t071">6 events</span></span></summary><div class="card">
+      <h3><span data-i18n="t070">Selected Workshops and Conferences</span></h3>
       <ul class="list">
         <li>
-            <strong>Second Research Meeting of Analysis</strong><br>
-             Brandenburg University of Technology Cottbus-Senftenberg, Germany<br>
+            <strong><span data-i18n="t072">Second Research Meeting of Analysis</span></strong><br>
+             <span data-i18n="t073">Brandenburg University of Technology Cottbus-Senftenberg, Germany</span><br>
           07.04.2026 – 09.04.2026
         </li>
         <li>
-          <strong>Horizons in Nonlinear PDEs Spring School</strong><br>
-          Ulm University, Germany<br>
+          <strong><span data-i18n="t074">Horizons in Nonlinear PDEs Spring School</span></strong><br>
+          <span data-i18n="t075">Ulm University, Germany</span><br>
           09.03.2026 – 13.03.2026
         </li>
         <li>
-          <strong>Annual Meeting of Analysis</strong><br>
-          Brandenburg University of Technology Cottbus-Senftenberg, Germany<br>
+          <strong><span data-i18n="t076">Annual Meeting of Analysis</span></strong><br>
+          <span data-i18n="t073">Brandenburg University of Technology Cottbus-Senftenberg, Germany</span><br>
           23.01.2026 – 25.01.2026
         </li>
         <li>
-          <strong>2025 International Workshop on Fully Nonlinear Partial Differential Equations</strong><br>
-          Shanghai Institute of Mathematics and Interdisciplinary Studies, China<br>
+          <strong><span data-i18n="t077">2025 International Workshop on Fully Nonlinear Partial Differential Equations</span></strong><br>
+          <span data-i18n="t078">Shanghai Institute of Mathematics and Interdisciplinary Studies, China</span><br>
           16.06.2025 – 20.06.2025
         </li>
         <li>
-          <strong>The 32nd Yangtse River Conference on PDEs</strong><br>
-          Anhui Normal University, China<br>
+          <strong><span data-i18n="t079">The 32nd Yangtse River Conference on PDEs</span></strong><br>
+          <span data-i18n="t080">Anhui Normal University, China</span><br>
           30.05.2025 – 01.06.2025
         </li>
         <li>
-          <strong>2023 Fudan-USTC Spectral Geometry Conference</strong><br>
-          Fudan University, China<br>
-          November 2023
+          <strong><span data-i18n="t081">2023 Fudan-USTC Spectral Geometry Conference</span></strong><br>
+          <span data-i18n="t082">Fudan University, China</span><br>
+          <span data-i18n="t083">November 2023</span>
         </li>
       </ul>
     </div></details>
-      <details class="keyword-details"><summary class="section-summary"><h2 class="section-title">Research Keywords</h2><span class="summary-end"></span></summary><section class="section">
+      <details class="keyword-details"><summary class="section-summary"><h2 class="section-title"><span data-i18n="t084">Research Keywords</span></h2><span class="summary-end"></span></summary><section class="section">
       <div class="container">
         <div class="card">
-          <h3>Research Keywords</h3>
+          <h3><span data-i18n="t084">Research Keywords</span></h3>
           <div class="tags">
-            <span class="tag">Fractional Laplacian</span>
-            <span class="tag">Logarithmic Laplacian</span>
-            <span class="tag">Spectral Theory</span>
-            <span class="tag">Geometric Analysis</span>
-            <span class="tag">PDE</span>
-            <span class="tag">Manifolds</span>
-            <span class="tag">Graphs</span>
-            <span class="tag">Variational Methods</span>
-            <span class="tag">Inequality</span>
+            <span class="tag"><span data-i18n="t085">Fractional Laplacian</span></span>
+            <span class="tag"><span data-i18n="t086">Logarithmic Laplacian</span></span>
+            <span class="tag"><span data-i18n="t087">Spectral Theory</span></span>
+            <span class="tag"><span data-i18n="t088">Geometric Analysis</span></span>
+            <span class="tag"><span data-i18n="t089">PDE</span></span>
+            <span class="tag"><span data-i18n="t090">Manifolds</span></span>
+            <span class="tag"><span data-i18n="t091">Graphs</span></span>
+            <span class="tag"><span data-i18n="t092">Variational Methods</span></span>
+            <span class="tag"><span data-i18n="t093">Inequality</span></span>
           </div>
         </div>
       </div>
@@ -608,21 +629,21 @@
       <div class="contact-grid"><section id="contact" class="section">
       <div class="container">
         <div class="section-block contact">
-          <h2>Contact</h2>
+          <h2><span data-i18n="t094">Contact</span></h2>
           <p>
-            I’m always happy to chat about mathematics, exchange ideas, and explore possible collaborations. Feel free to get in touch by email.
+            <span data-i18n="t095">I’m always happy to chat about mathematics, exchange ideas, and explore possible collaborations. Feel free to get in touch by email.</span>
           </p>
           <div class="contact-meta">
-            <div>Email: <a href="mailto:chenrui23@m.fudan.edu.cn">chenrui23@m.fudan.edu.cn</a></div>
-            <div>Location: Germany / China</div>
+            <div><span data-i18n="t096">Email:</span> <a href="mailto:chenrui23@m.fudan.edu.cn">chenrui23@m.fudan.edu.cn</a></div>
+            <div><span data-i18n="t097">Location: Germany / China</span></div>
           </div>
         </div>
       </div>
     </section><div class="card" id="links">
-      <h3>Academic Links</h3>
+      <h3><span data-i18n="t098">Academic Links</span></h3>
       <div class="link-list">
         <div class="link-item">
-          <a href="https://scholar.google.com/citations?hl=zh-CN&user=o7l0Pa0AAAAJ&view_op=list_works&sortby=pubdate" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+          <a href="https://scholar.google.com/citations?hl=zh-CN&user=o7l0Pa0AAAAJ&view_op=list_works&sortby=pubdate" target="_blank" rel="noopener noreferrer"><span data-i18n="t099">Google Scholar</span></a>
         </div>
         <div class="link-item">
           <a href="https://arxiv.org/search/?searchtype=author&query=Chen%2C+R" target="_blank" rel="noopener noreferrer">arXiv</a>
@@ -632,9 +653,10 @@
         </div>
       </div>
     </div></div>
-      <footer class="footer"><span>© 2026 Rui Chen.</span><a href="#about">Back to top ↑</a></footer>
+      <footer class="footer"><span>© 2026 Rui Chen.</span><a href="#about"><span data-i18n="t100">Back to top ↑</span></a></footer>
     </div></div>
   </main>
+  <script type="application/json" id="language-data">{"text": {"t000": {"en": "Skip to research and publications", "zh": "跳转至研究与论文成果"}, "t001": {"en": "PhD Student in Mathematics", "zh": "数学博士研究生"}, "t002": {"en": "About", "zh": "关于我"}, "t003": {"en": "Research & Publications", "zh": "研究与论文成果"}, "t004": {"en": "Education", "zh": "教育经历"}, "t005": {"en": "Talks & Visits", "zh": "报告与学术访问"}, "t006": {"en": "Contact ↗", "zh": "联系我 ↗"}, "t007": {"en": "Menu", "zh": "菜单"}, "t008": {"en": "Analysis & Geometry", "zh": "分析与几何"}, "t009": {"en": "Nonlocal operators,", "zh": "非局部算子、"}, "t010": {"en": "spectral theory &", "zh": "谱理论与"}, "t011": {"en": "geometric analysis.", "zh": "几何分析"}, "t012": {"en": "I am a PhD student in mathematics, currently working on nonlocal operators, functional inequalities, spectral theory, and partial differential equations, with a particular interest in fractional and logarithmic operators on Euclidean spaces, manifolds, and graphs.", "zh": "我是一名数学博士研究生，主要研究非局部算子、泛函不等式、谱理论和偏微分方程，尤其关注欧氏空间、流形和图上的分数阶算子与对数算子。"}, "t013": {"en": "Explore my research", "zh": "了解我的研究"}, "t014": {"en": "Get in touch ↗", "zh": "联系我 ↗"}, "t015": {"en": "Affiliation", "zh": "所在单位"}, "t016": {"en": "Fudan University / Brandenburg University of Technology Cottbus-Senftenberg", "zh": "复旦大学 / 勃兰登堡工业大学（科特布斯—森夫滕贝格）"}, "t017": {"en": "Email", "zh": "邮箱"}, "t018": {"en": "Location", "zh": "所在地"}, "t019": {"en": "Germany / China", "zh": "德国 / 中国"}, "t020": {"en": "About my research", "zh": "关于我的研究"}, "t021": {"en": "Welcome to my personal webpage. My research lies in analysis and geometry, with a focus on nonlocal operators such as the fractional Laplacian, the logarithmic Laplacian, and the fractional-logarithmic Laplacian. I am particularly interested in the partial differential equations, functional inequalities, and spectral theory associated with these operators, especially in the settings of manifolds and discrete graphs.", "zh": "欢迎访问我的个人主页。我的研究领域是分析与几何，重点关注分数阶拉普拉斯算子、对数拉普拉斯算子和分数阶对数拉普拉斯算子等非局部算子。我尤其关注与这些算子相关的偏微分方程、泛函不等式和谱理论，特别是流形与离散图上的相关问题。"}, "t022": {"en": "I’m always happy to chat about mathematics, exchange ideas, and explore possible collaborations.", "zh": "欢迎交流数学问题、交换想法，并探讨合作的可能。"}, "t023": {"en": "Four Research Directions", "zh": "四个研究方向"}, "t024": {"en": "Explore the questions and papers behind each research direction.", "zh": "按研究方向浏览相关问题与论文成果。"}, "t025": {"en": "All publications", "zh": "全部论文"}, "t026": {"en": "5 papers", "zh": "5 篇论文"}, "t027": {"en": "Nonlocal Operators and Their Applications", "zh": "非局部算子及其应用"}, "t028": {"en": "4 papers", "zh": "4 篇论文"}, "t029": {"en": "Spectral Theory and Functional Inequalities", "zh": "谱理论与泛函不等式"}, "t030": {"en": "3 papers", "zh": "3 篇论文"}, "t031": {"en": "Elliptic and Parabolic Equations", "zh": "椭圆与抛物方程"}, "t032": {"en": "2 papers", "zh": "2 篇论文"}, "t033": {"en": "Geometric and Harmonic Analysis", "zh": "几何分析与调和分析"}, "t034": {"en": "Fractional, logarithmic and fractional-logarithmic operators: their fundamental properties, potential theory, and applications on spaces, manifolds and graphs.", "zh": "研究分数阶、对数及分数阶对数算子的基本性质、位势理论，以及它们在空间、流形和图上的应用。"}, "t035": {"en": "5 publications", "zh": "5 篇论文"}, "t036": {"en": "Published", "zh": "已发表"}, "t037": {"en": "Journal ↗", "zh": "期刊链接 ↗"}, "t038": {"en": "arXiv preprint", "zh": "arXiv 预印本"}, "t039": {"en": "Preprint", "zh": "预印本"}, "t040": {"en": "Eigenvalues, fundamental gaps, eigenfunction estimates, and functional inequalities for local and nonlocal operators.", "zh": "研究局部与非局部算子的特征值、基本谱隙、特征函数估计及泛函不等式。"}, "t041": {"en": "4 publications", "zh": "4 篇论文"}, "t042": {"en": "Least-energy solutions, lifespan and threshold phenomena, and long-time asymptotics for heat and fractional heat equations.", "zh": "研究最小能量解、解的寿命与阈值现象，以及热方程和分数阶热方程的长时间渐近行为。"}, "t043": {"en": "3 publications", "zh": "3 篇论文"}, "t044": {"en": "Riesz transforms, heat semigroups, and stochastic completeness on complete Riemannian manifolds.", "zh": "研究完备黎曼流形上的 Riesz 变换、热半群与随机完备性。"}, "t045": {"en": "2 publications", "zh": "2 篇论文"}, "t046": {"en": "Oct 2025 – Present", "zh": "2025 年 10 月至今"}, "t047": {"en": "Visiting Ph.D. Student, Brandenburg University of Technology Cottbus-Senftenberg, Germany", "zh": "访问博士研究生，勃兰登堡工业大学（科特布斯—森夫滕贝格），德国"}, "t048": {"en": "Advisor: Daniel Hauer", "zh": "导师：Daniel Hauer"}, "t049": {"en": "Aug 2023 – Present", "zh": "2023 年 8 月至今"}, "t050": {"en": "Ph.D. in Mathematics, Fudan University, China", "zh": "数学博士研究生，复旦大学，中国"}, "t051": {"en": "Advisor: Bobo Hua", "zh": "导师：Bobo Hua"}, "t052": {"en": "Sep 2019 – Jun 2023", "zh": "2019 年 9 月至 2023 年 6 月"}, "t053": {"en": "B.Sc. in Mathematics and Applied Mathematics, Central South University, China", "zh": "数学与应用数学理学学士，中南大学，中国"}, "t054": {"en": "Invited Talks", "zh": "邀请报告"}, "t055": {"en": "Shanghai Institute for Mathematics and Interdisciplinary Sciences; one-hour invited talk", "zh": "上海数学与交叉学科研究院；一小时邀请报告"}, "t056": {"en": "Shanghai, China", "zh": "中国上海"}, "t057": {"en": "School of Mathematics and Statistics, Central South University; one-hour invited talk", "zh": "中南大学数学与统计学院；一小时邀请报告"}, "t058": {"en": "Changsha, China", "zh": "中国长沙"}, "t059": {"en": "More invited talks (3)", "zh": "更多邀请报告（3）"}, "t060": {"en": "13th International Conference on Nonlinear Analysis, Function Spaces and Applications", "zh": "第 13 届非线性分析、函数空间与应用国际会议"}, "t061": {"en": "Prague, Czech Republic", "zh": "捷克共和国布拉格"}, "t062": {"en": "Chinese–German Analysis and PDE Online Seminar", "zh": "中德分析与偏微分方程线上研讨班"}, "t063": {"en": "Online Seminar", "zh": "线上研讨班"}, "t064": {"en": "Organizers: Huyuan Chen, Daniel Hauer, Jun Wang", "zh": "组织者：Huyuan Chen、Daniel Hauer、Jun Wang"}, "t065": {"en": "2024 Fudan-USTC Spectral Geometry Conference", "zh": "2024 年复旦大学—中国科学技术大学谱几何会议"}, "t066": {"en": "University of Science and Technology of China, China", "zh": "中国科学技术大学，中国"}, "t067": {"en": "Research Visits", "zh": "学术访问"}, "t068": {"en": "Brandenburg University of Technology Cottbus-Senftenberg", "zh": "勃兰登堡工业大学（科特布斯—森夫滕贝格）"}, "t069": {"en": "Germany", "zh": "德国"}, "t070": {"en": "Selected Workshops and Conferences", "zh": "部分研讨会与学术会议"}, "t071": {"en": "6 events", "zh": "6 场"}, "t072": {"en": "Second Research Meeting of Analysis", "zh": "第二届分析研究会议"}, "t073": {"en": "Brandenburg University of Technology Cottbus-Senftenberg, Germany", "zh": "勃兰登堡工业大学（科特布斯—森夫滕贝格），德国"}, "t074": {"en": "Horizons in Nonlinear PDEs Spring School", "zh": "非线性偏微分方程前沿春季学校"}, "t075": {"en": "Ulm University, Germany", "zh": "乌尔姆大学，德国"}, "t076": {"en": "Annual Meeting of Analysis", "zh": "分析年度会议"}, "t077": {"en": "2025 International Workshop on Fully Nonlinear Partial Differential Equations", "zh": "2025 年完全非线性偏微分方程国际研讨会"}, "t078": {"en": "Shanghai Institute of Mathematics and Interdisciplinary Studies, China", "zh": "上海数学与交叉学科研究院，中国"}, "t079": {"en": "The 32nd Yangtse River Conference on PDEs", "zh": "第 32 届长江偏微分方程会议"}, "t080": {"en": "Anhui Normal University, China", "zh": "安徽师范大学，中国"}, "t081": {"en": "2023 Fudan-USTC Spectral Geometry Conference", "zh": "2023 年复旦大学—中国科学技术大学谱几何会议"}, "t082": {"en": "Fudan University, China", "zh": "复旦大学，中国"}, "t083": {"en": "November 2023", "zh": "2023 年 11 月"}, "t084": {"en": "Research Keywords", "zh": "研究关键词"}, "t085": {"en": "Fractional Laplacian", "zh": "分数阶拉普拉斯算子"}, "t086": {"en": "Logarithmic Laplacian", "zh": "对数拉普拉斯算子"}, "t087": {"en": "Spectral Theory", "zh": "谱理论"}, "t088": {"en": "Geometric Analysis", "zh": "几何分析"}, "t089": {"en": "PDE", "zh": "偏微分方程"}, "t090": {"en": "Manifolds", "zh": "流形"}, "t091": {"en": "Graphs", "zh": "图"}, "t092": {"en": "Variational Methods", "zh": "变分方法"}, "t093": {"en": "Inequality", "zh": "不等式"}, "t094": {"en": "Contact", "zh": "联系方式"}, "t095": {"en": "I’m always happy to chat about mathematics, exchange ideas, and explore possible collaborations. Feel free to get in touch by email.", "zh": "欢迎交流数学问题、交换想法，并探讨合作的可能。欢迎通过电子邮件联系我。"}, "t096": {"en": "Email:", "zh": "邮箱："}, "t097": {"en": "Location: Germany / China", "zh": "所在地：德国 / 中国"}, "t098": {"en": "Academic Links", "zh": "学术链接"}, "t099": {"en": "Google Scholar", "zh": "Google 学术"}, "t100": {"en": "Back to top ↑", "zh": "回到顶部 ↑"}}, "ui": {"en": {"pageTitle": "Rui Chen | Mathematics", "description": "Rui Chen - PhD Student in Mathematics. Research in nonlocal operators, spectral theory, and partial differential equations.", "mainNavigation": "Main navigation", "profile": "Current profile", "filterDirections": "Filter publications by research direction", "paperCount": "{count} papers", "publicationCount": "{count} publications", "viewAll": "View all {count} publications", "showFewer": "Show fewer publications", "showing": "Showing {visible} of {total} publications", "allStatus": "All 14 publications are shown, grouped by research direction.", "readPaper": "Read {title}"}, "zh": {"pageTitle": "Rui Chen | 数学研究", "description": "Rui Chen，数学博士研究生。研究方向包括非局部算子、谱理论、泛函不等式与偏微分方程。", "mainNavigation": "主导航", "profile": "当前个人信息", "filterDirections": "按研究方向筛选论文", "paperCount": "{count} 篇论文", "publicationCount": "{count} 篇论文", "viewAll": "查看全部 {count} 篇论文", "showFewer": "收起更多论文", "showing": "显示 {visible} / {total} 篇论文", "allStatus": "已按研究方向显示全部 14 篇论文。", "readPaper": "阅读论文：{title}"}}}</script>
   <script>
     (() => {
       const page = document.body;
@@ -645,8 +667,49 @@
       const allButton = document.getElementById('all-publications');
       const nav = document.getElementById('main-navigation');
       const menu = document.querySelector('.nav-toggle');
+      const languageData = JSON.parse(document.getElementById('language-data').textContent);
+      const languageButtons = Array.from(document.querySelectorAll('.language-button'));
+      const languageStorageKey = 'rui-chen-homepage-language';
+      let currentLanguage = 'en';
       let active = 'nonlocal';
       page.classList.replace('no-js', 'has-js');
+      function ui(key, values = {}) {
+        return languageData.ui[currentLanguage][key].replace(/\{(\w+)\}/g, (_, name) => String(values[name]));
+      }
+      function updateMoreLabels() {
+        document.querySelectorAll('.more-papers').forEach(details => {
+          const count = Number(details.closest('.topic-panel').dataset.count);
+          const expandedLabel = details.querySelector('.expanded-label');
+          const collapsedLabel = details.querySelector('.collapsed-label');
+          expandedLabel.textContent = ui('showFewer');
+          collapsedLabel.textContent = ui('viewAll', { count });
+          expandedLabel.hidden = !details.open;
+          collapsedLabel.hidden = details.open;
+        });
+      }
+      function applyLanguage(language, remember = false) {
+        if (language !== 'en' && language !== 'zh') return;
+        currentLanguage = language;
+        document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
+        document.title = ui('pageTitle');
+        document.querySelector('meta[name="description"]').content = ui('description');
+        document.querySelectorAll('[data-i18n]').forEach(node => {
+          node.textContent = languageData.text[node.dataset.i18n][language];
+        });
+        document.querySelectorAll('[data-i18n-aria]').forEach(node => {
+          node.setAttribute('aria-label', ui(node.dataset.i18nAria));
+        });
+        document.querySelectorAll('.paper-link').forEach(link => {
+          link.setAttribute('aria-label', ui('readPaper', { title: link.dataset.paperTitle }));
+        });
+        languageButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.language === language)));
+        updateMoreLabels();
+        updateStatus();
+        if (remember) {
+          try { localStorage.setItem(languageStorageKey, language); } catch (_) { /* Language switching also works without storage. */ }
+        }
+      }
+      languageButtons.forEach(button => button.addEventListener('click', () => applyLanguage(button.dataset.language, true)));
       function updateStatus() {
         const visiblePanels = panels.filter(panel => !panel.hidden);
         let visibleCount = 0;
@@ -657,11 +720,11 @@
           total += count;
           visibleCount += (!more || more.open) ? count : Math.min(2, count);
           const note = panel.querySelector('.view-note');
-          if (note) note.textContent = `Showing ${(!more || more.open) ? count : 2} of ${count} publications`;
+          if (note) note.textContent = ui('showing', { visible: (!more || more.open) ? count : 2, total: count });
         });
         status.textContent = active === 'all'
-          ? 'All 14 publications are shown, grouped by research direction.'
-          : `${visiblePanels[0].querySelector('h3').textContent}. Showing ${visibleCount} of ${total} publications.`;
+          ? ui('allStatus')
+          : `${visiblePanels[0].querySelector('h3').textContent}${currentLanguage === 'zh' ? '。' : '. '}${ui('showing', { visible: visibleCount, total })}${currentLanguage === 'zh' ? '。' : '.'}`;
       }
       function selectDirection(key) {
         active = key;
@@ -678,11 +741,8 @@
       buttons.forEach(button => button.addEventListener('click', () => selectDirection(button.dataset.category)));
       allButton.addEventListener('click', () => selectDirection('all'));
       document.querySelectorAll('.more-papers').forEach(details => {
-        const expandedLabel = details.querySelector('.expanded-label');
-        const collapsedLabel = details.querySelector('.collapsed-label');
         details.addEventListener('toggle', () => {
-          expandedLabel.hidden = !details.open;
-          collapsedLabel.hidden = details.open;
+          updateMoreLabels();
           updateStatus();
         });
       });
@@ -736,6 +796,12 @@
         });
       });
       selectDirection('nonlocal');
+      let initialLanguage = 'en';
+      try {
+        const saved = localStorage.getItem(languageStorageKey);
+        if (saved === 'en' || saved === 'zh') initialLanguage = saved;
+      } catch (_) { /* Use English when a saved preference is unavailable. */ }
+      applyLanguage(initialLanguage);
       revealSection(window.location.hash);
     })();
   </script>
