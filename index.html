@@ -524,9 +524,10 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
 .footer { display: grid; grid-template-columns: minmax(0,1fr) auto auto; align-items: center; gap: 12px 24px; border-color: #cad8eb; color: #546d8b; }
 .footer a { color: #546d8b; }
 .footer > a { grid-column: 3; }
-.visit-counter { display: inline-flex; align-items: baseline; gap: 6px; white-space: nowrap; }
-.visit-counter[hidden] { display: none !important; }
-#homepage-views-value { font-variant-numeric: tabular-nums; color: #365c8e; }
+.visit-counter { display: flex; flex-wrap: wrap; column-gap: 18px; row-gap: 6px; min-width: 0; }
+.visit-counter-item { display: inline-flex; align-items: baseline; gap: 6px; white-space: nowrap; }
+.visit-counter[hidden], .visit-counter-item[hidden] { display: none !important; }
+#homepage-views-value, #homepage-visitors-value { font-variant-numeric: tabular-nums; color: #365c8e; }
 
 @media (max-width: 1050px) {
   .hero-grid { grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr); gap: 36px; }
@@ -542,7 +543,7 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
 @media (max-width: 760px) {
   .footer { grid-template-columns: minmax(0,1fr) auto; gap: 10px 20px; }
   .footer > a { grid-column: 2; grid-row: 1; }
-  .visit-counter { grid-column: 1; grid-row: 2; }
+  .visit-counter { grid-column: 1 / -1; grid-row: 2; }
   .header-inner { min-height: 76px; gap: 8px 12px; padding: 10px 0; }
   .brand { flex: 1 1 125px; }
   .brand h1 { font-size: 17px; }
@@ -1777,8 +1778,14 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
         <footer class="footer">
           <span>© 2026 Rui Chen.</span>
           <span class="visit-counter" id="homepage-views" hidden>
-            <span data-i18n="t111">Total views</span>
-            <span id="homepage-views-value"></span>
+            <span class="visit-counter-item" id="homepage-pv" hidden>
+              <span data-i18n="t111">Views (PV)</span>
+              <span id="homepage-views-value"></span>
+            </span>
+            <span class="visit-counter-item" id="homepage-uv" hidden>
+              <span data-i18n="t112">Visitors (UV)</span>
+              <span id="homepage-visitors-value"></span>
+            </span>
           </span>
           <a href="#about">
             <span data-i18n="t100">Back to top ↑</span>
@@ -2230,8 +2237,12 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
       "zh": "大会报告（15分钟）"
     },
     "t111": {
-      "en": "Total views",
-      "zh": "总浏览量"
+      "en": "Views (PV)",
+      "zh": "浏览量（PV）"
+    },
+    "t112": {
+      "en": "Visitors (UV)",
+      "zh": "访客数（UV）"
     }
   },
   "ui": {
@@ -2627,9 +2638,12 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
 <script>
 (() => {
   const container = document.querySelector('#homepage-views');
-  const value = document.querySelector('#homepage-views-value');
+  const metrics = [
+    {key: 'site_pv', item: document.querySelector('#homepage-pv'), value: document.querySelector('#homepage-views-value')},
+    {key: 'site_uv', item: document.querySelector('#homepage-uv'), value: document.querySelector('#homepage-visitors-value')},
+  ];
   const paths = ['/rui-chen-homepage/', '/rui-chen-homepage/index.html', '/rui-chen-homepage'];
-  if (!container || !value || location.protocol !== 'https:' ||
+  if (!container || metrics.some(metric => !metric.item || !metric.value) || location.protocol !== 'https:' ||
       location.hostname !== 'ruichen218.github.io' || !paths.includes(location.pathname)) return;
 
   function loadCounter() {
@@ -2648,13 +2662,17 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
     }
 
     window[callback] = data => {
-      const count = data && data.site_pv;
-      const valid = (typeof count === 'number' ||
-        (typeof count === 'string' && /^\d+$/.test(count))) &&
-        Number.isSafeInteger(Number(count)) && Number(count) >= 0;
-      if (!finish() || !valid) return;
-      value.textContent = Number(count).toLocaleString('en-US');
-      container.hidden = false;
+      if (!finish()) return;
+      metrics.forEach(metric => {
+        const count = data && data[metric.key];
+        const valid = (typeof count === 'number' ||
+          (typeof count === 'string' && /^\d+$/.test(count))) &&
+          Number.isSafeInteger(Number(count)) && Number(count) >= 0;
+        if (!valid) return;
+        metric.value.textContent = Number(count).toLocaleString('en-US');
+        metric.item.hidden = false;
+      });
+      container.hidden = metrics.every(metric => metric.item.hidden);
     };
 
     script.async = true;
