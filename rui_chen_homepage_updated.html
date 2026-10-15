@@ -1,0 +1,2306 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rui Chen | Mathematics</title>
+  <meta name="description" content="Rui Chen - PhD Student in Mathematics. Research in nonlocal operators, spectral theory, and partial differential equations.">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-41TRGQ3C9P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-41TRGQ3C9P');
+  </script>
+
+  <style>
+    :root {
+      --paper: #faf9f6;
+      --white: #fff;
+      --ink: #272b3e;
+      --secondary: #5d6370;
+      --rule: #e4e3df;
+      --accent: #464d83;
+      --accent-wash: #efeff7;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --max-width: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); font-size: 17px; line-height: 1.75; }
+    [hidden] { display: none !important; }
+    h1, h2, h3, h4, p { margin-top: 0; }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; font: inherit; }
+    button, summary { cursor: pointer; }
+    a, button, summary { -webkit-tap-highlight-color: transparent; }
+    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid #858eb8; outline-offset: 5px; }
+    .container { width: min(var(--max-width), calc(100% - 80px)); margin: 0 auto; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .skip-link { position: fixed; left: 16px; top: -70px; z-index: 100; padding: 10px 16px; background: var(--white); border: 1px solid var(--accent); }
+    .skip-link:focus { top: 12px; }
+    .site-header { position: sticky; top: 0; z-index: 30; border-bottom: 1px solid var(--rule); background: var(--paper); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 86px; }
+    .brand { flex-shrink: 0; }
+    .brand h1 { margin: 0; font-family: var(--serif); font-size: 29px; font-weight: 400; letter-spacing: -.8px; line-height: 1.2; }
+    .brand p { margin: 4px 0 0; font-size: 14px; color: var(--secondary); letter-spacing: .01em; }
+    .nav { display: flex; gap: 22px; font-size: 15px; align-items: center; margin-left: auto; }
+    .nav a { padding: 8px 0; color: var(--secondary); }
+    .nav a:hover { color: var(--accent); }
+    .nav .contact-nav { border-bottom: 1px solid var(--accent); color: var(--accent); }
+    .nav-toggle { display: none; background: none; border: 1px solid var(--rule); border-radius: 5px; padding: 8px 13px; }
+    .header-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .language-switch { display: flex; align-items: center; gap: 2px; padding: 2px; border: 1px solid var(--rule); border-radius: 5px; }
+    .language-button { border: 0; border-radius: 3px; background: none; color: var(--secondary); font-size: 12px; padding: 6px 7px; min-height: 44px; min-width: 44px; white-space: nowrap; }
+    .language-button[aria-pressed="true"] { background: var(--accent); color: var(--white); }
+    .language-button:hover { background: var(--accent-wash); color: var(--ink); }
+    .language-button[aria-pressed="true"]:hover { background: #383f72; color: var(--white); }
+    .no-js .header-actions { display: none; }
+    .hero { padding: 66px 0 42px; }
+    .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; column-gap: 64px; align-items: start; }
+    .eyebrow { color: var(--accent); font-size: 13px; font-weight: 600; letter-spacing: .17em; text-transform: uppercase; margin-bottom: 19px; }
+    .hero h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 4.2vw, 56px); line-height: 1.09; letter-spacing: -2.1px; margin-bottom: 26px; }
+    .lead { font-size: 17px; color: var(--secondary); line-height: 1.75; max-width: 570px; margin-bottom: 26px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 21px; align-items: center; }
+    .primary-link { display: inline-flex; gap: 24px; align-items: center; background: var(--accent); color: var(--white); border-radius: 5px; padding: 12px 18px; font-size: 15px; font-weight: 500; }
+    .primary-link:hover { background: #383f72; }
+    .plain-link { font-size: 15px; padding: 10px 0; border-bottom: 1px solid var(--rule); }
+    .plain-link:hover { border-color: var(--accent); }
+    .hero-aside { min-width: 0; }
+    .illustration { margin: -30px 0 -4px; }
+    .illustration svg { display: block; width: 100%; height: auto; max-height: 300px; }
+    .profile { border-top: 1px solid var(--rule); padding-top: 17px; font-size: 14px; color: var(--secondary); }
+    .profile-title { color: var(--ink); font-weight: 600; font-size: 15px; margin-bottom: 10px; }
+    .profile-row { display: flex; gap: 16px; margin: 7px 0; align-items: baseline; }
+    .profile-row > span { width: 76px; flex-shrink: 0; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--secondary); }
+    .profile-row > div { min-width: 0; }
+    .profile a { text-decoration: none; }
+    .about-detail { margin-top: 30px; max-width: 730px; color: var(--secondary); font-size: 17px; line-height: 1.75; }
+    .about-detail > summary { display: inline-flex; align-items: center; gap: 16px; padding: 7px 0; font-size: 14px; color: var(--accent); list-style: none; }
+    .about-detail > summary::-webkit-details-marker { display: none; }
+    .about-detail > summary::after { content: "+"; font-size: 18px; line-height: 1; }
+    .about-detail[open] > summary::after { content: "−"; }
+    .about-detail .container { width: auto; }
+    .about-detail .section-block { padding: 15px 0 0; }
+    .about-detail h3 { display: none; }
+    .about-detail p { margin-bottom: 12px; }
+    .about-detail .section { padding: 0; }
+    .research { padding: 0; background: var(--paper); }
+    .section-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-bottom: 27px; }
+    .research .section-content > .eyebrow { margin-bottom: 12px; }
+    .research .section-title { color: var(--accent); }
+    .section-title { font-family: var(--serif); font-size: 28px; line-height: 1.25; font-weight: 400; letter-spacing: -.4px; margin: 0; }
+    .section-summary { display: flex; justify-content: space-between; align-items: center; gap: 24px; min-height: 92px; padding: 24px 0; list-style: none; }
+    .section-summary::-webkit-details-marker { display: none; }
+    .fold-icon { flex-shrink: 0; width: 30px; text-align: center; color: var(--accent); font-size: 26px; line-height: 1; }
+    .fold-icon::before { content: "+"; }
+    .section-fold[open] > .section-summary .fold-icon::before { content: "−"; }
+    .section-content { padding-bottom: 32px; }
+    .section-content .section-subtitle { margin: 0; }
+    .section-subtitle { margin: 12px 0 0; color: var(--secondary); font-size: 15px; }
+    .all-button { flex-shrink: 0; background: none; border: 1px solid var(--rule); border-radius: 5px; padding: 10px 15px; font-size: 14px; transition: background .15s; }
+    .all-button > .button-count { margin-left: 10px; color: var(--secondary); }
+    .all-button:hover { background: var(--paper); }
+    .all-button[aria-pressed="true"] { color: var(--white); background: var(--accent); border-color: var(--accent); }
+    .all-button[aria-pressed="true"] > .button-count { color: var(--white); }
+    .topic-selectors { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0 0 33px; }
+    .topic-button { --topic: var(--accent); --wash: var(--accent-wash); min-width: 0; text-align: left; padding: 17px 18px 15px; background: var(--paper); border: 1px solid transparent; border-radius: 6px; position: relative; display: flex; flex-direction: column; gap: 12px; min-height: 162px; transition: background .15s, border-color .15s; }
+    .topic-button:hover { background: var(--wash); }
+    .topic-button[aria-pressed="true"] { background: var(--wash); border-color: var(--topic); }
+    .topic-button[aria-pressed="true"]::before { content: ""; width: 3px; position: absolute; top: 16px; bottom: 16px; left: -1px; background: var(--topic); border-radius: 2px; }
+    .topic-button .topic-top { display: flex; justify-content: space-between; color: var(--secondary); font-size: 12px; line-height: 1.4; letter-spacing: .03em; }
+    .topic-button[aria-pressed="true"] .topic-top { color: var(--topic); }
+    .topic-button .topic-name { font-weight: 500; font-size: 17px; line-height: 1.4; max-width: 200px; }
+    .spectral { --topic: #35716c; --wash: #edf5f1; }
+    .equations { --topic: #8c663c; --wash: #f6f1e8; }
+    .geometric { --topic: #776183; --wash: #f3eff6; }
+    .topic-panel { --topic: var(--accent); }
+    .topic-panel.spectral { --topic: #35716c; }
+    .topic-panel.equations { --topic: #8c663c; }
+    .topic-panel.geometric { --topic: #776183; }
+    .topic-intro { display: grid; grid-template-columns: 4px 1fr auto; column-gap: 18px; align-items: start; margin-bottom: 14px; }
+    .topic-intro::before { content: ""; height: 46px; width: 3px; background: var(--topic); margin-top: 3px; }
+    .topic-intro h3 { font-family: var(--serif); font-weight: 400; font-size: 25px; line-height: 1.25; margin: 0 0 7px; }
+    .topic-intro p { color: var(--secondary); font-size: 15px; line-height: 1.7; margin: 0; max-width: 785px; }
+    .topic-total { font-size: 14px; color: var(--secondary); white-space: nowrap; padding-top: 6px; }
+    .paper-row { display: grid; grid-template-columns: 33px minmax(0, 1fr) 150px; column-gap: 16px; padding: 24px 0 22px; border-bottom: 1px solid var(--rule); }
+    .paper-no { color: #858995; font-size: 13px; padding-top: 6px; }
+    .paper-title { font-family: var(--serif); font-weight: 400; font-size: 23px; line-height: 1.4; letter-spacing: -.15px; margin: 0 0 9px; }
+    .paper-title a:hover { color: var(--accent); }
+    .paper-authors { font-size: 14px; color: var(--secondary); margin: 0 0 5px; line-height: 1.7; }
+    .paper-authors .author-self { color: var(--ink); }
+    .paper-venue { font-size: 14px; color: var(--secondary); margin: 0; line-height: 1.7; }
+    .paper-doi { font-size: 13px; color: var(--secondary); margin: 3px 0 0; overflow-wrap: anywhere; }
+    .paper-side { display: flex; flex-direction: column; align-items: flex-end; gap: 13px; padding-top: 3px; }
+    .paper-status { font-size: 12px; line-height: 1.5; border-radius: 3px; background: #f1f2f4; color: #646978; padding: 3px 7px; }
+    .paper-status.published { color: #356958; background: #eaf4ee; }
+    .paper-link { font-size: 13px; color: var(--accent); padding: 3px 0; border-bottom: 1px solid #d7daea; white-space: nowrap; }
+    .paper-link:hover { border-color: var(--accent); }
+    .more-papers > summary { width: fit-content; font-size: 14px; color: var(--topic); margin: 19px 0 0 49px; padding: 9px 0; list-style: none; display: flex; align-items: center; gap: 24px; border-bottom: 1px solid #d9dce5; }
+    .more-papers > summary::-webkit-details-marker { display: none; }
+    .more-papers > summary::after { content: "+"; font-size: 17px; line-height: 1; }
+    .more-papers[open] > summary::after { content: "−"; }
+    .more-papers[open] > summary { margin-bottom: 5px; }
+    .view-note { margin: 20px 0 0 49px; color: var(--secondary); font-size: 13px; }
+    .all-mode .topic-panel + .topic-panel { margin-top: 45px; }
+    .all-mode .more-papers > summary { display: none; }
+    .all-mode .view-note { display: none; }
+    .no-js .research-controls { display: none; }
+    .no-js .view-note { display: none; }
+    .education-wrap { padding: 0; }
+    #education.section { padding: 0; }
+    #education .list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 35px; }
+    #education .list li { border-top: 1px solid var(--rule); padding-top: 17px; color: var(--secondary); font-size: 14px; line-height: 1.85; margin: 0; }
+    #education .list strong { display: inline-block; margin-bottom: 9px; font-weight: 500; color: var(--accent); font-size: 14px; }
+    .talks-wrap { padding: 0; }
+    .section { padding: 0; }
+    .cards-2 { display: grid; grid-template-columns: minmax(0,1.6fr) minmax(0,1fr); gap: 62px; }
+    .card { min-width: 0; }
+    .card h3 { font-size: 16px; font-weight: 600; margin-bottom: 15px; }
+    .list { padding: 0; margin: 0; list-style: none; color: var(--secondary); font-size: 14px; line-height: 1.8; }
+    .list li { margin: 0 0 16px; }
+    .list strong { color: var(--ink); font-weight: 500; }
+    .talks-more > summary { color: var(--accent); font-size: 14px; padding: 8px 0; }
+    .talks-more[open] > summary { margin-bottom: 12px; }
+    .archive-wrap { padding-bottom: 49px; }
+    .section-fold, .archive-details, .keyword-details { border-top: 1px solid var(--rule); }
+    .summary-end { flex-shrink: 0; font-size: 13px; color: var(--secondary); display: flex; align-items: center; gap: 20px; white-space: nowrap; }
+    .summary-end::after { content: "+"; color: var(--accent); font-size: 26px; line-height: 1; width: 30px; text-align: center; }
+    details[open] > summary .summary-end::after { content: "−"; }
+    .archive-details .list { display: grid; grid-template-columns: minmax(0, 1fr); padding: 9px 0 16px; }
+    .archive-details .card > h3 { display: none; }
+    .keyword-details .section .container { width: auto; }
+    .keyword-details .card > h3 { display: none; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+    .tag { font-size: 13px; color: var(--secondary); background: #f0efeb; padding: 5px 10px; border-radius: 3px; }
+    .contact-wrap { padding: 43px 0 32px; background: #30354f; color: var(--white); }
+    .contact-grid { display: grid; grid-template-columns: 1.6fr 1fr; column-gap: 62px; }
+    #contact .container { width: auto; }
+    #contact h2 { font-family: var(--serif); font-size: 33px; font-weight: 400; margin: 0 0 13px; }
+    #contact p { color: #d6d9e6; font-size: 17px; max-width: 565px; margin-bottom: 17px; }
+    .contact-meta { color: #d6d9e6; font-size: 14px; }
+    .contact-meta a { text-decoration: none; }
+    #links h3 { margin-top: 5px; color: #d6d9e6; font-weight: 400; font-size: 14px; }
+    .link-list { display: flex; flex-wrap: wrap; gap: 10px 20px; font-size: 14px; }
+    .link-item a { display: block; padding: 8px 0; border-bottom: 1px solid #676d88; }
+    .link-item a:hover { border-color: var(--white); }
+    .footer { display: flex; justify-content: space-between; gap: 20px; font-size: 12px; color: #d6d9e6; margin-top: 34px; padding-top: 18px; border-top: 1px solid #515670; }
+    .footer a { color: #d6d9e6; }
+    html:lang(zh) .hero h2, html:lang(zh) .section-title, html:lang(zh) .topic-intro h3 { font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif; letter-spacing: 0; line-height: 1.35; }
+    html:lang(zh) .eyebrow { letter-spacing: .08em; text-transform: none; }
+
+    @media (max-width: 1000px) {
+      .container { width: calc(100% - 52px); }
+      .hero-grid { column-gap: 38px; grid-template-columns: 1.3fr 1fr; }
+      .nav { gap: 19px; font-size: 14px; }
+      .has-js .nav-toggle { display: inline-flex; align-items: center; font-size: 13px; min-height: 44px; padding: 8px 9px; }
+      .has-js .nav { display: none; }
+      .has-js .nav.is-open { display: flex; flex-wrap: wrap; position: absolute; top: 100%; right: 0; left: 0; margin-left: 0; padding: 14px 26px 18px; border-bottom: 1px solid var(--rule); background: var(--paper); gap: 16px 24px; }
+      .nav a { display: inline-flex; align-items: center; min-height: 44px; }
+      .topic-button { padding: 15px 13px; min-height: 148px; }
+      .topic-button .topic-name { font-size: 16px; }
+    }
+
+    @media (max-width: 760px) {
+      html { scroll-padding-top: 86px; }
+      body { font-size: 16px; }
+      .container { width: calc(100% - 40px); }
+      .header-inner { min-height: 72px; }
+      .brand h1 { font-size: 25px; }
+      .brand p { font-size: 12px; }
+      .header-inner { gap: 8px; }
+      .has-js .nav.is-open { padding-left: 20px; padding-right: 20px; }
+      .no-js .header-inner { flex-wrap: wrap; padding: 15px 0; gap: 10px; }
+      .no-js .nav { flex-wrap: wrap; }
+      .hero { padding: 39px 0 31px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 23px; }
+      .hero h2 { font-size: 42px; letter-spacing: -1.5px; margin-bottom: 22px; }
+      .lead { font-size: 16px; margin-bottom: 22px; }
+      .hero-aside { display: grid; grid-template-columns: 130px 1fr; gap: 18px; align-items: center; }
+      .illustration { margin: 0; }
+      .profile { padding-top: 13px; }
+      .profile-row { font-size: 14px; display: block; line-height: 1.7; margin: 7px 0; }
+      .profile-row > span { display: none; }
+      .profile-title { font-size: 14px; margin-bottom: 8px; }
+      .profile-row.location { display: none; }
+      .about-detail { margin-top: 17px; font-size: 16px; }
+      .about-detail > summary { min-height: 44px; }
+      .section-top { align-items: flex-start; gap: 20px; }
+      .section-title { font-size: 24px; }
+      .section-summary { min-height: 84px; padding: 20px 0; }
+      .section-top .all-button { align-self: flex-end; }
+      .all-button { padding: 8px 10px; font-size: 13px; min-height: 44px; }
+      .all-button > .button-count { margin-left: 4px; }
+      .section-subtitle { font-size: 14px; }
+      .topic-selectors { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; margin-bottom: 27px; }
+      .topic-button { min-height: 150px; padding: 14px; }
+      .topic-button .topic-name { font-size: 16px; }
+      .topic-intro { grid-template-columns: 3px 1fr; column-gap: 12px; }
+      .topic-intro h3 { font-size: 22px; }
+      .topic-intro p { font-size: 15px; }
+      .topic-total { display: none; }
+      .paper-row { grid-template-columns: 22px minmax(0,1fr); column-gap: 10px; row-gap: 9px; padding: 22px 0; }
+      .paper-no { font-size: 12px; }
+      .paper-title { font-size: 21px; line-height: 1.4; }
+      .paper-authors, .paper-venue { font-size: 13px; }
+      .paper-side { grid-column: 2; flex-direction: row; align-items: center; justify-content: space-between; gap: 9px; padding-top: 0; }
+      .paper-link { padding: 7px 0; display: inline-flex; align-items: center; min-height: 44px; }
+      .more-papers > summary, .view-note { margin-left: 32px; }
+      .more-papers > summary { min-height: 44px; }
+      #education .list { grid-template-columns: 1fr; gap: 20px; }
+      #education .list li { padding-top: 13px; font-size: 15px; }
+      #education .list strong { margin-bottom: 6px; }
+      .cards-2 { grid-template-columns: 1fr; gap: 29px; }
+      .section-content { padding-bottom: 26px; }
+      .archive-wrap { padding-bottom: 30px; }
+      .contact-wrap { padding: 32px 0 24px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 24px; }
+      #contact h2 { font-size: 29px; }
+      #contact p { font-size: 16px; }
+      .footer { margin-top: 27px; }
+    }
+
+    @media (max-width: 380px) {
+      html { scroll-padding-top: 145px; }
+      .container { width: calc(100% - 32px); }
+      .header-inner { flex-wrap: wrap; min-height: 0; padding: 10px 0; gap: 8px; }
+      .brand { width: 100%; }
+      .header-actions { margin-left: auto; }
+      .hero h2 { font-size: 36px; }
+      .hero-aside { grid-template-columns: 92px 1fr; gap: 12px; }
+      .section-top { flex-direction: column; gap: 15px; }
+      .section-top .all-button { align-self: flex-start; }
+      .topic-button { min-height: 170px; padding: 12px; }
+      .topic-button .topic-name { font-size: 15px; }
+      .summary-end { gap: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+
+    @media print {
+      .site-header { position: static; }
+      .research-controls, .actions, .illustration, .nav, .header-actions, .skip-link { display: none !important; }
+      .topic-panel[hidden] { display: block !important; }
+      .container { width: 100%; }
+      .hero-grid, .contact-grid { grid-template-columns: 1fr; }
+      .contact-wrap { color: var(--ink); background: var(--white); }
+      #contact p, .contact-meta, #links h3, .footer, .footer a { color: var(--ink); }
+    }
+  </style>
+</head>
+
+<body class="no-js">
+
+  <a class="skip-link" href="#research">
+    <span data-i18n="t000">Skip to research and publications</span>
+  </a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#about">
+        <h1>Rui Chen</h1>
+        <p><span data-i18n="t001">PhD Student in Mathematics</span></p>
+      </a>
+
+      <nav class="nav" id="main-navigation"
+           aria-label="Main navigation"
+           data-i18n-aria="mainNavigation">
+        <a href="#about"><span data-i18n="t002">About</span></a>
+        <a href="#research"><span data-i18n="t003">Research &amp; Publications</span></a>
+        <a href="#education"><span data-i18n="t004">Education</span></a>
+        <a href="#talks"><span data-i18n="t005">Talks &amp; Visits</span></a>
+        <a class="contact-nav" href="#contact">
+          <span data-i18n="t006">Contact ↗</span>
+        </a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="language-switch" role="group" aria-label="Language / 语言">
+          <button type="button" class="language-button"
+                  data-language="en" lang="en"
+                  aria-pressed="true">English</button>
+          <button type="button" class="language-button"
+                  data-language="zh" lang="zh-CN"
+                  aria-pressed="false">中文</button>
+        </div>
+        <button type="button" class="nav-toggle"
+                aria-expanded="false"
+                aria-controls="main-navigation">
+          <span data-i18n="t007">Menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ABOUT -->
+    <section class="hero" id="about" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">
+              <span data-i18n="t008">Analysis &amp; Geometry</span>
+            </p>
+
+            <h2 id="hero-heading">
+              <span data-i18n="t009">Nonlocal operators,</span><br>
+              <span data-i18n="t010">spectral theory &amp;</span><br>
+              <span data-i18n="t011">geometric analysis.</span>
+            </h2>
+
+            <p class="lead">
+              <span data-i18n="t012">
+                I am a PhD student in mathematics, currently working on
+                nonlocal operators, functional inequalities, spectral theory,
+                and partial differential equations, with a particular interest
+                in fractional and logarithmic operators on Euclidean spaces,
+                manifolds, and graphs.
+              </span>
+            </p>
+
+            <div class="actions">
+              <a class="primary-link" href="#research">
+                <span data-i18n="t013">Explore my research</span>
+                <span aria-hidden="true">↓</span>
+              </a>
+              <a class="plain-link" href="mailto:chenrui23@m.fudan.edu.cn">
+                <span data-i18n="t014">Get in touch ↗</span>
+              </a>
+            </div>
+          </div>
+
+          <aside class="hero-aside" aria-label="Current profile"
+                 data-i18n-aria="profile">
+            <div class="illustration" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                   width="460" height="350"
+                   viewBox="0 0 460 350" fill="none">
+                <defs>
+                  <linearGradient id="surface"
+                                  x1="148" y1="75"
+                                  x2="315" y2="244"
+                                  gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#829b99" stop-opacity=".12"/>
+                    <stop offset="1" stop-color="#829b99" stop-opacity=".02"/>
+                  </linearGradient>
+                  <clipPath id="sphere">
+                    <circle cx="229" cy="160" r="96"/>
+                  </clipPath>
+                </defs>
+
+                <path d="M79 238C90 122 212 4 336 57C390 80 416 141 399 186"
+                      stroke="#829b99" stroke-opacity=".22"
+                      stroke-width="1" stroke-dasharray="3 6"/>
+                <path d="M88 275C181 313 322 295 382 204"
+                      stroke="#b19565" stroke-opacity=".28"
+                      stroke-width="1" stroke-dasharray="2 6"/>
+                <path d="M109 87C142 35 217 28 274 53"
+                      stroke="#464d83" stroke-opacity=".16"
+                      stroke-width="1"/>
+
+                <g transform="rotate(-17 229 160)">
+                  <circle cx="229" cy="160" r="96"
+                          fill="url(#surface)"
+                          stroke="#464d83"
+                          stroke-opacity=".65"
+                          stroke-width="1.3"/>
+                  <g clip-path="url(#sphere)"
+                     stroke="#464d83"
+                     stroke-opacity=".3"
+                     stroke-width=".8">
+                    <ellipse cx="229" cy="160" rx="32" ry="96"/>
+                    <ellipse cx="229" cy="160" rx="65" ry="96"/>
+                    <path d="M229 64V256"/>
+                    <ellipse cx="229" cy="160" rx="96" ry="27"/>
+                    <ellipse cx="229" cy="118" rx="86" ry="22"/>
+                    <ellipse cx="229" cy="202" rx="86" ry="22"/>
+                    <ellipse cx="229" cy="85" rx="58" ry="12"/>
+                    <ellipse cx="229" cy="235" rx="58" ry="12"/>
+                  </g>
+                  <path d="M158 105C177 126 204 155 231 160C261 166 284 163 317 145"
+                        stroke="#829b99" stroke-width="2"
+                        stroke-linecap="round"/>
+                  <path d="M199 69C191 123 222 173 265 192C279 198 291 200 310 201"
+                        stroke="#b19565" stroke-opacity=".8"
+                        stroke-width="1.6" stroke-linecap="round"/>
+                  <circle cx="231" cy="160" r="4.5" fill="#464d83"/>
+                  <circle cx="158" cy="105" r="3.7" fill="#829b99"/>
+                  <circle cx="265" cy="192" r="3.7" fill="#b19565"/>
+                  <circle cx="317" cy="145" r="3.7" fill="#829b99"/>
+                </g>
+
+                <path d="M160 124C93 106 58 132 69 182C77 221 143 233 195 212"
+                      stroke="#b19565" stroke-opacity=".68" stroke-width="1.1"/>
+                <path d="M195 212C247 194 282 203 328 240"
+                      stroke="#b19565" stroke-opacity=".68" stroke-width="1.1"/>
+                <path d="M309 116C355 77 398 94 405 140C410 175 387 192 368 211"
+                      stroke="#829b99" stroke-opacity=".65" stroke-width="1.1"/>
+                <circle cx="69" cy="182" r="3" fill="#b19565"/>
+                <circle cx="405" cy="140" r="3" fill="#829b99"/>
+
+                <g stroke="#464d83" stroke-opacity=".43" stroke-width="1.05">
+                  <path d="M328 240L368 211L401 240L378 280L328 240L343 294L378 280"/>
+                  <path d="M368 211L378 280M328 240L401 240"
+                        stroke-opacity=".22"/>
+                </g>
+                <g fill="#464d83">
+                  <circle cx="328" cy="240" r="4.2"/>
+                  <circle cx="368" cy="211" r="3.5"/>
+                  <circle cx="401" cy="240" r="3.5"/>
+                  <circle cx="378" cy="280" r="4.2"/>
+                  <circle cx="343" cy="294" r="3.5"/>
+                </g>
+                <circle cx="328" cy="240" r="9"
+                        stroke="#b19565" stroke-opacity=".4"
+                        stroke-width=".8"/>
+
+                <g stroke="#829b99" stroke-opacity=".5" stroke-width="1">
+                  <path d="M86 273L112 293L136 268"/>
+                  <circle cx="86" cy="273" r="2.8" fill="#829b99"/>
+                  <circle cx="112" cy="293" r="2.8" fill="#829b99"/>
+                  <circle cx="136" cy="268" r="2.8" fill="#829b99"/>
+                </g>
+                <g fill="#b19565" fill-opacity=".55">
+                  <circle cx="109" cy="87" r="2.3"/>
+                  <circle cx="336" cy="57" r="2.3"/>
+                </g>
+              </svg>
+            </div>
+
+            <div class="profile">
+              <p class="profile-title">
+                <span data-i18n="t001">PhD Student in Mathematics</span>
+              </p>
+              <div class="profile-row">
+                <span><span data-i18n="t015">Affiliation</span></span>
+                <div>
+                  <span data-i18n="t016">
+                    Fudan University / Brandenburg University of Technology
+                    Cottbus-Senftenberg
+                  </span>
+                </div>
+              </div>
+              <div class="profile-row">
+                <span><span data-i18n="t017">Email</span></span>
+                <div>
+                  <a href="mailto:chenrui23@m.fudan.edu.cn">
+                    chenrui23@m.fudan.edu.cn
+                  </a>
+                </div>
+              </div>
+              <div class="profile-row location">
+                <span><span data-i18n="t018">Location</span></span>
+                <div><span data-i18n="t019">Germany / China</span></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <details class="about-detail">
+          <summary>
+            <span data-i18n="t020">About my research</span>
+          </summary>
+          <section id="about-text" class="section">
+            <div class="container">
+              <div class="section-block">
+                <h3><span data-i18n="t002">About</span></h3>
+                <p>
+                  <span data-i18n="t021">
+                    Welcome to my personal webpage. My research lies in
+                    analysis and geometry, with a focus on nonlocal operators
+                    such as the fractional Laplacian, the logarithmic
+                    Laplacian, and the fractional-logarithmic Laplacian.
+                    I am particularly interested in the partial differential
+                    equations, functional inequalities, and spectral theory
+                    associated with these operators, especially in the
+                    settings of manifolds and discrete graphs.
+                  </span>
+                </p>
+                <p>
+                  <span data-i18n="t022">
+                    I’m always happy to chat about mathematics, exchange
+                    ideas, and explore possible collaborations.
+                  </span>
+                </p>
+              </div>
+            </div>
+          </section>
+        </details>
+      </div>
+    </section>
+
+    <!-- RESEARCH AND PUBLICATIONS -->
+    <section class="research" id="research"
+             aria-labelledby="research-heading">
+      <span id="publications" aria-hidden="true"></span>
+      <div class="container">
+        <details class="section-fold" open>
+          <summary class="section-summary">
+            <h2 class="section-title" id="research-heading">
+              <span data-i18n="t003">Research &amp; Publications</span>
+            </h2>
+            <span class="fold-icon" aria-hidden="true"></span>
+          </summary>
+
+          <div class="section-content">
+            <p class="eyebrow">
+              <span data-i18n="t023">Four Research Directions</span>
+            </p>
+            <div class="section-top">
+              <p class="section-subtitle">
+                <span data-i18n="t024">
+                  Explore the questions and papers behind each research direction.
+                </span>
+              </p>
+              <button type="button" id="all-publications"
+                      class="all-button research-controls"
+                      aria-pressed="false"
+                      aria-controls="research-results">
+                <span data-i18n="t025">All publications</span>
+                <span class="button-count">14 ↗</span>
+              </button>
+            </div>
+
+            <div class="topic-selectors research-controls"
+                 role="group"
+                 aria-label="Filter publications by research direction"
+                 data-i18n-aria="filterDirections">
+
+              <button type="button" class="topic-button nonlocal"
+                      data-category="nonlocal" aria-pressed="false"
+                      aria-controls="panel-nonlocal">
+                <span class="topic-top">
+                  <span>01</span>
+                  <span data-i18n="t026">5 papers</span>
+                </span>
+                <span class="topic-name">
+                  <span data-i18n="t027">
+                    Nonlocal Operators and Their Applications
+                  </span>
+                </span>
+              </button>
+
+              <button type="button" class="topic-button spectral"
+                      data-category="spectral" aria-pressed="false"
+                      aria-controls="panel-spectral">
+                <span class="topic-top">
+                  <span>02</span>
+                  <span data-i18n="t028">4 papers</span>
+                </span>
+                <span class="topic-name">
+                  <span data-i18n="t029">
+                    Spectral Theory and Functional Inequalities
+                  </span>
+                </span>
+              </button>
+
+              <button type="button" class="topic-button equations"
+                      data-category="equations" aria-pressed="false"
+                      aria-controls="panel-equations">
+                <span class="topic-top">
+                  <span>03</span>
+                  <span data-i18n="t030">3 papers</span>
+                </span>
+                <span class="topic-name">
+                  <span data-i18n="t031">
+                    Elliptic and Parabolic Equations
+                  </span>
+                </span>
+              </button>
+
+              <button type="button" class="topic-button geometric"
+                      data-category="geometric" aria-pressed="false"
+                      aria-controls="panel-geometric">
+                <span class="topic-top">
+                  <span>04</span>
+                  <span data-i18n="t032">2 papers</span>
+                </span>
+                <span class="topic-name">
+                  <span data-i18n="t033">
+                    Geometric and Harmonic Analysis
+                  </span>
+                </span>
+              </button>
+            </div>
+
+            <div id="research-results">
+
+              <!-- NONLOCAL OPERATORS -->
+              <section class="topic-panel nonlocal"
+                       id="panel-nonlocal"
+                       data-category="nonlocal"
+                       data-count="5"
+                       aria-labelledby="title-nonlocal">
+                <div class="topic-intro">
+                  <div>
+                    <h3 id="title-nonlocal">
+                      <span data-i18n="t027">
+                        Nonlocal Operators and Their Applications
+                      </span>
+                    </h3>
+                    <p>
+                      <span data-i18n="t034">
+                        Fractional, logarithmic and fractional-logarithmic
+                        operators: their fundamental properties, potential
+                        theory, and applications on spaces, manifolds and graphs.
+                      </span>
+                    </p>
+                  </div>
+                  <span class="topic-total" data-i18n="t035">
+                    5 publications
+                  </span>
+                </div>
+
+                <div class="paper-list">
+
+                  <article class="paper-row"
+                           data-title="The Fractional-Logarithmic Laplacian: Fundamental Properties and Eigenvalues">
+                    <span class="paper-no" aria-hidden="true">01</span>
+                    <div class="paper-main">
+                      <h4 class="paper-title" lang="en">
+                        <a href="https://doi.org/10.1007/s00208-026-03556-9"
+                           target="_blank" rel="noopener noreferrer">
+                          The Fractional-Logarithmic Laplacian:
+                          Fundamental Properties and Eigenvalues
+                        </a>
+                      </h4>
+                      <p class="paper-authors" lang="en">
+                        Huyuan Chen, <span class="author-self">Rui Chen</span>,
+                        Daniel Hauer
+                      </p>
+                      <p class="paper-venue">
+                        <em>Mathematische Annalen</em> · 2026
+                      </p>
+                      <p class="paper-doi">
+                        DOI: 10.1007/s00208-026-03556-9
+                      </p>
+                    </div>
+                    <div class="paper-side">
+                      <span class="paper-status published">
+                        <span data-i18n="t036">Published</span>
+                      </span>
+                      <a class="paper-link"
+                         href="https://doi.org/10.1007/s00208-026-03556-9"
+                         target="_blank" rel="noopener noreferrer"
+                         aria-label="Read The Fractional-Logarithmic Laplacian: Fundamental Properties and Eigenvalues"
+                         data-paper-title="The Fractional-Logarithmic Laplacian: Fundamental Properties and Eigenvalues">
+                        <span data-i18n="t037">Journal ↗</span>
+                      </a>
+                    </div>
+                  </article>
+
+                  <article class="paper-row"
+                           data-title="The Conformal Fractional--Logarithmic Laplacian on the Sphere: Yamabe Problems and Sharp Inequalities">
+                    <span class="paper-no" aria-hidden="true">02</span>
+                    <div class="paper-main">
+                      <h4 class="paper-title" lang="en">
+                        <a href="https://arxiv.org/pdf/2603.21146"
+                           target="_blank" rel="noopener noreferrer">
+                          The Conformal Fractional--Logarithmic Laplacian
+                          on the Sphere: Yamabe Problems and Sharp Inequalities
+                        </a>
+                      </h4>
+                      <p class="paper-authors" lang="en">
+                        Huyuan Chen, <span class="author-self">Rui Chen</span>,
+                        Daniel Hauer
+                      </p>
+                      <p class="paper-venue">
+                        <em><span data-i18n="t038">arXiv preprint</span></em> · 2026
+                      </p>
+                    </div>
+                    <div class="paper-side">
+                      <span class="paper-status">
+                        <span data-i18n="t039">Preprint</span>
+                      </span>
+                      <a class="paper-link"
+                         href="https://arxiv.org/pdf/2603.21146"
+                         target="_blank" rel="noopener noreferrer"
+                         aria-label="Read The Conformal Fractional--Logarithmic Laplacian on the Sphere: Yamabe Problems and Sharp Inequalities"
+                         data-paper-title="The Conformal Fractional--Logarithmic Laplacian on the Sphere: Yamabe Problems and Sharp Inequalities">
+                        arXiv:2603.21146 ↗
+                      </a>
+                    </div>
+                  </article>
+
+                  <details class="more-papers">
+                    <summary>
+                      <span class="collapsed-label">View all 5 publications</span>
+                      <span class="expanded-label" hidden>
+                        Show fewer publications
+                      </span>
+                    </summary>
+                    <div>
+
+                      <article class="paper-row"
+                               data-title="Potential Theory of the Fractional-Logarithmic Laplacian: Global Regularity and Critical Compact Embeddings">
+                        <span class="paper-no" aria-hidden="true">03</span>
+                        <div class="paper-main">
+                          <h4 class="paper-title" lang="en">
+                            <a href="https://arxiv.org/abs/2603.04879"
+                               target="_blank" rel="noopener noreferrer">
+                              Potential Theory of the Fractional-Logarithmic
+                              Laplacian: Global Regularity and Critical
+                              Compact Embeddings
+                            </a>
+                          </h4>
+                          <p class="paper-authors" lang="en">
+                            <span class="author-self">Rui Chen</span>
+                          </p>
+                          <p class="paper-venue">
+                            <em><span data-i18n="t038">arXiv preprint</span></em>
+                            · 2026
+                          </p>
+                        </div>
+                        <div class="paper-side">
+                          <span class="paper-status">
+                            <span data-i18n="t039">Preprint</span>
+                          </span>
+                          <a class="paper-link"
+                             href="https://arxiv.org/abs/2603.04879"
+                             target="_blank" rel="noopener noreferrer"
+                             aria-label="Read Potential Theory of the Fractional-Logarithmic Laplacian: Global Regularity and Critical Compact Embeddings"
+                             data-paper-title="Potential Theory of the Fractional-Logarithmic Laplacian: Global Regularity and Critical Compact Embeddings">
+                            arXiv:2603.04879 ↗
+                          </a>
+                        </div>
+                      </article>
+
+                      <article class="paper-row"
+                               data-title="The Logarithmic Laplacian on General Graphs">
+                        <span class="paper-no" aria-hidden="true">04</span>
+                        <div class="paper-main">
+                          <h4 class="paper-title" lang="en">
+                            <a href="https://arxiv.org/abs/2507.05936"
+                               target="_blank" rel="noopener noreferrer">
+                              The Logarithmic Laplacian on General Graphs
+                            </a>
+                          </h4>
+                          <p class="paper-authors" lang="en">
+                            <span class="author-self">Rui Chen</span>, Wendi Xu
+                          </p>
+                          <p class="paper-venue">
+                            <em><span data-i18n="t038">arXiv preprint</span></em>
+                            · 2025
+                          </p>
+                        </div>
+                        <div class="paper-side">
+                          <span class="paper-status">
+                            <span data-i18n="t039">Preprint</span>
+                          </span>
+                          <a class="paper-link"
+                             href="https://arxiv.org/abs/2507.05936"
+                             target="_blank" rel="noopener noreferrer"
+                             aria-label="Read The Logarithmic Laplacian on General Graphs"
+                             data-paper-title="The Logarithmic Laplacian on General Graphs">
+                            arXiv:2507.05936 ↗
+                          </a>
+                        </div>
+                      </article>
+
+                      <article class="paper-row"
+                               data-title="Logarithmic Laplacian on General Riemannian Manifolds">
+                        <span class="paper-no" aria-hidden="true">05</span>
+                        <div class="paper-main">
+                          <h4 class="paper-title" lang="en">
+                            <a href="https://arxiv.org/abs/2506.19311"
+                               target="_blank" rel="noopener noreferrer">
+                              Logarithmic Laplacian on General Riemannian Manifolds
+                            </a>
+                          </h4>
+                          <p class="paper-authors" lang="en">
+                            <span class="author-self">Rui Chen</span>
+                          </p>
+                          <p class="paper-venue">
+                            <em><span data-i18n="t038">arXiv preprint</span></em>
+                            · 2025
+                          </p>
+                        </div>
+                        <div class="paper-side">
+                          <span class="paper-status">
+                            <span data-i18n="t039">Preprint</span>
+                          </span>
+                          <a class="paper-link"
+                             href="https://arxiv.org/abs/2506.19311"
+                             target="_blank" rel="noopener noreferrer"
+                             aria-label="Read Logarithmic Laplacian on General Riemannian Manifolds"
+                             data-paper-title="Logarithmic Laplacian on General Riemannian Manifolds">
+                            arXiv:2506.19311 ↗
+                          </a>
+                        </div>
+                      </article>
+
+                    </div>
+                  </details>
+                </div>
+                <p class="view-note">Showing 2 of 5 publications</p>
+              </section>
+
+              <!-- SPECTRAL THEORY -->
+              <section class="topic-panel spectral"
+                       id="panel-spectral"
+                       data-category="spectral"
+                       data-count="4"
+                       aria-labelledby="title-spectral">
+                <div class="topic-intro">
+                  <div>
+                    <h3 id="title-spectral">
+                      <span data-i18n="t029">
+                        Spectral Theory and Functional Inequalities
+                      </span>
+                    </h3>
+                    <p>
+                      <span data-i18n="t040">
+                        Eigenvalues, fundamental gaps, eigenfunction estimates,
+                        and functional inequalities for local and nonlocal operators.
+                      </span>
+                    </p>
+                  </div>
+                  <span class="topic-total" data-i18n="t041">
+                    4 publications
+                  </span>
+                </div>
+
+                <div class="paper-list">
+
+                  <article class="paper-row"
+                           data-title="On Faber-Krahn inequality for Dirichlet Fractional-Logarithmic Laplacian">
+                    <span class="paper-no" aria-hidden="true">01</span>
+                    <div class="paper-main">
+                      <h4 class="paper-title" lang="en">
+                        <a href="https://arxiv.org/pdf/2609.15481"
+                           target="_blank" rel="noopener noreferrer">
+                          On Faber-Krahn inequality for Dirichlet
+                          Fractional-Logarithmic Laplacian
+                        </a>
+                      </h4>
+                      <p class="paper-authors" lang="en">
+                        Huyuan Chen, <span class="author-self">Rui Chen</span>,
+                        Bobo Hua
+                      </p>
+                      <p class="paper-venue">
+                        <em><span data-i18n="t038">arXiv preprint</span></em> · 2026
+                      </p>
+                    </div>
+                    <div class="paper-side">
+                      <span class="paper-status">
+                        <span data-i18n="t039">Preprint</span>
+                      </span>
+                      <a class="paper-link"
+                         href="https://arxiv.org/pdf/2609.15481"
+                         target="_blank" rel="noopener noreferrer"
+                         aria-label="Read On Faber-Krahn inequality for Dirichlet Fractional-Logarithmic Laplacian"
+                         data-paper-title="On Faber-Krahn inequality for Dirichlet Fractional-Logarithmic Laplacian">
+                        arXiv:2609.15481 ↗
+                      </a>
+                    </div>
+                  </article>
+
+                  <article class="paper-row"
+                           data-title="Fundamental Gaps for the Dirichlet p-Laplacian with Convex Potentials: Sharp One-Dimensional Bounds and a Higher-Dimensional Dichotomy">
+                    <span class="paper-no" aria-hidden="true">02</span>
+                    <div class="paper-main">
+                      <h4 class="paper-title" lang="en">
+                        <a href="https://arxiv.org/pdf/2608.13443"
+                           target="_blank" rel="noopener noreferrer">
+                          Fundamental Gaps for the Dirichlet p-Laplacian
+                          with Convex Potentials: Sharp One-Dimensional
+                          Bounds and a Higher-Dimensional Dichotomy
+                        </a>
+                      </h4>
+                      <p class="paper-authors" lang="en">
+                        <span class="author-self">Rui Chen</span>, Daniel Hauer
+                      </p>
+                      <p class="paper-venue">
+                        <em><span data-i18n="t038">arXiv preprint</span></em> · 2026
+                      </p>
+                    </div>
+                    <div class="paper-side">
+                      <span class="paper-status">
+                        <span data-i18n="t039">Preprint</span>
+                      </span>
+                      <a class="paper-link"
+                         href="https://arxiv.org/pdf/2608.13443"
+                         target="_blank" rel="noopener noreferrer"
+                         aria-label="Read Fundamental Gaps for the Dirichlet p-Laplacian with Convex Potentials: Sharp One-Dimensional Bounds and a Higher-Dimensional Dichotomy"
+                         data-paper-title="Fundamental Gaps for the Dirichlet p-Laplacian with Convex Potentials: Sharp One-Dimensional Bounds and a Higher-Dimensional Dichotomy">
+                        arXiv:2608.13443 ↗
+                      </a>
+                    </div>
+                  </article>
+
+                  <details class="more-papers">
+                    <summary>
+                      <span class="collapsed-label">View all 4 publications</span>
+                      <span class="expanded-label" hidden>
+                        Show fewer publications
+                      </span>
+                    </summary>
+                    <div>
+
+                      <article class="paper-row"
+                               data-title="Two-point modulus for the logarithmic p-flux of the first Dirichlet eigenfunction of the p-Laplacian">
+                        <span class="paper-no" aria-hidden="true">03</span>
+                        <div class="paper-main">
+                          <h4 class="paper-title" lang="en">
+                            <a href="https://arxiv.org/pdf/2608.29195"
+                               target="_blank" rel="noopener noreferrer">
+                              Two-point modulus for the logarithmic p-flux
+                              of the first Dirichlet eigenfunction
+                              of the p-Laplacian
+                            </a>
+                          </h4>
+                          <p class="paper-authors" lang="en">
+                            <span class="author-self">Rui Chen</span>
+                          </p>
+                          <p class="paper-venue">
+                            <em><span data-i18n="t038">arXiv preprint</span></em>
+                            · 2026
+                          </p>
+                        </div>
+                        <div class="paper-side">
+                          <span class="paper-status">
+                            <span data-i18n="t039">Preprint</span>
+                          </span>
+                          <a class="paper-link"
+                             href="https://arxiv.org/pdf/2608.29195"
+                             target="_blank" rel="noopener noreferrer"
+                             aria-label="Read Two-point modulus for the logarithmic p-flux of the first Dirichlet eigenfunction of the p-Laplacian"
+                             data-paper-title="Two-point modulus for the logarithmic p-flux of the first Dirichlet eigenfunction of the p-Laplacian">
+                            arXiv:2608.29195 ↗
+                          </a>
+                        </div>
+                      </article>
+
+                      <article class="paper-row"
+                               data-title="On Poincaré-Sobolev level involving fractional GJMS operators on hyperbolic space">
+                        <span class="paper-no" aria-hidden="true">04</span>
+                        <div class="paper-main">
+                          <h4 class="paper-title" lang="en">
+                            <a href="https://arxiv.org/abs/2602.03299"
+                               target="_blank" rel="noopener noreferrer">
+                              On Poincaré-Sobolev level involving fractional
+                              GJMS operators on hyperbolic space
+                            </a>
+                          </h4>
+                          <p class="paper-authors" lang="en">
+                            Huyuan Chen, <span class="author-self">Rui Chen</span>
+                          </p>
+                          <p class="paper-venue">
+                            <em><span data-i18n="t038">arXiv preprint</span></em>
+                            · 2026
+                          </p>
+                        </div>
+                        <div class="paper-side">
+                          <span class="paper-status">
+                            <span data-i18n="t039">Preprint</span>
+                          </span>
+                          <a class="paper-link"
+                             href="https://arxiv.org/abs/2602.03299"
+                             target="_blank" rel="noopener noreferrer"
+                             aria-label="Read On Poincaré-Sobolev level involving fractional GJMS operators on hyperbolic space"
+                             data-paper-title="On Poincaré-Sobolev level involving fractional GJMS operators on hyperbolic space">
+                            arXiv:2602.03299 ↗
+                          </a>
+                        </div>
+                      </article>
+
+                    </div>
+                  </details>
+                </div>
+                <p class="view-note">Showing 2 of 4 publications</p>
+              </section>
+
+              <!-- ELLIPTIC AND PARABOLIC EQUATIONS -->
+              <section class="topic-panel equations"
+                       id="panel-equations"
+                       data-category="equations"
+                       data-count="3"
+                       aria-labelledby="title-equations">
+                <div class="topic-intro">
+                  <div>
+                    <h3 id="title-equations">
+                      <span data-i18n="t031">
+                        Elliptic and Parabolic Equations
+                      </span>
+                    </h3>
+                    <p>
+                      <span data-i18n="t042">
+                        Least-energy solutions, lifespan and threshold phenomena,
+                        and long-time asymptotics for heat and fractional
+                        heat equations.
+                      </span>
+                    </p>
+                  </div>
+                  <span class="topic-total" data-i18n="t043">
+                    3 publications
+                  </span>
+                </div>
+
+                <div class="paper-list">
+
+                  <article class="paper-row"
+                           data-title="Sharp Lifespan Dichotomies and Threshold Phenomena for Semilinear Heat Equations Driven by the Logarithmic Laplacian">
+                    <span class="paper-no" aria-hidden="true">01</span>
+                    <div class="paper-main">
+                      <h4 class="paper-title" lang="en">
+                        <a href="https://arxiv.org/pdf/2607.29318"
+                           target="_blank" rel="noopener noreferrer">
+                          Sharp Lifespan Dichotomies and Threshold Phenomena
+                          for Semilinear Heat Equations Driven by the
+                          Logarithmic Laplacian
+                        </a>
+                      </h4>
+                      <p class="paper-authors" lang="en">
+                        Huyuan Chen, <span class="author-self">Rui Chen</span>,
+                        Daniel Hauer, Jun Wang
+                      </p>
+                      <p class="paper-venue">
+                        <em><span data-i18n="t038">arXiv preprint</span></em> · 2026
+                      </p>
+                    </div>
+                    <div class="paper-side">
+                      <span class="paper-status">
+                        <span data-i18n="t039">Preprint</span>
+                      </span>
+                      <a class="paper-link"
+                         href="https://arxiv.org/pdf/2607.29318"
+                         target="_blank" rel="noopener noreferrer"
+                         aria-label="Read Sharp Lifespan Dichotomies and Threshold Phenomena for Semilinear Heat Equations Driven by the Logarithmic Laplacian"
+                         data-paper-title="Sharp Lifespan Dichotomies and Threshold Phenomena for Semilinear Heat Equations Driven by the Logarithmic Laplacian">
+                        arXiv:2607.29318 ↗
+                      </a>
+                    </div>
+                  </article>
+
+                  <article class="paper-row"
+                           data-title="Existence and Convergence of Least-Energy Solutions Involving the Logarithmic Schrödinger Operator">
+                    <span class="paper-no" aria-hidden="true">02</span>
+                    <div class="paper-main">
+                      <h4 class="paper-title" lang="en">
+                        <a href="https://doi.org/10.1016/j.jde.2026.114171"
+                           target="_blank" rel="noopener noreferrer">
+                          Existence and Convergence of Least-Energy Solutions
+                          Involving the Logarithmic Schrödinger Operator
+                        </a>
+                      </h4>
+                      <p class="paper-authors" lang="en">
+                        Huyuan Chen, <span class="author-self">Rui Chen</span>,
+                        Bobo Hua
+                      </p>
+                      <p class="paper-venue">
+                        <em>Journal of Differential Equations</em> · 2026
+                      </p>
+                      <p class="paper-doi">
+                        DOI: 10.1016/j.jde.2026.114171
+                      </p>
+                    </div>
+                    <div class="paper-side">
+                      <span class="paper-status published">
+                        <span data-i18n="t036">Published</span>
+                      </span>
+                      <a class="paper-link"
+                         href="https://doi.org/10.1016/j.jde.2026.114171"
+                         target="_blank" rel="noopener noreferrer"
+                         aria-label="Read Existence and Convergence of Least-Energy Solutions Involving the Logarithmic Schrödinger Operator"
+                         data-paper-title="Existence and Convergence of Least-Energy Solutions Involving the Logarithmic Schrödinger Operator">
+                        <span data-i18n="t037">Journal ↗</span>
+                      </a>
+                    </div>
+                  </article>
+
+                  <details class="more-papers">
+                    <summary>
+                      <span class="collapsed-label">View all 3 publications</span>
+                      <span class="expanded-label" hidden>
+                        Show fewer publications
+                      </span>
+                    </summary>
+                    <div>
+                      <article class="paper-row"
+                               data-title="Large-Time Asymptotics for Heat and Fractional Heat Equations on the Lattice and General Finite Subgraphs">
+                        <span class="paper-no" aria-hidden="true">03</span>
+                        <div class="paper-main">
+                          <h4 class="paper-title" lang="en">
+                            <a href="https://arxiv.org/abs/2602.16339"
+                               target="_blank" rel="noopener noreferrer">
+                              Large-Time Asymptotics for Heat and Fractional
+                              Heat Equations on the Lattice and General
+                              Finite Subgraphs
+                            </a>
+                          </h4>
+                          <p class="paper-authors" lang="en">
+                            <span class="author-self">Rui Chen</span>, Bo Li
+                          </p>
+                          <p class="paper-venue">
+                            <em><span data-i18n="t038">arXiv preprint</span></em>
+                            · 2026
+                          </p>
+                        </div>
+                        <div class="paper-side">
+                          <span class="paper-status">
+                            <span data-i18n="t039">Preprint</span>
+                          </span>
+                          <a class="paper-link"
+                             href="https://arxiv.org/abs/2602.16339"
+                             target="_blank" rel="noopener noreferrer"
+                             aria-label="Read Large-Time Asymptotics for Heat and Fractional Heat Equations on the Lattice and General Finite Subgraphs"
+                             data-paper-title="Large-Time Asymptotics for Heat and Fractional Heat Equations on the Lattice and General Finite Subgraphs">
+                            arXiv:2602.16339 ↗
+                          </a>
+                        </div>
+                      </article>
+                    </div>
+                  </details>
+                </div>
+                <p class="view-note">Showing 2 of 3 publications</p>
+              </section>
+
+              <!-- GEOMETRIC AND HARMONIC ANALYSIS -->
+              <section class="topic-panel geometric"
+                       id="panel-geometric"
+                       data-category="geometric"
+                       data-count="2"
+                       aria-labelledby="title-geometric">
+                <div class="topic-intro">
+                  <div>
+                    <h3 id="title-geometric">
+                      <span data-i18n="t033">
+                        Geometric and Harmonic Analysis
+                      </span>
+                    </h3>
+                    <p>
+                      <span data-i18n="t044">
+                        Riesz transforms, heat semigroups, and stochastic
+                        completeness on complete Riemannian manifolds.
+                      </span>
+                    </p>
+                  </div>
+                  <span class="topic-total" data-i18n="t045">
+                    2 publications
+                  </span>
+                </div>
+
+                <div class="paper-list">
+
+                  <article class="paper-row"
+                           data-title="The Coulhon--Duong conjecture for the Riesz transform on complete Riemannian manifolds">
+                    <span class="paper-no" aria-hidden="true">01</span>
+                    <div class="paper-main">
+                      <h4 class="paper-title" lang="en">
+                        <a href="https://arxiv.org/pdf/2609.23503"
+                           target="_blank" rel="noopener noreferrer">
+                          The Coulhon--Duong conjecture for the Riesz
+                          transform on complete Riemannian manifolds
+                        </a>
+                      </h4>
+                      <p class="paper-authors" lang="en">
+                        <span class="author-self">Rui Chen</span>, Renjin Jiang,
+                        Bo Li, Hongquan Li
+                      </p>
+                      <p class="paper-venue">
+                        <em><span data-i18n="t038">arXiv preprint</span></em> · 2026
+                      </p>
+                    </div>
+                    <div class="paper-side">
+                      <span class="paper-status">
+                        <span data-i18n="t039">Preprint</span>
+                      </span>
+                      <a class="paper-link"
+                         href="https://arxiv.org/pdf/2609.23503"
+                         target="_blank" rel="noopener noreferrer"
+                         aria-label="Read The Coulhon--Duong conjecture for the Riesz transform on complete Riemannian manifolds"
+                         data-paper-title="The Coulhon--Duong conjecture for the Riesz transform on complete Riemannian manifolds">
+                        arXiv:2609.23503 ↗
+                      </a>
+                    </div>
+                  </article>
+
+                  <article class="paper-row"
+                           data-title="Nonlocal Characterizations of Stochastic Completeness on Complete Riemannian Manifolds">
+                    <span class="paper-no" aria-hidden="true">02</span>
+                    <div class="paper-main">
+                      <h4 class="paper-title" lang="en">
+                        <a href="https://arxiv.org/pdf/2604.20205"
+                           target="_blank" rel="noopener noreferrer">
+                          Nonlocal Characterizations of Stochastic Completeness
+                          on Complete Riemannian Manifolds
+                        </a>
+                      </h4>
+                      <p class="paper-authors" lang="en">
+                        <span class="author-self">Rui Chen</span>, Bobo Hua
+                      </p>
+                      <p class="paper-venue">
+                        <em><span data-i18n="t038">arXiv preprint</span></em> · 2026
+                      </p>
+                    </div>
+                    <div class="paper-side">
+                      <span class="paper-status">
+                        <span data-i18n="t039">Preprint</span>
+                      </span>
+                      <a class="paper-link"
+                         href="https://arxiv.org/pdf/2604.20205"
+                         target="_blank" rel="noopener noreferrer"
+                         aria-label="Read Nonlocal Characterizations of Stochastic Completeness on Complete Riemannian Manifolds"
+                         data-paper-title="Nonlocal Characterizations of Stochastic Completeness on Complete Riemannian Manifolds">
+                        arXiv:2604.20205 ↗
+                      </a>
+                    </div>
+                  </article>
+
+                </div>
+                <p class="view-note">Showing 2 of 2 publications</p>
+              </section>
+            </div>
+
+            <p class="sr-only" id="filter-status"
+               aria-live="polite" aria-atomic="true"></p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <div class="education-wrap">
+      <section class="section" id="education"
+               aria-labelledby="education-heading">
+        <div class="container">
+          <details class="section-fold">
+            <summary class="section-summary">
+              <h2 class="section-title" id="education-heading">
+                <span data-i18n="t004">Education</span>
+              </h2>
+              <span class="fold-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="section-content">
+              <ul class="list">
+                <li>
+                  <strong>
+                    <span data-i18n="t046">Oct 2025 – Present</span>
+                  </strong><br>
+                  <span data-i18n="t047">
+                    Visiting Ph.D. Student, Brandenburg University
+                    of Technology Cottbus-Senftenberg, Germany
+                  </span><br>
+                  <span data-i18n="t048">Advisor: Daniel Hauer</span>
+                </li>
+                <li>
+                  <strong>
+                    <span data-i18n="t049">Aug 2023 – Present</span>
+                  </strong><br>
+                  <span data-i18n="t050">
+                    Ph.D. in Mathematics, Fudan University, China
+                  </span><br>
+                  <span data-i18n="t051">Advisor: Bobo Hua</span>
+                </li>
+                <li>
+                  <strong>
+                    <span data-i18n="t052">Sep 2019 – Jun 2023</span>
+                  </strong><br>
+                  <span data-i18n="t053">
+                    B.Sc. in Mathematics and Applied Mathematics,
+                    Central South University, China
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </section>
+    </div>
+
+    <!-- TALKS AND VISITS -->
+    <div class="talks-wrap">
+      <section class="section" id="talks" aria-labelledby="talks-heading">
+        <div class="container">
+          <details class="section-fold">
+            <summary class="section-summary">
+              <h2 class="section-title" id="talks-heading">
+                <span data-i18n="t005">Talks &amp; Visits</span>
+              </h2>
+              <span class="fold-icon" aria-hidden="true"></span>
+            </summary>
+
+            <div class="section-content cards-2">
+              <!-- INVITED TALKS: independent seminars only -->
+              <div class="card">
+                <h3><span data-i18n="t054">Invited Talks</span></h3>
+                <ul class="list">
+                  <li>
+                    <strong><span data-i18n="t055">Shanghai Institute for Mathematics and Interdisciplinary Sciences</span></strong><br>
+                    <span data-i18n="t056">Shanghai, China</span><br>
+                    <span data-i18n="t103">Invited talk (60 minutes)</span><br>
+                    22.06.2026
+                  </li>
+                  <li>
+                    <strong><span data-i18n="t057">School of Mathematics and Statistics, Central South University</span></strong><br>
+                    <span data-i18n="t058">Changsha, China</span><br>
+                    <span data-i18n="t103">Invited talk (60 minutes)</span><br>
+                    15.06.2026
+                  </li>
+                  <li>
+                    <strong><span data-i18n="t062">Chinese–German Analysis and PDE Online Seminar</span></strong><br>
+                    <span data-i18n="t063">Online Seminar</span><br>
+                    <span data-i18n="t103">Invited talk (60 minutes)</span><br>
+                    <span data-i18n="t064">Organizers: Huyuan Chen, Daniel Hauer, Jun Wang</span><br>
+                    21.05.2026
+                  </li>
+                </ul>
+              </div>
+
+              <!-- RESEARCH VISITS -->
+              <div class="card">
+                <h3><span data-i18n="t067">Research Visits</span></h3>
+                <ul class="list">
+                  <li>
+                    <strong><span data-i18n="t104">Research visit to Prof. Tobias Weth</span></strong><br>
+                    <span data-i18n="t105">Goethe University Frankfurt, Germany</span><br>
+                    02.11.2026 – 06.11.2026
+                  </li>
+                  <li>
+                    <strong><span data-i18n="t068">Brandenburg University of Technology Cottbus-Senftenberg</span></strong><br>
+                    <span data-i18n="t069">Germany</span><br>
+                    <span data-i18n="t046">Oct 2025 – Present</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+    </div>
+
+    <!-- SELECTED WORKSHOPS AND CONFERENCES -->
+    <div class="container archive-wrap">
+      <details class="archive-details">
+        <summary class="section-summary">
+          <h2 class="section-title">
+            <span data-i18n="t070">Selected Workshops and Conferences</span>
+          </h2>
+          <span class="summary-end">
+            <span data-i18n="t071">10 events</span>
+          </span>
+        </summary>
+
+        <div class="card">
+          <h3><span data-i18n="t070">Selected Workshops and Conferences</span></h3>
+          <ul class="list">
+            <li>
+              <strong><span data-i18n="t108">Modern Trends in Operator Theory and Geometric Analysis</span></strong><br>
+              <span data-i18n="t107">Pisa, Italy</span><br>
+              01.12.2026 – 04.12.2026
+            </li>
+
+            <li>
+              <strong><span data-i18n="t101">Young Researchers in Ferrara: Between Analysis and Geometry</span></strong><br>
+              <span data-i18n="t102">Ferrara, Italy</span><br>
+              12.10.2026 – 14.10.2026
+            </li>
+
+            <li>
+              <strong><span data-i18n="t060">13th International Conference on Nonlinear Analysis, Function Spaces and Applications</span></strong><br>
+              <span data-i18n="t061">Prague, Czech Republic</span><br>
+              01.06.2026 – 05.06.2026
+            </li>
+
+            <li>
+              <strong><span data-i18n="t072">Second Research Meeting of Analysis</span></strong><br>
+              <span data-i18n="t073">Brandenburg University of Technology Cottbus-Senftenberg, Germany</span><br>
+              07.04.2026 – 09.04.2026
+            </li>
+
+            <li>
+              <strong><span data-i18n="t074">Horizons in Nonlinear PDEs Spring School</span></strong><br>
+              <span data-i18n="t075">Ulm University, Germany</span><br>
+              09.03.2026 – 13.03.2026
+            </li>
+
+            <li>
+              <strong><span data-i18n="t076">Annual Meeting of Analysis</span></strong><br>
+              <span data-i18n="t073">Brandenburg University of Technology Cottbus-Senftenberg, Germany</span><br>
+              23.01.2026 – 25.01.2026
+            </li>
+
+            <li>
+              <strong><span data-i18n="t077">2025 International Workshop on Fully Nonlinear Partial Differential Equations</span></strong><br>
+              <span data-i18n="t078">Shanghai Institute of Mathematics and Interdisciplinary Studies, China</span><br>
+              16.06.2025 – 20.06.2025
+            </li>
+
+            <li>
+              <strong><span data-i18n="t079">The 32nd Yangtse River Conference on PDEs</span></strong><br>
+              <span data-i18n="t080">Anhui Normal University, China</span><br>
+              30.05.2025 – 01.06.2025
+            </li>
+
+            <li>
+              <strong><span data-i18n="t065">2024 Fudan-USTC Spectral Geometry Conference</span></strong><br>
+              <span data-i18n="t066">University of Science and Technology of China, China</span><br>
+              29.11.2024 – 01.12.2024
+            </li>
+
+            <li>
+              <strong><span data-i18n="t081">2023 Fudan-USTC Spectral Geometry Conference</span></strong><br>
+              <span data-i18n="t082">Fudan University, China</span><br>
+              <span data-i18n="t083">November 2023</span>
+            </li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- RESEARCH KEYWORDS -->
+      <details class="keyword-details">
+        <summary class="section-summary">
+          <h2 class="section-title">
+            <span data-i18n="t084">Research Keywords</span>
+          </h2>
+          <span class="summary-end"></span>
+        </summary>
+        <section class="section">
+          <div class="container">
+            <div class="card">
+              <h3>
+                <span data-i18n="t084">Research Keywords</span>
+              </h3>
+              <div class="tags">
+                <span class="tag"><span data-i18n="t085">Fractional Laplacian</span></span>
+                <span class="tag"><span data-i18n="t086">Logarithmic Laplacian</span></span>
+                <span class="tag"><span data-i18n="t087">Spectral Theory</span></span>
+                <span class="tag"><span data-i18n="t088">Geometric Analysis</span></span>
+                <span class="tag"><span data-i18n="t089">PDE</span></span>
+                <span class="tag"><span data-i18n="t090">Manifolds</span></span>
+                <span class="tag"><span data-i18n="t091">Graphs</span></span>
+                <span class="tag"><span data-i18n="t092">Variational Methods</span></span>
+                <span class="tag"><span data-i18n="t093">Inequality</span></span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </details>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="contact-wrap">
+      <div class="container">
+        <div class="contact-grid">
+          <section id="contact" class="section">
+            <div class="container">
+              <div class="section-block contact">
+                <h2><span data-i18n="t094">Contact</span></h2>
+                <p>
+                  <span data-i18n="t095">
+                    I’m always happy to chat about mathematics, exchange
+                    ideas, and explore possible collaborations.
+                    Feel free to get in touch by email.
+                  </span>
+                </p>
+                <div class="contact-meta">
+                  <div>
+                    <span data-i18n="t096">Email:</span>
+                    <a href="mailto:chenrui23@m.fudan.edu.cn">
+                      chenrui23@m.fudan.edu.cn
+                    </a>
+                  </div>
+                  <div>
+                    <span data-i18n="t097">
+                      Location: Germany / China
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div class="card" id="links">
+            <h3>
+              <span data-i18n="t098">Academic Links</span>
+            </h3>
+            <div class="link-list">
+              <div class="link-item">
+                <a href="https://scholar.google.com/citations?hl=zh-CN&user=o7l0Pa0AAAAJ&view_op=list_works&sortby=pubdate"
+                   target="_blank" rel="noopener noreferrer">
+                  <span data-i18n="t099">Google Scholar</span>
+                </a>
+              </div>
+              <div class="link-item">
+                <a href="https://arxiv.org/search/?searchtype=author&query=Chen%2C+R"
+                   target="_blank" rel="noopener noreferrer">
+                  arXiv
+                </a>
+              </div>
+              <div class="link-item">
+                <a href="https://orcid.org/0009-0003-5371-2634"
+                   target="_blank" rel="noopener noreferrer">
+                  ORCID
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="footer">
+          <span>© 2026 Rui Chen.</span>
+          <a href="#about">
+            <span data-i18n="t100">Back to top ↑</span>
+          </a>
+        </footer>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- LANGUAGE TRANSLATIONS -->
+  <script type="application/json" id="language-data">
+  {
+  "text": {
+    "t000": {
+      "en": "Skip to research and publications",
+      "zh": "跳转至研究与论文成果"
+    },
+    "t001": {
+      "en": "PhD Student in Mathematics",
+      "zh": "数学博士研究生"
+    },
+    "t002": {
+      "en": "About",
+      "zh": "关于我"
+    },
+    "t003": {
+      "en": "Research & Publications",
+      "zh": "研究与论文成果"
+    },
+    "t004": {
+      "en": "Education",
+      "zh": "教育经历"
+    },
+    "t005": {
+      "en": "Talks & Visits",
+      "zh": "报告与学术访问"
+    },
+    "t006": {
+      "en": "Contact ↗",
+      "zh": "联系我 ↗"
+    },
+    "t007": {
+      "en": "Menu",
+      "zh": "菜单"
+    },
+    "t008": {
+      "en": "Analysis & Geometry",
+      "zh": "分析与几何"
+    },
+    "t009": {
+      "en": "Nonlocal operators,",
+      "zh": "非局部算子、"
+    },
+    "t010": {
+      "en": "spectral theory &",
+      "zh": "谱理论与"
+    },
+    "t011": {
+      "en": "geometric analysis.",
+      "zh": "几何分析"
+    },
+    "t012": {
+      "en": "I am a PhD student in mathematics, currently working on nonlocal operators, functional inequalities, spectral theory, and partial differential equations, with a particular interest in fractional and logarithmic operators on Euclidean spaces, manifolds, and graphs.",
+      "zh": "我是一名数学博士研究生，主要研究非局部算子、泛函不等式、谱理论和偏微分方程，尤其关注欧氏空间、流形和图上的分数阶算子与对数算子。"
+    },
+    "t013": {
+      "en": "Explore my research",
+      "zh": "了解我的研究"
+    },
+    "t014": {
+      "en": "Get in touch ↗",
+      "zh": "联系我 ↗"
+    },
+    "t015": {
+      "en": "Affiliation",
+      "zh": "所在单位"
+    },
+    "t016": {
+      "en": "Fudan University / Brandenburg University of Technology Cottbus-Senftenberg",
+      "zh": "复旦大学 / 勃兰登堡工业大学（科特布斯—森夫滕贝格）"
+    },
+    "t017": {
+      "en": "Email",
+      "zh": "邮箱"
+    },
+    "t018": {
+      "en": "Location",
+      "zh": "所在地"
+    },
+    "t019": {
+      "en": "Germany / China",
+      "zh": "德国 / 中国"
+    },
+    "t020": {
+      "en": "About my research",
+      "zh": "关于我的研究"
+    },
+    "t021": {
+      "en": "Welcome to my personal webpage. My research lies in analysis and geometry, with a focus on nonlocal operators such as the fractional Laplacian, the logarithmic Laplacian, and the fractional-logarithmic Laplacian. I am particularly interested in the partial differential equations, functional inequalities, and spectral theory associated with these operators, especially in the settings of manifolds and discrete graphs.",
+      "zh": "欢迎访问我的个人主页。我的研究领域是分析与几何，重点关注分数阶拉普拉斯算子、对数拉普拉斯算子和分数阶对数拉普拉斯算子等非局部算子。我尤其关注与这些算子相关的偏微分方程、泛函不等式和谱理论，特别是流形与离散图上的相关问题。"
+    },
+    "t022": {
+      "en": "I’m always happy to chat about mathematics, exchange ideas, and explore possible collaborations.",
+      "zh": "欢迎交流数学问题、交换想法，并探讨合作的可能。"
+    },
+    "t023": {
+      "en": "Four Research Directions",
+      "zh": "四个研究方向"
+    },
+    "t024": {
+      "en": "Explore the questions and papers behind each research direction.",
+      "zh": "按研究方向浏览相关问题与论文成果。"
+    },
+    "t025": {
+      "en": "All publications",
+      "zh": "全部论文"
+    },
+    "t026": {
+      "en": "5 papers",
+      "zh": "5 篇论文"
+    },
+    "t027": {
+      "en": "Nonlocal Operators and Their Applications",
+      "zh": "非局部算子及其应用"
+    },
+    "t028": {
+      "en": "4 papers",
+      "zh": "4 篇论文"
+    },
+    "t029": {
+      "en": "Spectral Theory and Functional Inequalities",
+      "zh": "谱理论与泛函不等式"
+    },
+    "t030": {
+      "en": "3 papers",
+      "zh": "3 篇论文"
+    },
+    "t031": {
+      "en": "Elliptic and Parabolic Equations",
+      "zh": "椭圆与抛物方程"
+    },
+    "t032": {
+      "en": "2 papers",
+      "zh": "2 篇论文"
+    },
+    "t033": {
+      "en": "Geometric and Harmonic Analysis",
+      "zh": "几何分析与调和分析"
+    },
+    "t034": {
+      "en": "Fractional, logarithmic and fractional-logarithmic operators: their fundamental properties, potential theory, and applications on spaces, manifolds and graphs.",
+      "zh": "研究分数阶、对数及分数阶对数算子的基本性质、位势理论，以及它们在空间、流形和图上的应用。"
+    },
+    "t035": {
+      "en": "5 publications",
+      "zh": "5 篇论文"
+    },
+    "t036": {
+      "en": "Published",
+      "zh": "已发表"
+    },
+    "t037": {
+      "en": "Journal ↗",
+      "zh": "期刊链接 ↗"
+    },
+    "t038": {
+      "en": "arXiv preprint",
+      "zh": "arXiv 预印本"
+    },
+    "t039": {
+      "en": "Preprint",
+      "zh": "预印本"
+    },
+    "t040": {
+      "en": "Eigenvalues, fundamental gaps, eigenfunction estimates, and functional inequalities for local and nonlocal operators.",
+      "zh": "研究局部与非局部算子的特征值、基本谱隙、特征函数估计及泛函不等式。"
+    },
+    "t041": {
+      "en": "4 publications",
+      "zh": "4 篇论文"
+    },
+    "t042": {
+      "en": "Least-energy solutions, lifespan and threshold phenomena, and long-time asymptotics for heat and fractional heat equations.",
+      "zh": "研究最小能量解、解的寿命与阈值现象，以及热方程和分数阶热方程的长时间渐近行为。"
+    },
+    "t043": {
+      "en": "3 publications",
+      "zh": "3 篇论文"
+    },
+    "t044": {
+      "en": "Riesz transforms, heat semigroups, and stochastic completeness on complete Riemannian manifolds.",
+      "zh": "研究完备黎曼流形上的 Riesz 变换、热半群与随机完备性。"
+    },
+    "t045": {
+      "en": "2 publications",
+      "zh": "2 篇论文"
+    },
+    "t046": {
+      "en": "Oct 2025 – Present",
+      "zh": "2025 年 10 月至今"
+    },
+    "t047": {
+      "en": "Visiting Ph.D. Student, Brandenburg University of Technology Cottbus-Senftenberg, Germany",
+      "zh": "访问博士研究生，勃兰登堡工业大学（科特布斯—森夫滕贝格），德国"
+    },
+    "t048": {
+      "en": "Advisor: Daniel Hauer",
+      "zh": "导师：Daniel Hauer"
+    },
+    "t049": {
+      "en": "Aug 2023 – Present",
+      "zh": "2023 年 8 月至今"
+    },
+    "t050": {
+      "en": "Ph.D. in Mathematics, Fudan University, China",
+      "zh": "数学博士研究生，复旦大学，中国"
+    },
+    "t051": {
+      "en": "Advisor: Bobo Hua",
+      "zh": "导师：Bobo Hua"
+    },
+    "t052": {
+      "en": "Sep 2019 – Jun 2023",
+      "zh": "2019 年 9 月至 2023 年 6 月"
+    },
+    "t053": {
+      "en": "B.Sc. in Mathematics and Applied Mathematics, Central South University, China",
+      "zh": "数学与应用数学理学学士，中南大学，中国"
+    },
+    "t054": {
+      "en": "Invited Talks",
+      "zh": "邀请报告"
+    },
+    "t055": {
+      "en": "Shanghai Institute for Mathematics and Interdisciplinary Sciences",
+      "zh": "上海数学与交叉学科研究院"
+    },
+    "t056": {
+      "en": "Shanghai, China",
+      "zh": "中国上海"
+    },
+    "t057": {
+      "en": "School of Mathematics and Statistics, Central South University",
+      "zh": "中南大学数学与统计学院"
+    },
+    "t058": {
+      "en": "Changsha, China",
+      "zh": "中国长沙"
+    },
+    "t060": {
+      "en": "13th International Conference on Nonlinear Analysis, Function Spaces and Applications",
+      "zh": "第 13 届非线性分析、函数空间与应用国际会议"
+    },
+    "t061": {
+      "en": "Prague, Czech Republic",
+      "zh": "捷克共和国布拉格"
+    },
+    "t062": {
+      "en": "Chinese–German Analysis and PDE Online Seminar",
+      "zh": "中德分析与偏微分方程在线研讨会"
+    },
+    "t063": {
+      "en": "Online seminar",
+      "zh": "线上研讨会"
+    },
+    "t064": {
+      "en": "Organizers: Huyuan Chen, Daniel Hauer, Jun Wang",
+      "zh": "组织者：Huyuan Chen、Daniel Hauer、Jun Wang"
+    },
+    "t065": {
+      "en": "2024 Fudan-USTC Spectral Geometry Conference",
+      "zh": "2024 年复旦大学—中国科学技术大学谱几何会议"
+    },
+    "t066": {
+      "en": "University of Science and Technology of China, China",
+      "zh": "中国科学技术大学，中国"
+    },
+    "t067": {
+      "en": "Research Visits",
+      "zh": "学术访问"
+    },
+    "t068": {
+      "en": "Brandenburg University of Technology Cottbus-Senftenberg",
+      "zh": "勃兰登堡工业大学（科特布斯—森夫滕贝格）"
+    },
+    "t069": {
+      "en": "Germany",
+      "zh": "德国"
+    },
+    "t070": {
+      "en": "Selected Workshops and Conferences",
+      "zh": "部分研讨会与学术会议"
+    },
+    "t071": {
+      "en": "10 events",
+      "zh": "10 场"
+    },
+    "t072": {
+      "en": "Second Research Meeting of Analysis",
+      "zh": "第二届分析研究会议"
+    },
+    "t073": {
+      "en": "Brandenburg University of Technology Cottbus-Senftenberg, Germany",
+      "zh": "勃兰登堡工业大学（科特布斯—森夫滕贝格），德国"
+    },
+    "t074": {
+      "en": "Horizons in Nonlinear PDEs Spring School",
+      "zh": "非线性偏微分方程前沿春季学校"
+    },
+    "t075": {
+      "en": "Ulm University, Germany",
+      "zh": "乌尔姆大学，德国"
+    },
+    "t076": {
+      "en": "Annual Meeting of Analysis",
+      "zh": "分析年度会议"
+    },
+    "t077": {
+      "en": "2025 International Workshop on Fully Nonlinear Partial Differential Equations",
+      "zh": "2025 年完全非线性偏微分方程国际研讨会"
+    },
+    "t078": {
+      "en": "Shanghai Institute of Mathematics and Interdisciplinary Studies, China",
+      "zh": "上海数学与交叉学科研究院，中国"
+    },
+    "t079": {
+      "en": "The 32nd Yangtse River Conference on PDEs",
+      "zh": "第 32 届长江偏微分方程会议"
+    },
+    "t080": {
+      "en": "Anhui Normal University, China",
+      "zh": "安徽师范大学，中国"
+    },
+    "t081": {
+      "en": "2023 Fudan-USTC Spectral Geometry Conference",
+      "zh": "2023 年复旦大学—中国科学技术大学谱几何会议"
+    },
+    "t082": {
+      "en": "Fudan University, China",
+      "zh": "复旦大学，中国"
+    },
+    "t083": {
+      "en": "November 2023",
+      "zh": "2023 年 11 月"
+    },
+    "t084": {
+      "en": "Research Keywords",
+      "zh": "研究关键词"
+    },
+    "t085": {
+      "en": "Fractional Laplacian",
+      "zh": "分数阶拉普拉斯算子"
+    },
+    "t086": {
+      "en": "Logarithmic Laplacian",
+      "zh": "对数拉普拉斯算子"
+    },
+    "t087": {
+      "en": "Spectral Theory",
+      "zh": "谱理论"
+    },
+    "t088": {
+      "en": "Geometric Analysis",
+      "zh": "几何分析"
+    },
+    "t089": {
+      "en": "PDE",
+      "zh": "偏微分方程"
+    },
+    "t090": {
+      "en": "Manifolds",
+      "zh": "流形"
+    },
+    "t091": {
+      "en": "Graphs",
+      "zh": "图"
+    },
+    "t092": {
+      "en": "Variational Methods",
+      "zh": "变分方法"
+    },
+    "t093": {
+      "en": "Inequality",
+      "zh": "不等式"
+    },
+    "t094": {
+      "en": "Contact",
+      "zh": "联系方式"
+    },
+    "t095": {
+      "en": "I’m always happy to chat about mathematics, exchange ideas, and explore possible collaborations. Feel free to get in touch by email.",
+      "zh": "欢迎交流数学问题、交换想法，并探讨合作的可能。欢迎通过电子邮件联系我。"
+    },
+    "t096": {
+      "en": "Email:",
+      "zh": "邮箱："
+    },
+    "t097": {
+      "en": "Location: Germany / China",
+      "zh": "所在地：德国 / 中国"
+    },
+    "t098": {
+      "en": "Academic Links",
+      "zh": "学术链接"
+    },
+    "t099": {
+      "en": "Google Scholar",
+      "zh": "Google 学术"
+    },
+    "t100": {
+      "en": "Back to top ↑",
+      "zh": "回到顶部 ↑"
+    },
+    "t101": {
+      "en": "Young Researchers in Ferrara: Between Analysis and Geometry",
+      "zh": "费拉拉青年研究者会议：分析与几何"
+    },
+    "t102": {
+      "en": "Ferrara, Italy",
+      "zh": "意大利费拉拉"
+    },
+    "t103": {
+      "en": "Invited talk (60 minutes)",
+      "zh": "邀请报告（60 分钟）"
+    },
+    "t104": {
+      "en": "Research visit to Prof. Tobias Weth",
+      "zh": "访问 Tobias Weth 教授"
+    },
+    "t105": {
+      "en": "Goethe University Frankfurt, Germany",
+      "zh": "法兰克福歌德大学，德国"
+    },
+    "t107": {
+      "en": "Pisa, Italy",
+      "zh": "意大利比萨"
+    },
+    "t108": {
+      "en": "Modern Trends in Operator Theory and Geometric Analysis",
+      "zh": "算子理论与几何分析现代进展会议"
+    }
+  },
+  "ui": {
+    "en": {
+      "pageTitle": "Rui Chen | Mathematics",
+      "description": "Rui Chen - PhD Student in Mathematics. Research in nonlocal operators, spectral theory, and partial differential equations.",
+      "mainNavigation": "Main navigation",
+      "profile": "Current profile",
+      "filterDirections": "Filter publications by research direction",
+      "paperCount": "{count} papers",
+      "publicationCount": "{count} publications",
+      "viewAll": "View all {count} publications",
+      "showFewer": "Show fewer publications",
+      "showing": "Showing {visible} of {total} publications",
+      "allStatus": "All 14 publications are shown, grouped by research direction.",
+      "readPaper": "Read {title}"
+    },
+    "zh": {
+      "pageTitle": "Rui Chen | 数学研究",
+      "description": "Rui Chen，数学博士研究生。研究方向包括非局部算子、谱理论、泛函不等式与偏微分方程。",
+      "mainNavigation": "主导航",
+      "profile": "当前个人信息",
+      "filterDirections": "按研究方向筛选论文",
+      "paperCount": "{count} 篇论文",
+      "publicationCount": "{count} 篇论文",
+      "viewAll": "查看全部 {count} 篇论文",
+      "showFewer": "收起更多论文",
+      "showing": "显示 {visible} / {total} 篇论文",
+      "allStatus": "已按研究方向显示全部 14 篇论文。",
+      "readPaper": "阅读论文：{title}"
+    }
+  }
+}
+  </script>
+
+  <!-- WEBSITE INTERACTIONS -->
+  <script>
+    (() => {
+      const page = document.body;
+      const results = document.getElementById('research-results');
+      const status = document.getElementById('filter-status');
+      const buttons = Array.from(document.querySelectorAll('.topic-button'));
+      const panels = Array.from(results.querySelectorAll('.topic-panel'));
+      const allButton = document.getElementById('all-publications');
+      const nav = document.getElementById('main-navigation');
+      const menu = document.querySelector('.nav-toggle');
+      const languageData = JSON.parse(
+        document.getElementById('language-data').textContent
+      );
+      const languageButtons = Array.from(
+        document.querySelectorAll('.language-button')
+      );
+      const languageStorageKey = 'rui-chen-homepage-language';
+
+      let currentLanguage = 'en';
+      let active = 'nonlocal';
+
+      page.classList.replace('no-js', 'has-js');
+
+      function ui(key, values = {}) {
+        return languageData.ui[currentLanguage][key].replace(
+          /\{(\w+)\}/g,
+          (_, name) => String(values[name])
+        );
+      }
+
+      function updateMoreLabels() {
+        document.querySelectorAll('.more-papers').forEach(details => {
+          const count = Number(
+            details.closest('.topic-panel').dataset.count
+          );
+          const expandedLabel = details.querySelector('.expanded-label');
+          const collapsedLabel = details.querySelector('.collapsed-label');
+
+          expandedLabel.textContent = ui('showFewer');
+          collapsedLabel.textContent = ui('viewAll', { count });
+          expandedLabel.hidden = !details.open;
+          collapsedLabel.hidden = details.open;
+        });
+      }
+
+      function applyLanguage(language, remember = false) {
+        if (language !== 'en' && language !== 'zh') return;
+
+        currentLanguage = language;
+        document.documentElement.lang =
+          language === 'zh' ? 'zh-CN' : 'en';
+
+        document.title = ui('pageTitle');
+        document.querySelector(
+          'meta[name="description"]'
+        ).content = ui('description');
+
+        document.querySelectorAll('[data-i18n]').forEach(node => {
+          node.textContent =
+            languageData.text[node.dataset.i18n][language];
+        });
+
+        document.querySelectorAll('[data-i18n-aria]').forEach(node => {
+          node.setAttribute(
+            'aria-label',
+            ui(node.dataset.i18nAria)
+          );
+        });
+
+        document.querySelectorAll('.paper-link').forEach(link => {
+          link.setAttribute(
+            'aria-label',
+            ui('readPaper', { title: link.dataset.paperTitle })
+          );
+        });
+
+        languageButtons.forEach(button => {
+          button.setAttribute(
+            'aria-pressed',
+            String(button.dataset.language === language)
+          );
+        });
+
+        updateMoreLabels();
+        updateStatus();
+
+        if (remember) {
+          try {
+            localStorage.setItem(languageStorageKey, language);
+          } catch (_) {
+            /* Language switching works without storage. */
+          }
+        }
+      }
+
+      languageButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          applyLanguage(button.dataset.language, true);
+        });
+      });
+
+      function updateStatus() {
+        const visiblePanels = panels.filter(panel => !panel.hidden);
+        let visibleCount = 0;
+        let total = 0;
+
+        visiblePanels.forEach(panel => {
+          const more = panel.querySelector('.more-papers');
+          const count = Number(panel.dataset.count);
+
+          total += count;
+          visibleCount += (!more || more.open)
+            ? count
+            : Math.min(2, count);
+
+          const note = panel.querySelector('.view-note');
+
+          if (note) {
+            note.textContent = ui('showing', {
+              visible: (!more || more.open) ? count : 2,
+              total: count
+            });
+          }
+        });
+
+        status.textContent = active === 'all'
+          ? ui('allStatus')
+          : `${visiblePanels[0].querySelector('h3').textContent}${
+              currentLanguage === 'zh' ? '。' : '. '
+            }${ui('showing', {
+              visible: visibleCount,
+              total
+            })}${currentLanguage === 'zh' ? '。' : '.'}`;
+      }
+
+      function selectDirection(key) {
+        active = key;
+        results.classList.toggle('all-mode', key === 'all');
+
+        buttons.forEach(button => {
+          button.setAttribute(
+            'aria-pressed',
+            String(button.dataset.category === key)
+          );
+        });
+
+        allButton.setAttribute(
+          'aria-pressed',
+          String(key === 'all')
+        );
+
+        panels.forEach(panel => {
+          panel.hidden =
+            key !== 'all' && panel.dataset.category !== key;
+
+          const more = panel.querySelector('.more-papers');
+          if (more) more.open = key === 'all';
+        });
+
+        updateStatus();
+      }
+
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          selectDirection(button.dataset.category);
+        });
+      });
+
+      allButton.addEventListener('click', () => {
+        selectDirection('all');
+      });
+
+      document.querySelectorAll('.more-papers').forEach(details => {
+        details.addEventListener('toggle', () => {
+          updateMoreLabels();
+          updateStatus();
+        });
+      });
+
+      menu.addEventListener('click', () => {
+        const open =
+          menu.getAttribute('aria-expanded') !== 'true';
+
+        menu.setAttribute('aria-expanded', String(open));
+        nav.classList.toggle('is-open', open);
+      });
+
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          menu.setAttribute('aria-expanded', 'false');
+          nav.classList.remove('is-open');
+        });
+      });
+
+      function revealSection(hash) {
+        if (!hash) return;
+
+        const target = document.getElementById(hash.slice(1));
+        if (!target) return;
+
+        const section = target.closest('section');
+        const fold =
+          section && section.querySelector('.section-fold');
+
+        if (fold) fold.open = true;
+
+        for (
+          let parent = target.parentElement;
+          parent;
+          parent = parent.parentElement
+        ) {
+          if (parent.tagName === 'DETAILS') {
+            parent.open = true;
+          }
+        }
+
+        return target;
+      }
+
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', event => {
+          const hash = link.getAttribute('href');
+          const target = revealSection(hash);
+
+          if (target && hash === window.location.hash) {
+            event.preventDefault();
+            target.scrollIntoView({ block: 'start' });
+          }
+        });
+      });
+
+      window.addEventListener('hashchange', () => {
+        revealSection(window.location.hash);
+      });
+
+      document.addEventListener('keydown', event => {
+        if (
+          event.key === 'Escape' &&
+          nav.classList.contains('is-open')
+        ) {
+          menu.setAttribute('aria-expanded', 'false');
+          nav.classList.remove('is-open');
+          menu.focus();
+        }
+      });
+
+      window.addEventListener('beforeprint', () => {
+        document.querySelectorAll('details').forEach(details => {
+          details.dataset.beforePrintOpen = String(details.open);
+          details.open = true;
+        });
+      });
+
+      window.addEventListener('afterprint', () => {
+        document.querySelectorAll('details').forEach(details => {
+          details.open =
+            details.dataset.beforePrintOpen === 'true';
+          delete details.dataset.beforePrintOpen;
+        });
+      });
+
+      selectDirection('nonlocal');
+
+      let initialLanguage = 'en';
+
+      try {
+        const saved = localStorage.getItem(languageStorageKey);
+        if (saved === 'en' || saved === 'zh') {
+          initialLanguage = saved;
+        }
+      } catch (_) {
+        /* Use English when saved preference is unavailable. */
+      }
+
+      applyLanguage(initialLanguage);
+      revealSection(window.location.hash);
+    })();
+  </script>
+
+</body>
+</html>
