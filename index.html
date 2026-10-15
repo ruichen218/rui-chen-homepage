@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +7,6 @@
   <meta name="description" content="Rui Chen - PhD Student in Mathematics. Research in nonlocal operators, spectral theory, and partial differential equations.">
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-41TRGQ3C9P"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -30,16 +28,18 @@
       --max-width: 1120px;
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; scroll-padding-top: var(--header-offset, 100px); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); font-size: 17px; line-height: 1.75; }
     [hidden] { display: none !important; }
     h1, h2, h3, h4, p { margin-top: 0; }
     a { color: inherit; text-decoration: none; }
     button { color: inherit; font: inherit; }
-    button, summary { cursor: pointer; }
+    button, summary { cursor: pointer; touch-action: manipulation; }
     a, button, summary { -webkit-tap-highlight-color: transparent; }
     a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid #858eb8; outline-offset: 5px; }
-    .container { width: min(var(--max-width), calc(100% - 80px)); margin: 0 auto; }
+    .container { width: calc(100% - 80px); max-width: var(--max-width); margin: 0 auto; }
+    h1, h2, h3, h4, p, a { overflow-wrap: break-word; word-wrap: break-word; }
+    .hero-grid > *, .hero-aside > *, .paper-main, .section-top > *, .section-summary > * { min-width: 0; }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
     .skip-link { position: fixed; left: 16px; top: -70px; z-index: 100; padding: 10px 16px; background: var(--white); border: 1px solid var(--accent); }
     .skip-link:focus { top: 12px; }
@@ -61,9 +61,9 @@
     .language-button[aria-pressed="true"]:hover { background: #383f72; color: var(--white); }
     .no-js .header-actions { display: none; }
     .hero { padding: 66px 0 42px; }
-    .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; column-gap: 64px; align-items: start; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); column-gap: 64px; align-items: start; }
     .eyebrow { color: var(--accent); font-size: 13px; font-weight: 600; letter-spacing: .17em; text-transform: uppercase; margin-bottom: 19px; }
-    .hero h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 4.2vw, 56px); line-height: 1.09; letter-spacing: -2.1px; margin-bottom: 26px; }
+    .hero h2 { font-family: var(--serif); font-weight: 400; font-size: 48px; font-size: clamp(40px, 4.2vw, 56px); line-height: 1.09; letter-spacing: -2.1px; margin-bottom: 26px; }
     .lead { font-size: 17px; color: var(--secondary); line-height: 1.75; max-width: 570px; margin-bottom: 26px; }
     .actions { display: flex; flex-wrap: wrap; gap: 21px; align-items: center; }
     .primary-link { display: inline-flex; gap: 24px; align-items: center; background: var(--accent); color: var(--white); border-radius: 5px; padding: 12px 18px; font-size: 15px; font-weight: 500; }
@@ -78,7 +78,7 @@
     .profile-row { display: flex; gap: 16px; margin: 7px 0; align-items: baseline; }
     .profile-row > span { width: 76px; flex-shrink: 0; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--secondary); }
     .profile-row > div { min-width: 0; }
-    .profile a { text-decoration: none; }
+    .profile a { text-decoration: none; overflow-wrap: anywhere; }
     .about-detail { margin-top: 30px; max-width: 730px; color: var(--secondary); font-size: 17px; line-height: 1.75; }
     .about-detail > summary { display: inline-flex; align-items: center; gap: 16px; padding: 7px 0; font-size: 14px; color: var(--accent); list-style: none; }
     .about-detail > summary::-webkit-details-marker { display: none; }
@@ -94,7 +94,7 @@
     .research .section-content > .eyebrow { margin-bottom: 12px; }
     .research .section-title { color: var(--accent); }
     .section-title { font-family: var(--serif); font-size: 28px; line-height: 1.25; font-weight: 400; letter-spacing: -.4px; margin: 0; }
-    .section-summary { display: flex; justify-content: space-between; align-items: center; gap: 24px; min-height: 92px; padding: 24px 0; list-style: none; }
+    .section-summary { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 24px; min-height: 92px; padding: 24px 0; list-style: none; }
     .section-summary::-webkit-details-marker { display: none; }
     .fold-icon { flex-shrink: 0; width: 30px; text-align: center; color: var(--accent); font-size: 26px; line-height: 1; }
     .fold-icon::before { content: "+"; }
@@ -195,7 +195,7 @@
 
     @media (max-width: 1000px) {
       .container { width: calc(100% - 52px); }
-      .hero-grid { column-gap: 38px; grid-template-columns: 1.3fr 1fr; }
+      .hero-grid { column-gap: 38px; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
       .nav { gap: 19px; font-size: 14px; }
       .has-js .nav-toggle { display: inline-flex; align-items: center; font-size: 13px; min-height: 44px; padding: 8px 9px; }
       .has-js .nav { display: none; }
@@ -206,21 +206,23 @@
     }
 
     @media (max-width: 760px) {
-      html { scroll-padding-top: 86px; }
+      html { scroll-padding-top: 86px; scroll-padding-top: var(--header-offset, 86px); }
       body { font-size: 16px; }
       .container { width: calc(100% - 40px); }
-      .header-inner { min-height: 72px; }
+      .header-inner { min-height: 72px; flex-wrap: wrap; padding: 10px 0; }
+      .brand { flex: 1 1 160px; min-width: 0; }
+      .header-actions { margin-left: auto; }
       .brand h1 { font-size: 25px; }
       .brand p { font-size: 12px; }
-      .header-inner { gap: 8px; }
+      .header-inner { gap: 8px 12px; }
       .has-js .nav.is-open { padding-left: 20px; padding-right: 20px; }
       .no-js .header-inner { flex-wrap: wrap; padding: 15px 0; gap: 10px; }
       .no-js .nav { flex-wrap: wrap; }
       .hero { padding: 39px 0 31px; }
       .hero-grid { grid-template-columns: 1fr; gap: 23px; }
-      .hero h2 { font-size: 42px; letter-spacing: -1.5px; margin-bottom: 22px; }
+      .hero h2 { font-size: 38px; font-size: clamp(32px, 10vw, 42px); letter-spacing: -1px; margin-bottom: 22px; }
       .lead { font-size: 16px; margin-bottom: 22px; }
-      .hero-aside { display: grid; grid-template-columns: 130px 1fr; gap: 18px; align-items: center; }
+      .hero-aside { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 16px; align-items: center; }
       .illustration { margin: 0; }
       .profile { padding-top: 13px; }
       .profile-row { font-size: 14px; display: block; line-height: 1.7; margin: 7px 0; }
@@ -265,18 +267,16 @@
     }
 
     @media (max-width: 380px) {
-      html { scroll-padding-top: 145px; }
+      html { scroll-padding-top: 145px; scroll-padding-top: var(--header-offset, 145px); }
       .container { width: calc(100% - 32px); }
       .header-inner { flex-wrap: wrap; min-height: 0; padding: 10px 0; gap: 8px; }
-      .brand { width: 100%; }
       .header-actions { margin-left: auto; }
-      .hero h2 { font-size: 36px; }
-      .hero-aside { grid-template-columns: 92px 1fr; gap: 12px; }
+      .hero-aside { grid-template-columns: 72px minmax(0, 1fr); gap: 12px; }
       .section-top { flex-direction: column; gap: 15px; }
       .section-top .all-button { align-self: flex-start; }
       .topic-button { min-height: 170px; padding: 12px; }
       .topic-button .topic-name { font-size: 15px; }
-      .summary-end { gap: 12px; }
+      .summary-end { gap: 8px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -2044,280 +2044,337 @@
   <!-- WEBSITE INTERACTIONS -->
   <script>
     (() => {
-      const page = document.body;
-      const results = document.getElementById('research-results');
-      const status = document.getElementById('filter-status');
-      const buttons = Array.from(document.querySelectorAll('.topic-button'));
-      const panels = Array.from(results.querySelectorAll('.topic-panel'));
-      const allButton = document.getElementById('all-publications');
-      const nav = document.getElementById('main-navigation');
-      const menu = document.querySelector('.nav-toggle');
-      const languageData = JSON.parse(
-        document.getElementById('language-data').textContent
-      );
-      const languageButtons = Array.from(
-        document.querySelectorAll('.language-button')
-      );
-      const languageStorageKey = 'rui-chen-homepage-language';
-
-      let currentLanguage = 'en';
-      let active = 'nonlocal';
-
-      page.classList.replace('no-js', 'has-js');
-
-      function ui(key, values = {}) {
-        return languageData.ui[currentLanguage][key].replace(
-          /\{(\w+)\}/g,
-          (_, name) => String(values[name])
+      try {
+        const page = document.body;
+        const results = document.getElementById('research-results');
+        const status = document.getElementById('filter-status');
+        const buttons = Array.from(document.querySelectorAll('.topic-button'));
+        const panels = Array.from(results.querySelectorAll('.topic-panel'));
+        const allButton = document.getElementById('all-publications');
+        const nav = document.getElementById('main-navigation');
+        const menu = document.querySelector('.nav-toggle');
+        const languageData = JSON.parse(
+          document.getElementById('language-data').textContent
         );
-      }
+        const languageButtons = Array.from(
+          document.querySelectorAll('.language-button')
+        );
+        const languageStorageKey = 'rui-chen-homepage-language';
 
-      function updateMoreLabels() {
-        document.querySelectorAll('.more-papers').forEach(details => {
-          const count = Number(
-            details.closest('.topic-panel').dataset.count
+        let currentLanguage = 'en';
+        let active = 'nonlocal';
+
+        // Keep the readable HTML fallback until initialization succeeds.
+
+        function ui(key, values = {}) {
+          const translations = languageData.ui[currentLanguage] || languageData.ui.en;
+          const template = translations[key] || languageData.ui.en[key] || '';
+          return template.replace(/\{(\w+)\}/g, (_, name) =>
+            values[name] === undefined ? '' : String(values[name])
           );
-          const expandedLabel = details.querySelector('.expanded-label');
-          const collapsedLabel = details.querySelector('.collapsed-label');
-
-          expandedLabel.textContent = ui('showFewer');
-          collapsedLabel.textContent = ui('viewAll', { count });
-          expandedLabel.hidden = !details.open;
-          collapsedLabel.hidden = details.open;
-        });
-      }
-
-      function applyLanguage(language, remember = false) {
-        if (language !== 'en' && language !== 'zh') return;
-
-        currentLanguage = language;
-        document.documentElement.lang =
-          language === 'zh' ? 'zh-CN' : 'en';
-
-        document.title = ui('pageTitle');
-        document.querySelector(
-          'meta[name="description"]'
-        ).content = ui('description');
-
-        document.querySelectorAll('[data-i18n]').forEach(node => {
-          node.textContent =
-            languageData.text[node.dataset.i18n][language];
-        });
-
-        document.querySelectorAll('[data-i18n-aria]').forEach(node => {
-          node.setAttribute(
-            'aria-label',
-            ui(node.dataset.i18nAria)
-          );
-        });
-
-        document.querySelectorAll('.paper-link').forEach(link => {
-          link.setAttribute(
-            'aria-label',
-            ui('readPaper', { title: link.dataset.paperTitle })
-          );
-        });
-
-        languageButtons.forEach(button => {
-          button.setAttribute(
-            'aria-pressed',
-            String(button.dataset.language === language)
-          );
-        });
-
-        updateMoreLabels();
-        updateStatus();
-
-        if (remember) {
-          try {
-            localStorage.setItem(languageStorageKey, language);
-          } catch (_) {
-            /* Language switching works without storage. */
-          }
         }
-      }
 
-      languageButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          applyLanguage(button.dataset.language, true);
-        });
-      });
+        function updateMoreLabels() {
+          document.querySelectorAll('.more-papers').forEach(details => {
+            const count = Number(
+              details.closest('.topic-panel').dataset.count
+            );
+            const expandedLabel = details.querySelector('.expanded-label');
+            const collapsedLabel = details.querySelector('.collapsed-label');
 
-      function updateStatus() {
-        const visiblePanels = panels.filter(panel => !panel.hidden);
-        let visibleCount = 0;
-        let total = 0;
+            expandedLabel.textContent = ui('showFewer');
+            collapsedLabel.textContent = ui('viewAll', { count });
+            expandedLabel.hidden = !details.open;
+            collapsedLabel.hidden = details.open;
+          });
+        }
 
-        visiblePanels.forEach(panel => {
-          const more = panel.querySelector('.more-papers');
-          const count = Number(panel.dataset.count);
+        function applyLanguage(language, remember = false) {
+          if (language !== 'en' && language !== 'zh') return;
 
-          total += count;
-          visibleCount += (!more || more.open)
-            ? count
-            : Math.min(2, count);
+          currentLanguage = language;
+          document.documentElement.lang =
+            language === 'zh' ? 'zh-CN' : 'en';
 
-          const note = panel.querySelector('.view-note');
+          document.title = ui('pageTitle');
+          document.querySelector(
+            'meta[name="description"]'
+          ).content = ui('description');
 
-          if (note) {
-            note.textContent = ui('showing', {
-              visible: (!more || more.open) ? count : 2,
-              total: count
-            });
-          }
-        });
+          document.querySelectorAll('[data-i18n]').forEach(node => {
+            const entry = languageData.text[node.dataset.i18n];
+            if (entry && (entry[language] || entry.en)) {
+              node.textContent = entry[language] || entry.en;
+            }
+          });
 
-        status.textContent = active === 'all'
-          ? ui('allStatus')
-          : `${visiblePanels[0].querySelector('h3').textContent}${
-              currentLanguage === 'zh' ? '。' : '. '
-            }${ui('showing', {
-              visible: visibleCount,
-              total
-            })}${currentLanguage === 'zh' ? '。' : '.'}`;
-      }
+          document.querySelectorAll('[data-i18n-aria]').forEach(node => {
+            node.setAttribute(
+              'aria-label',
+              ui(node.dataset.i18nAria)
+            );
+          });
 
-      function selectDirection(key) {
-        active = key;
-        results.classList.toggle('all-mode', key === 'all');
+          document.querySelectorAll('.paper-link').forEach(link => {
+            link.setAttribute(
+              'aria-label',
+              ui('readPaper', { title: link.dataset.paperTitle })
+            );
+          });
 
-        buttons.forEach(button => {
-          button.setAttribute(
-            'aria-pressed',
-            String(button.dataset.category === key)
-          );
-        });
+          languageButtons.forEach(button => {
+            button.setAttribute(
+              'aria-pressed',
+              String(button.dataset.language === language)
+            );
+          });
 
-        allButton.setAttribute(
-          'aria-pressed',
-          String(key === 'all')
-        );
-
-        panels.forEach(panel => {
-          panel.hidden =
-            key !== 'all' && panel.dataset.category !== key;
-
-          const more = panel.querySelector('.more-papers');
-          if (more) more.open = key === 'all';
-        });
-
-        updateStatus();
-      }
-
-      buttons.forEach(button => {
-        button.addEventListener('click', () => {
-          selectDirection(button.dataset.category);
-        });
-      });
-
-      allButton.addEventListener('click', () => {
-        selectDirection('all');
-      });
-
-      document.querySelectorAll('.more-papers').forEach(details => {
-        details.addEventListener('toggle', () => {
           updateMoreLabels();
           updateStatus();
-        });
-      });
+          updateHeaderOffset();
 
-      menu.addEventListener('click', () => {
-        const open =
-          menu.getAttribute('aria-expanded') !== 'true';
-
-        menu.setAttribute('aria-expanded', String(open));
-        nav.classList.toggle('is-open', open);
-      });
-
-      nav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          menu.setAttribute('aria-expanded', 'false');
-          nav.classList.remove('is-open');
-        });
-      });
-
-      function revealSection(hash) {
-        if (!hash) return;
-
-        const target = document.getElementById(hash.slice(1));
-        if (!target) return;
-
-        const section = target.closest('section');
-        const fold =
-          section && section.querySelector('.section-fold');
-
-        if (fold) fold.open = true;
-
-        for (
-          let parent = target.parentElement;
-          parent;
-          parent = parent.parentElement
-        ) {
-          if (parent.tagName === 'DETAILS') {
-            parent.open = true;
+          if (remember) {
+            try {
+              localStorage.setItem(languageStorageKey, language);
+            } catch (_) {
+              /* Language switching works without storage. */
+            }
           }
         }
 
-        return target;
-      }
+        languageButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            applyLanguage(button.dataset.language, true);
+          });
+        });
 
-      document.querySelectorAll('a[href^="#"]').forEach(link => {
-        link.addEventListener('click', event => {
-          const hash = link.getAttribute('href');
-          const target = revealSection(hash);
+        function updateStatus() {
+          const visiblePanels = panels.filter(panel => !panel.hidden);
+          let visibleCount = 0;
+          let total = 0;
 
-          if (target && hash === window.location.hash) {
-            event.preventDefault();
-            target.scrollIntoView({ block: 'start' });
+          visiblePanels.forEach(panel => {
+            const more = panel.querySelector('.more-papers');
+            const count = Number(panel.dataset.count);
+
+            total += count;
+            visibleCount += (!more || more.open)
+              ? count
+              : Math.min(2, count);
+
+            const note = panel.querySelector('.view-note');
+
+            if (note) {
+              note.textContent = ui('showing', {
+                visible: (!more || more.open) ? count : 2,
+                total: count
+              });
+            }
+          });
+
+          status.textContent = active === 'all'
+            ? ui('allStatus')
+            : `${visiblePanels[0] ? visiblePanels[0].querySelector('h3').textContent.trim() : ''}${
+                currentLanguage === 'zh' ? '。' : '. '
+              }${ui('showing', {
+                visible: visibleCount,
+                total
+              })}${currentLanguage === 'zh' ? '。' : '.'}`;
+        }
+
+        function selectDirection(key) {
+          active = key;
+          results.classList.toggle('all-mode', key === 'all');
+
+          buttons.forEach(button => {
+            button.setAttribute(
+              'aria-pressed',
+              String(button.dataset.category === key)
+            );
+          });
+
+          allButton.setAttribute(
+            'aria-pressed',
+            String(key === 'all')
+          );
+
+          panels.forEach(panel => {
+            panel.hidden =
+              key !== 'all' && panel.dataset.category !== key;
+
+            const more = panel.querySelector('.more-papers');
+            if (more) more.open = key === 'all';
+          });
+
+          updateStatus();
+        }
+
+        buttons.forEach(button => {
+          button.addEventListener('click', () => {
+            selectDirection(button.dataset.category);
+          });
+        });
+
+        allButton.addEventListener('click', () => {
+          selectDirection('all');
+        });
+
+        document.querySelectorAll('.more-papers').forEach(details => {
+          details.addEventListener('toggle', () => {
+            updateMoreLabels();
+            updateStatus();
+          });
+        });
+
+        menu.addEventListener('click', () => {
+          const open =
+            menu.getAttribute('aria-expanded') !== 'true';
+
+          menu.setAttribute('aria-expanded', String(open));
+          nav.classList.toggle('is-open', open);
+        });
+
+        nav.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            menu.setAttribute('aria-expanded', 'false');
+            nav.classList.remove('is-open');
+          });
+        });
+
+        function updateHeaderOffset() {
+          const header = document.querySelector('.site-header');
+          if (header) document.documentElement.style.setProperty(
+            '--header-offset', `${Math.ceil(header.getBoundingClientRect().height) + 12}px`
+          );
+        }
+
+        window.addEventListener('resize', updateHeaderOffset);
+        if ('ResizeObserver' in window) {
+          new ResizeObserver(updateHeaderOffset).observe(document.querySelector('.site-header'));
+        }
+
+        function revealSection(hash) {
+          if (!hash) return;
+
+          const target = document.getElementById(hash.slice(1));
+          if (!target) return;
+
+          const section = target.closest('section');
+          const fold =
+            section && section.querySelector('.section-fold');
+
+          if (fold) fold.open = true;
+
+          for (
+            let parent = target.parentElement;
+            parent;
+            parent = parent.parentElement
+          ) {
+            if (parent.tagName === 'DETAILS') {
+              parent.open = true;
+            }
+          }
+
+          return target;
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+          link.addEventListener('click', event => {
+            const hash = link.getAttribute('href');
+            const target = revealSection(hash);
+
+            if (target && hash === window.location.hash) {
+              event.preventDefault();
+              target.scrollIntoView({ block: 'start' });
+            }
+          });
+        });
+
+        window.addEventListener('hashchange', () => {
+          revealSection(window.location.hash);
+        });
+
+        document.addEventListener('keydown', event => {
+          if (
+            event.key === 'Escape' &&
+            nav.classList.contains('is-open')
+          ) {
+            menu.setAttribute('aria-expanded', 'false');
+            nav.classList.remove('is-open');
+            menu.focus();
           }
         });
-      });
 
-      window.addEventListener('hashchange', () => {
+        window.addEventListener('beforeprint', () => {
+          document.querySelectorAll('details').forEach(details => {
+            details.dataset.beforePrintOpen = String(details.open);
+            details.open = true;
+          });
+        });
+
+        window.addEventListener('afterprint', () => {
+          document.querySelectorAll('details').forEach(details => {
+            details.open =
+              details.dataset.beforePrintOpen === 'true';
+            delete details.dataset.beforePrintOpen;
+          });
+        });
+
+        selectDirection('nonlocal');
+
+        let initialLanguage = 'en';
+
+        try {
+          const saved = localStorage.getItem(languageStorageKey);
+          if (saved === 'en' || saved === 'zh') {
+            initialLanguage = saved;
+          }
+        } catch (_) {
+          /* Use English when saved preference is unavailable. */
+        }
+
+        applyLanguage(initialLanguage);
+        page.classList.remove('no-js');
+        page.classList.add('has-js');
+        updateHeaderOffset();
         revealSection(window.location.hash);
-      });
-
-      document.addEventListener('keydown', event => {
-        if (
-          event.key === 'Escape' &&
-          nav.classList.contains('is-open')
-        ) {
-          menu.setAttribute('aria-expanded', 'false');
-          nav.classList.remove('is-open');
-          menu.focus();
-        }
-      });
-
-      window.addEventListener('beforeprint', () => {
-        document.querySelectorAll('details').forEach(details => {
-          details.dataset.beforePrintOpen = String(details.open);
-          details.open = true;
+      } catch (error) {
+        // A damaged translation entry must not hide the page or publications.
+        document.body.classList.remove('has-js');
+        document.body.classList.add('no-js');
+        document.querySelectorAll('.topic-panel').forEach(panel => {
+          panel.hidden = false;
         });
-      });
-
-      window.addEventListener('afterprint', () => {
-        document.querySelectorAll('details').forEach(details => {
-          details.open =
-            details.dataset.beforePrintOpen === 'true';
-          delete details.dataset.beforePrintOpen;
-        });
-      });
-
-      selectDirection('nonlocal');
-
-      let initialLanguage = 'en';
-
-      try {
-        const saved = localStorage.getItem(languageStorageKey);
-        if (saved === 'en' || saved === 'zh') {
-          initialLanguage = saved;
-        }
-      } catch (_) {
-        /* Use English when saved preference is unavailable. */
+        const results = document.getElementById('research-results');
+        if (results) results.classList.remove('all-mode');
+        const research = document.querySelector('#research .section-fold');
+        if (research) research.open = true;
+        console.warn('Homepage interactions are unavailable; readable content is preserved.', error);
       }
+    })();
+  </script>
 
-      applyLanguage(initialLanguage);
-      revealSection(window.location.hash);
+  <!-- Analytics loads after the page, independently of content and navigation. -->
+  <script>
+    (function () {
+      function startAnalytics() {
+        function loadAnalytics() {
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-41TRGQ3C9P';
+          document.head.appendChild(script);
+        }
+        if ('requestIdleCallback' in window) {
+          window.requestIdleCallback(loadAnalytics, { timeout: 2000 });
+        } else {
+          window.setTimeout(loadAnalytics, 0);
+        }
+      }
+      if (document.readyState === 'complete') {
+        startAnalytics();
+      } else {
+        window.addEventListener('load', startAnalytics, false);
+      }
     })();
   </script>
 
