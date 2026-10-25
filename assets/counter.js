@@ -12,15 +12,6 @@
   const isStartDate = value => isDate(value) || (typeof value === 'string' &&
     /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?(?:Z|[+-]\d{2}:\d{2})$/.test(value) && Number.isFinite(Date.parse(value)));
 
-  function dateLabel(value) {
-    if (isDate(value)) return value;
-    const parts = new Intl.DateTimeFormat('en-CA', {
-      timeZone: 'Europe/Berlin', year: 'numeric', month: '2-digit', day: '2-digit',
-    }).formatToParts(new Date(value));
-    const fields = Object.fromEntries(parts.map(part => [part.type, part.value]));
-    return `${fields.year}-${fields.month}-${fields.day}`;
-  }
-
   function validSnapshot(value) {
     return !!value && isCount(value.pv) && isCount(value.uv) &&
       isStartDate(value.counting_since) && isStartDate(value.uv_counting_since) &&
@@ -330,18 +321,17 @@
     };
   }
 
-  function createDomRenderer(document, countingSince, provider = 'self-hosted') {
+  function createDomRenderer(document, provider = 'self-hosted') {
     const container = document.querySelector('#homepage-views');
     const status = document.querySelector('#homepage-counter-status');
     const loading = document.querySelector('#homepage-counter-loading');
     const error = document.querySelector('#homepage-counter-error');
     const cached = document.querySelector('#homepage-counter-cached');
-    const note = document.querySelector('#homepage-counter-note');
     const pv = document.querySelector('#homepage-views-value');
     const uv = document.querySelector('#homepage-visitors-value');
     const pvItem = document.querySelector('#homepage-pv');
     const uvItem = document.querySelector('#homepage-uv');
-    if ([container, status, loading, error, cached, note, pv, uv, pvItem, uvItem].some(value => !value)) return null;
+    if ([container, status, loading, error, cached, pv, uv, pvItem, uvItem].some(value => !value)) return null;
     let latest = { status: 'loading', snapshot: null };
 
     function render(value = latest) {
@@ -366,11 +356,6 @@
         }).format(new Date(data.as_of));
         cached.textContent = zh ? `上次确认：${timestamp}（柏林时间）；暂时无法更新` : `Last confirmed: ${timestamp} (Berlin); temporarily unable to update`;
       }
-      const pvSince = dateLabel(data ? data.counting_since : countingSince);
-      const uvSince = dateLabel(data ? data.uv_counting_since : countingSince);
-      note.textContent = pvSince === uvSince
-        ? (zh ? `自 ${pvSince} 起` : `Since ${pvSince}`)
-        : (zh ? `浏览量自 ${pvSince} 起；访客数自 ${uvSince} 起` : `Views since ${pvSince}; visitors since ${uvSince}`);
     }
     return render;
   }
@@ -418,8 +403,7 @@
     if (location.protocol !== 'https:' || location.hostname !== 'ruichen218.github.io' || !PATHS.includes(location.pathname)) return null;
     if (window[STARTED_KEY]) return window[STARTED_KEY].counter;
     const config = window.RuiCounterConfig;
-    const render = createDomRenderer(window.document,
-      config && isDate(config.countingSince) ? config.countingSince : '2026-10-25', config && config.provider);
+    const render = createDomRenderer(window.document, config && config.provider);
     if (!render) return null;
     const started = { counter: null };
     window[STARTED_KEY] = started;

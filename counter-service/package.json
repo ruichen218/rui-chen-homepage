@@ -5,7 +5,7 @@
   "type": "module",
   "engines": { "node": ">=24.0.0" },
   "scripts": {
-    "test": "node --test test/*.test.mjs",
+    "test": "node --test test/*.test.mjs maintenance/test/*.test.mjs",
     "dev": "wrangler dev",
     "check": "node scripts/check.mjs",
     "setup": "node scripts/setup.mjs",
@@ -14,7 +14,12 @@
     "import-history": "node scripts/import-history.mjs",
     "backup": "node scripts/backup.mjs",
     "verify-backup": "node scripts/verify-backup.mjs",
-    "health": "node scripts/health.mjs"
+    "health": "node scripts/health.mjs",
+    "cloud:setup": "node scripts/cloud-setup.mjs",
+    "cloud:deploy": "node scripts/cloud-deploy.mjs",
+    "cloud:bootstrap": "node scripts/cloud-bootstrap.mjs",
+    "cloud:restore-check": "node scripts/cloud-restore-check.mjs",
+    "cloud:health": "node scripts/cloud-health.mjs"
   },
   "devDependencies": {
     "fake-indexeddb": "6.2.4",

@@ -264,25 +264,27 @@ test('an older tab cannot overwrite a newer durable cache snapshot', async () =>
   assert.deepEqual(await first.readSnapshot(), reset);
 });
 
-test('cached status, distinct PV/UV start dates, and browser UV caveat follow language', () => {
+test('cached status and UV caveat follow language without a counting-date DOM dependency', () => {
   const nodes = new Map();
   const document = {
     documentElement: { lang: 'en' },
     querySelector(selector) {
+      assert.notEqual(selector, '#homepage-counter-note');
       if (!nodes.has(selector)) nodes.set(selector, { hidden: true, textContent: '', title: '' });
       return nodes.get(selector);
     },
   };
-  const render = createDomRenderer(document, '2026-10-25');
+  const render = createDomRenderer(document);
   render({ status: 'cached', snapshot: snapshot(1200, 44, { counting_since: '2026-10-01T00:00:00.000Z' }) });
   assert.equal(nodes.get('#homepage-views-value').textContent, '1,200');
   assert.equal(nodes.get('#homepage-counter-cached').hidden, false);
   assert.match(nodes.get('#homepage-counter-cached').textContent, /Last confirmed:/);
-  assert.equal(nodes.get('#homepage-counter-note').textContent, 'Views since 2026-10-01; visitors since 2026-10-25');
+  assert.equal(nodes.has('#homepage-counter-note'), false);
   document.documentElement.lang = 'zh-CN';
   render();
   assert.match(nodes.get('#homepage-counter-cached').textContent, /上次确认/);
-  assert.match(nodes.get('#homepage-counter-note').textContent, /浏览量自 2026-10-01 起；访客数自 2026-10-25 起/);
+  assert.equal(nodes.get('#homepage-views-value').textContent, '1,200');
+  assert.equal(nodes.get('#homepage-visitors-value').textContent, '44');
   assert.match(nodes.get('#homepage-uv').title, /浏览器/);
   assert.equal(nodes.get('#homepage-counter-error').hidden, true);
 });
@@ -335,7 +337,7 @@ test('legacy UV tooltip describes provider deduplication without inventing brows
       return nodes.get(selector);
     },
   };
-  const render = createDomRenderer(document, '2026-10-25', 'busuanzi');
+  const render = createDomRenderer(document, 'busuanzi');
   render({ status: 'fresh', snapshot: snapshot() });
   assert.match(nodes.get('#homepage-uv').title, /provider’s rules/);
   assert.doesNotMatch(nodes.get('#homepage-uv').title, /browser identit/);

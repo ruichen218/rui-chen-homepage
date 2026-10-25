@@ -527,7 +527,6 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
 .visit-counter { display: flex; flex-wrap: wrap; column-gap: 18px; row-gap: 6px; min-width: 0; }
 .visit-counter-item { display: inline-flex; align-items: baseline; gap: 6px; white-space: nowrap; }
 .visit-counter[hidden], .visit-counter-item[hidden] { display: none !important; }
-.visit-counter-note { flex-basis: 100%; font-size: 12px; }
 .visit-counter-status { flex-basis: 100%; font-size: 12px; overflow-wrap: anywhere; }
 #homepage-views-value, #homepage-visitors-value { font-variant-numeric: tabular-nums; color: #365c8e; }
 
@@ -1812,7 +1811,6 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
               <span id="homepage-counter-error" data-i18n="t117" hidden>Statistics unavailable</span>
               <span id="homepage-counter-cached" hidden></span>
             </span>
-            <span class="visit-counter-note" id="homepage-counter-note">Since 2026-10-25</span>
           </span>
           <a href="#about">
             <span data-i18n="t100">Back to top ↑</span>
@@ -2279,10 +2277,6 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
   "en": "Tohoku University, Sendai, Japan",
   "zh": "日本东北大学，日本仙台"
 },
-"t115": {
-  "en": "Since 2026-10-25",
-  "zh": "自 2026-10-25 起"
-},
 "t116": {
   "en": "Loading…",
   "zh": "加载中…"
@@ -2683,7 +2677,7 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
 })();
 </script>
 <script src="assets/counter-config.js" defer></script>
-<script src="assets/counter.js" defer></script>
+<script src="assets/counter.js?v=20261025-cloud" defer></script>
   <!-- Analytics loads after the page, independently of content and navigation. -->
   <script>
     (function () {

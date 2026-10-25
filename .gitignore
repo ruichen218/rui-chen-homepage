@@ -7,3 +7,6 @@ counter-service/wrangler.test.local.json
 counter-service/deployment.local.json
 counter-service/private-backups/
 counter-service/private-secrets/
+counter-service/maintenance/wrangler.local.json
+counter-service/maintenance/deployment.local.json
+counter-service/maintenance/.wrangler/
