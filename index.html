@@ -527,6 +527,8 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
 .visit-counter { display: flex; flex-wrap: wrap; column-gap: 18px; row-gap: 6px; min-width: 0; }
 .visit-counter-item { display: inline-flex; align-items: baseline; gap: 6px; white-space: nowrap; }
 .visit-counter[hidden], .visit-counter-item[hidden] { display: none !important; }
+.visit-counter-note { flex-basis: 100%; font-size: 12px; }
+.visit-counter-status { font-size: 12px; }
 #homepage-views-value, #homepage-visitors-value { font-variant-numeric: tabular-nums; color: #365c8e; }
 
 @media (max-width: 1050px) {
@@ -1799,12 +1801,17 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
           <span class="visit-counter" id="homepage-views" hidden>
             <span class="visit-counter-item" id="homepage-pv" hidden>
               <span data-i18n="t111">Views (PV)</span>
-              <span id="homepage-views-value"></span>
+              <span id="homepage-views-value">—</span>
             </span>
             <span class="visit-counter-item" id="homepage-uv" hidden>
               <span data-i18n="t112">Visitors (UV)</span>
-              <span id="homepage-visitors-value"></span>
+              <span id="homepage-visitors-value">—</span>
             </span>
+            <span class="visit-counter-status" id="homepage-counter-status" role="status">
+              <span id="homepage-counter-loading" data-i18n="t116">Loading…</span>
+              <span id="homepage-counter-error" data-i18n="t117" hidden>Statistics unavailable</span>
+            </span>
+            <span class="visit-counter-note" data-i18n="t115">Since 2026-10-25</span>
           </span>
           <a href="#about">
             <span data-i18n="t100">Back to top ↑</span>
@@ -2270,6 +2277,18 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
 "t114": {
   "en": "Tohoku University, Sendai, Japan",
   "zh": "日本东北大学，日本仙台"
+},
+"t115": {
+  "en": "Since 2026-10-25",
+  "zh": "自 2026-10-25 起"
+},
+"t116": {
+  "en": "Loading…",
+  "zh": "加载中…"
+},
+"t117": {
+  "en": "Statistics unavailable",
+  "zh": "统计暂不可用"
 }
   },
   "ui": {
@@ -2665,31 +2684,56 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
 <script>
 (() => {
   const container = document.querySelector('#homepage-views');
+  const status = document.querySelector('#homepage-counter-status');
+  const loading = document.querySelector('#homepage-counter-loading');
+  const error = document.querySelector('#homepage-counter-error');
   const metrics = [
-    {key: 'site_pv', item: document.querySelector('#homepage-pv'), value: document.querySelector('#homepage-views-value')},
-    {key: 'site_uv', item: document.querySelector('#homepage-uv'), value: document.querySelector('#homepage-visitors-value')},
+    {key: 'busuanzi_site_pv', item: document.querySelector('#homepage-pv'), value: document.querySelector('#homepage-views-value')},
+    {key: 'busuanzi_site_uv', item: document.querySelector('#homepage-uv'), value: document.querySelector('#homepage-visitors-value')},
   ];
   const paths = ['/rui-chen-homepage/', '/rui-chen-homepage/index.html', '/rui-chen-homepage'];
-  if (!container || metrics.some(metric => !metric.item || !metric.value) || location.protocol !== 'https:' ||
+  if (!container || !status || !loading || !error || metrics.some(metric => !metric.item || !metric.value) || location.protocol !== 'https:' ||
       location.hostname !== 'ruichen218.github.io' || !paths.includes(location.pathname)) return;
 
-  function loadCounter() {
-    const callback = 'ruiHomepageViews_' + Math.random().toString(36).slice(2);
-    const script = document.createElement('script');
-    let finished = false;
-    let timer;
+  container.hidden = false;
+  metrics.forEach(metric => { metric.item.hidden = false; });
 
-    function finish() {
-      if (finished) return false;
-      finished = true;
-      clearTimeout(timer);
-      script.remove();
-      delete window[callback];
-      return true;
+  function unavailable() {
+    loading.hidden = true;
+    error.hidden = false;
+    status.hidden = false;
+  }
+
+  let started = false;
+  async function loadCounter() {
+    if (started) return;
+    if (navigator.onLine === false) {
+      unavailable();
+      window.addEventListener('online', loadCounter, { once: true });
+      return;
     }
+    started = true;
+    loading.hidden = false;
+    error.hidden = true;
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 15000);
 
-    window[callback] = data => {
-      if (!finish()) return;
+    try {
+      // The provider's official client uses this POST API. Keep one request per
+      // page load: retrying an ambiguous failure could count the visit twice.
+      const response = await fetch('https://cdn.busuanzi.cc/api.php', {
+        method: 'POST',
+        credentials: 'omit',
+        referrerPolicy: 'origin',
+        signal: controller.signal,
+        body: JSON.stringify({
+          url: 'https://ruichen218.github.io/rui-chen-homepage/',
+          referrer: '',
+        }),
+      });
+      if (!response.ok) throw new Error('Counter request failed');
+      const data = await response.json();
+      let validMetrics = 0;
       metrics.forEach(metric => {
         const count = data && data[metric.key];
         const valid = (typeof count === 'number' ||
@@ -2697,25 +2741,22 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
           Number.isSafeInteger(Number(count)) && Number(count) >= 0;
         if (!valid) return;
         metric.value.textContent = Number(count).toLocaleString('en-US');
-        metric.item.hidden = false;
+        validMetrics++;
       });
-      container.hidden = metrics.every(metric => metric.item.hidden);
-    };
-
-    script.async = true;
-    script.referrerPolicy = 'origin';
-    script.src = 'https://busuanzi.ibruce.info/busuanzi?jsonpCallback=' + callback;
-    script.onerror = finish;
-    timer = setTimeout(finish, 8000);
-    document.head.appendChild(script);
+      if (validMetrics === metrics.length) status.hidden = true;
+      else unavailable();
+    } catch (_) {
+      unavailable();
+    } finally {
+      clearTimeout(timer);
+    }
   }
 
   function scheduleCounter() {
     if ('requestIdleCallback' in window) window.requestIdleCallback(loadCounter, { timeout: 2000 });
     else setTimeout(loadCounter, 0);
   }
-  if (document.readyState === 'complete') scheduleCounter();
-  else window.addEventListener('load', scheduleCounter, { once: true });
+  scheduleCounter();
 })();
 </script>
   <!-- Analytics loads after the page, independently of content and navigation. -->
