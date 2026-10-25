@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "rui-chen-homepage-counter",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-10-25",
+  "workers_dev": true,
+  "observability": { "enabled": false },
+  "vars": {
+    "ALLOWED_ORIGIN": "https://ruichen218.github.io",
+    "SITE_STARTED_AT": "2026-10-25T00:00:00.000Z"
+  },
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "rui-chen-homepage-counter",
+    "database_id": "00000000-0000-0000-0000-000000000000",
+    "migrations_dir": "migrations"
+  }],
+  "ratelimits": [{
+    "name": "RATE_LIMITER",
+    "namespace_id": "21820261025",
+    "simple": { "limit": 120, "period": 60 }
+  }],
+  "triggers": { "crons": ["17 3 * * *"] }
+}

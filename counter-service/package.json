@@ -1,0 +1,23 @@
+{
+  "name": "rui-chen-homepage-counter",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24.0.0" },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "dev": "wrangler dev",
+    "check": "node scripts/check.mjs",
+    "setup": "node scripts/setup.mjs",
+    "deploy": "node scripts/deploy.mjs",
+    "activate": "node scripts/activate.mjs",
+    "import-history": "node scripts/import-history.mjs",
+    "backup": "node scripts/backup.mjs",
+    "verify-backup": "node scripts/verify-backup.mjs",
+    "health": "node scripts/health.mjs"
+  },
+  "devDependencies": {
+    "fake-indexeddb": "6.2.4",
+    "wrangler": "4.152.0"
+  }
+}

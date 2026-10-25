@@ -1,0 +1,9 @@
+counter-service/node_modules/
+counter-service/.wrangler/
+counter-service/.dev.vars
+counter-service/.env
+counter-service/wrangler.local.json
+counter-service/wrangler.test.local.json
+counter-service/deployment.local.json
+counter-service/private-backups/
+counter-service/private-secrets/
