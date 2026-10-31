@@ -19,3 +19,5 @@
 语言切换与主页共用 `rui-chen-homepage-language` 偏好，也支持 `?lang=zh`、`?lang=en` 直接分享。每期可使用 `#session-01` 这样的锚点链接。
 
 详情页与主页另有静态英文回退内容，供 JavaScript 不可用时阅读。系列安排有变化时，也应同步更新相应 HTML 回退内容；正常启用 JavaScript 时，两处内容均从同一份活动数据生成。
+
+发布活动资料或脚本更新时，同步递增两个 HTML 中 `seminars-data.js` / `seminars.js` 的版本查询参数，避免浏览器缓存混用新旧结构；替换同名海报时也应更新海报 URL 的版本参数。

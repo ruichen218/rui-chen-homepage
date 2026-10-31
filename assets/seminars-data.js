@@ -35,8 +35,8 @@ window.CSU_SEMINAR_SERIES = {
         zh: "梁宇栋，中南大学数学与统计学院 2019 级数学与应用数学专业本科生，现就读于北京师范大学，导师为周渊。研究方向为几何测度论与调和分析，尤其关注投影定理、Furstenberg 集猜想相关问题。"
       },
       poster: {
-        image: "assets/seminars/csu-alumni/session-01-poster.webp",
-        pdf: "assets/seminars/csu-alumni/session-01-poster.pdf"
+        image: "assets/seminars/csu-alumni/session-01-poster.webp?v=20261031-organizers",
+        pdf: "assets/seminars/csu-alumni/session-01-poster.pdf?v=20261031-organizers"
       }
     }
   ]
