@@ -2,6 +2,10 @@
 
 活动页：`seminars/csu-alumni/index.html`。主页与详情页的中英文内容共用 `assets/seminars-data.js`，无需分别修改两份。
 
+组织者为 Rui Chen 与徐世松（英文显示 Shisong Xu），参会联系邮箱保留 chenrui23@m.fudan.edu.cn。组织者名单在 `organizers` 中维护，参会邮箱在 `contactEmail` 中维护。
+
+以后收到新一期海报时，按当前格式更新主页卡片和系列详情页，中英文同步；明确报告语言为中文，并将参会方式统一写为邮件联系组织者。公开海报也应使用相同参会方式。
+
 新增一期时，在 `window.CSU_SEMINAR_SERIES.events` 中追加一条记录：
 
 - 使用唯一的 `id`（如 `session-02`）和递增 `number`。

@@ -10,7 +10,7 @@
   const storageKey = 'rui-chen-homepage-language';
   const labels = {
     en: {
-      organizer: 'Organizer', language: 'Language', online: 'Online series',
+      organizer: 'Organizers', language: 'Language', online: 'Online series',
       next: 'Next session', current: 'Current session', recent: 'Recent session',
       upcoming: 'Upcoming', live: 'In progress', past: 'Past session',
       session: 'Session', details: 'Details & all sessions',
@@ -44,6 +44,8 @@
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
   }[character]));
   const text = (value, language) => typeof value === 'string' ? value : (value[language] || value.en);
+  const organizerNames = language => series.organizers.map(person => text(person.name, language)).join(language === 'zh' ? '、' : ' · ');
+  const organizerLinks = language => series.organizers.map(person => person.email ? `<a href="mailto:${escape(person.email)}">${escape(text(person.name, language))}</a>` : escape(text(person.name, language))).join(language === 'zh' ? '、' : ' · ');
   const lang = () => document.documentElement.lang.startsWith('zh') ? 'zh' : 'en';
   const sessionLabel = (event, language) => language === 'zh' ? `第 ${event.number} 场` : `Session ${event.number}`;
   const eventStatus = (event, now) => now < Date.parse(event.startsAt) ? 'upcoming' : now < Date.parse(event.endsAt) ? 'live' : 'past';
@@ -53,7 +55,7 @@
     if (hash) url.hash = hash;
     return url.href;
   };
-  const emailURL = (event, language) => `mailto:${series.organizer.email}?subject=${encodeURIComponent(labels[language].mailSubject(event))}`;
+  const emailURL = (event, language) => `mailto:${series.contactEmail}?subject=${encodeURIComponent(labels[language].mailSubject(event))}`;
   const byStart = (a, b) => Date.parse(a.startsAt) - Date.parse(b.startsAt);
 
   function eventDate(event, language) {
@@ -93,7 +95,7 @@
     }
     home.innerHTML = `<article class="seminar-home-card">
       <h3><a href="${escape(seriesLink)}">${escape(text(series.title, language))}</a></h3>
-      <div class="seminar-meta-line"><span>${escape(ui.organizer)}: ${escape(series.organizer.name)}</span><span>${escape(ui.language)}: ${escape(text(series.language, language))}</span><span>${escape(ui.online)}</span></div>
+      <div class="seminar-meta-line"><span>${escape(ui.organizer)}: ${escape(organizerNames(language))}</span><span>${escape(ui.language)}: ${escape(text(series.language, language))}</span><span>${escape(ui.online)}</span></div>
       ${eventHTML}<a class="seminar-series-link" href="${escape(seriesLink)}">${escape(ui.details)}</a>
     </article>`;
   }
@@ -117,7 +119,7 @@
           <div class="seminar-info-row"><dt>${escape(ui.language)}</dt><dd>${escape(text(series.language, language))}</dd></div>
           <div class="seminar-info-row"><dt>${escape(ui.format)}</dt><dd>${escape(text(event.format || series.format, language))}</dd></div>
         </dl>
-        <div class="seminar-join"><p>${escape(ui.join)}</p><a href="${escape(emailURL(event, language))}">${escape(series.organizer.email)}</a></div>
+        <div class="seminar-join"><p>${escape(ui.join)}</p><a href="${escape(emailURL(event, language))}">${escape(series.contactEmail)}</a></div>
         <h4 class="seminar-text-heading">${escape(ui.abstract)}</h4><p class="seminar-copy">${escape(text(event.abstract, language))}</p>
         <h4 class="seminar-text-heading">${escape(ui.biography)}</h4><p class="seminar-copy">${escape(text(event.biography, language))}</p>
       </div>${poster}</div>
@@ -155,7 +157,7 @@
       <p class="seminar-page-eyebrow">${escape(ui.series)}</p>
       <h1 class="seminar-page-title">${escape(text(series.title, language))}</h1>
       <p class="seminar-page-description">${escape(text(series.description, language))}</p>
-      <div class="seminar-series-meta"><p><span class="seminar-meta-caption">${escape(ui.organizer)}</span><a href="mailto:${escape(series.organizer.email)}">${escape(series.organizer.name)}</a></p><p><span class="seminar-meta-caption">${escape(ui.language)}</span>${escape(text(series.language, language))}</p><p>${escape(ui.online)}</p></div>
+      <div class="seminar-series-meta"><p><span class="seminar-meta-caption">${escape(ui.organizer)}</span>${organizerLinks(language)}</p><p><span class="seminar-meta-caption">${escape(ui.language)}</span>${escape(text(series.language, language))}</p><p>${escape(ui.online)}</p></div>
     </header>
     <div id="seminar-sessions">${groupHTML(upcoming, language, false)}${groupHTML(past, language, true)}</div>`;
   }

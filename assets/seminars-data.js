@@ -8,7 +8,11 @@ window.CSU_SEMINAR_SERIES = {
     en: "An online seminar series for sharing mathematical questions and research among Central South University mathematics and statistics alumni.",
     zh: "中南数统学友分享数学研究问题与进展的线上学术交流系列。"
   },
-  organizer: { name: "Rui Chen", email: "chenrui23@m.fudan.edu.cn" },
+  organizers: [
+    { name: { en: "Rui Chen", zh: "Rui Chen" }, email: "chenrui23@m.fudan.edu.cn" },
+    { name: { en: "Shisong Xu (徐世松)", zh: "徐世松" } }
+  ],
+  contactEmail: "chenrui23@m.fudan.edu.cn",
   language: { en: "Chinese", zh: "中文" },
   format: { en: "Online · Tencent Meeting", zh: "线上 · 腾讯会议" },
   events: [
