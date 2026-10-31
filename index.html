@@ -603,6 +603,7 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
 }
 
 </style>
+  <link rel="stylesheet" href="assets/seminars.css">
 </head>
 
 <body class="no-js">
@@ -625,6 +626,7 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
         <a href="#research"><span data-i18n="t003">Research &amp; Publications</span></a>
         <a href="#education"><span data-i18n="t004">Education</span></a>
         <a href="#talks"><span data-i18n="t005">Talks &amp; Visits</span></a>
+        <a href="#organizing"><span data-i18n="s001">Activities</span></a>
         <a class="contact-nav" href="#contact">
           <span data-i18n="t006">Contact ↗</span>
         </a>
@@ -1595,6 +1597,31 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
       </section>
     </div>
 
+    <!-- ACADEMIC ACTIVITIES ORGANIZED -->
+    <section class="section organizing-wrap" id="organizing" aria-labelledby="organizing-heading">
+      <div class="container">
+        <details class="section-fold" open>
+          <summary class="section-summary">
+            <h2 class="section-title" id="organizing-heading">
+              <span data-i18n="s002">Academic Activities</span>
+            </h2>
+            <span class="fold-icon" aria-hidden="true"></span>
+          </summary>
+          <div class="section-content" id="csu-seminar-home">
+            <article class="seminar-home-card">
+              <h3><a href="seminars/csu-alumni/">CSU Math &amp; Statistics Alumni Seminar</a></h3>
+              <p>Organizer: Rui Chen · Language: Chinese · Online seminar series</p>
+              <p>Session 1 · <strong>Yudong Liang (Beijing Normal University)</strong><br>
+                <span lang="en">An introduction to approximate incidence geometry</span><br>
+                <time datetime="2026-11-10T15:00:00+08:00">10 November 2026, 15:00–16:00 (Beijing time, UTC+8)</time>
+              </p>
+              <a class="plain-link" href="seminars/csu-alumni/">Details and all sessions →</a>
+            </article>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <!-- SELECTED WORKSHOPS AND CONFERENCES -->
     <div class="container archive-wrap">
       <details class="archive-details">
@@ -2284,7 +2311,15 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
 "t117": {
   "en": "Statistics unavailable",
   "zh": "统计暂不可用"
-}
+},
+    "s001": {
+      "en": "Activities",
+      "zh": "学术活动组织"
+    },
+    "s002": {
+      "en": "Academic Activities",
+      "zh": "学术活动组织"
+    }
   },
   "ui": {
     "en": {
@@ -2318,6 +2353,9 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
   }
 }
   </script>
+
+  <script src="assets/seminars-data.js" defer></script>
+  <script src="assets/seminars.js" defer></script>
 
   <!-- WEBSITE INTERACTIONS -->
   <script>
@@ -2416,6 +2454,13 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
               localStorage.setItem(languageStorageKey, language);
             } catch (_) {
               /* Language switching works without storage. */
+            }
+            try {
+              const url = new URL(window.location.href);
+              url.searchParams.set('lang', language);
+              history.replaceState(null, '', url);
+            } catch (_) {
+              /* Language switching works without URL updates. */
             }
           }
         }
@@ -2609,6 +2654,11 @@ html:lang(zh) .topic-intro h3 { font-family: var(--sans); font-size: 24px; font-
           }
         } catch (_) {
           /* Use English when saved preference is unavailable. */
+        }
+
+        const requestedLanguage = new URLSearchParams(window.location.search).get('lang');
+        if (requestedLanguage === 'en' || requestedLanguage === 'zh') {
+          initialLanguage = requestedLanguage;
         }
 
         applyLanguage(initialLanguage);
