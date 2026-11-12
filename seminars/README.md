@@ -8,7 +8,7 @@
 
 新增一期时，在 `window.CSU_SEMINAR_SERIES.events` 中追加一条记录：
 
-- 使用唯一的 `id`（如 `session-02`）和递增 `number`。
+- 使用唯一的 `id`（如 `session-03`）和递增 `number`。
 - 填写英文报告题目、讲者的中英文姓名与单位、摘要和介绍。
 - `startsAt` 和 `endsAt` 使用明确的北京时间偏移，例如 `2026-11-10T15:00:00+08:00`。
 - 将公开海报放在 `assets/seminars/csu-alumni/`，填写 `poster.image` 和 `poster.pdf` 的站点根目录相对路径。没有海报时可省略 `poster`。
